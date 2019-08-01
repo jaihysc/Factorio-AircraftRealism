@@ -77,7 +77,7 @@ data:extend({
         name = "aircraft-takeoff-speed-flying-fortress",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 160,
+        default_value = 140,
         order="aak"
     },
     {

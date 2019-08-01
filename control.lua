@@ -142,6 +142,11 @@ function TransitionPlane(oldPlane, newPlane, game, defines, takingOff)
     --Set weapon item inventory
     InsertItems(newPlane.get_inventory(defines.inventory.car_ammo), oldPlane.get_inventory(defines.inventory.car_ammo).get_contents())
 
+    --Select the last weapon
+    if oldPlane.selected_gun_index then
+        newPlane.selected_gun_index = oldPlane.selected_gun_index
+    end
+
     --Health (Grounded planes have 5x less health)
     --Test if planes have the different max healths, to perform health scaling
     if game.entity_prototypes[newPlane.name].max_health ~= game.entity_prototypes[oldPlane.name].max_health then
