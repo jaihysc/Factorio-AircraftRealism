@@ -1,0 +1,10 @@
+{
+    "name": "AircraftRealism",
+    "version": "0.1.0",
+    "title": "Aircraft Realism",
+    "author": "haih_ys",
+    "homepage": "", 
+    "factorio_version": "0.17",
+    "dependencies": ["base >= 0.17", "Aircraft >= 1.6.10"],
+    "description": "Makes the Aircraft mod's planes behave like planes"
+}
