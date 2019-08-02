@@ -147,6 +147,16 @@ function TransitionPlane(oldPlane, newPlane, game, defines, takingOff)
         newPlane.selected_gun_index = oldPlane.selected_gun_index
     end
 
+    --Transfer over equipment grid
+    if oldPlane.grid then
+        for index,item in pairs(oldPlane.grid.equipment) do
+            local addedEquipment = newPlane.grid.put{name=item.name, position=item.position}
+            --Transfer over charge and shield capacity
+            if item.energy ~= 0 then addedEquipment.energy = item.energy end
+            if item.shield ~= 0 then addedEquipment.shield = item.shield end
+        end
+    end
+
     --Health (Grounded planes have 5x less health)
     --Test if planes have the different max healths, to perform health scaling
     if game.entity_prototypes[newPlane.name].max_health ~= game.entity_prototypes[oldPlane.name].max_health then
