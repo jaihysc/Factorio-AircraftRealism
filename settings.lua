@@ -29,48 +29,55 @@ data:extend({
     },
     {
         type = "bool-setting",
+        name = "aircraft-realism-no-aerial-shadows",
+        setting_type = "startup",
+        default_value = true,
+        order="aae"
+    },
+    {
+        type = "bool-setting",
         name = "aircraft-realism-environmental-impact",
         setting_type = "runtime-global",
         default_value = true,
-        order="aae"
+        order="aaf"
     },
     {
         type = "bool-setting",
         name = "aircraft-emit-pollution",
         setting_type = "runtime-global",
         default_value = true,
-        order="aaf"
+        order="aag"
     },
     {
         type = "double-setting",
         name = "aircraft-pollution-amount",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 2,
-        order="aag"
+        default_value = 1,
+        order="aah"
     },
     {
         type = "double-setting",
-        name = "aircraft-takeoff-speed-dropship",
+        name = "aircraft-takeoff-speed-gunship",
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 130,
-        order="aah"
+        order="aai"
     },
     {
         type = "double-setting",
         name = "aircraft-takeoff-speed-cargo-plane",
         setting_type = "runtime-global",
         default_value = 70,
-        order="aai"
+        order="aaj"
     },
     {
         type = "double-setting",
         name = "aircraft-takeoff-speed-jet",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 340,
-        order="aaj"
+        default_value = 320,
+        order="aak"
     },
     {
         type = "double-setting",
@@ -78,30 +85,30 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 140,
-        order="aak"
+        order="aal"
     },
     {
         type = "double-setting",
-        name = "aircraft-landing-speed-dropship",
+        name = "aircraft-landing-speed-gunship",
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 110,
-        order="aal"
+        order="aam"
     },
     {
         type = "double-setting",
         name = "aircraft-landing-speed-cargo-plane",
         setting_type = "runtime-global",
         default_value = 50,
-        order="aam"
+        order="aan"
     },
     {
         type = "double-setting",
         name = "aircraft-landing-speed-jet",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 300,
-        order="aan"
+        default_value = 290,
+        order="aao"
     },
     {
         type = "double-setting",
@@ -109,7 +116,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 120,
-        order="aao"
+        order="aap"
     },
     {
         type = "string-setting",
@@ -121,6 +128,48 @@ data:extend({
             "imperial"
         },
         allow_blank = false,
-        order="aap"
+        order="aaq"
     }
 })
+
+------------------------------------------------------
+--OTHER MODS
+------------------------------------------------------
+
+--Better cargo planes
+if mods["betterCargoPlanes"] then
+    data:extend({
+        {
+            type = "double-setting",
+            name = "aircraft-takeoff-speed-better-cargo-plane",
+            setting_type = "runtime-global",
+            minimum_value = 0,
+            default_value = 110,
+            order="ada"
+        },
+        {
+            type = "double-setting",
+            name = "aircraft-takeoff-speed-even-better-cargo-plane",
+            setting_type = "runtime-global",
+            minimum_value = 0,
+            default_value = 120,
+            order="adb"
+        },
+        {
+            type = "double-setting",
+            name = "aircraft-landing-speed-better-cargo-plane",
+            setting_type = "runtime-global",
+            minimum_value = 0,
+            default_value = 60,
+            order="bda"
+        },
+        {
+            type = "double-setting",
+            name = "aircraft-landing-speed-even-better-cargo-plane",
+            setting_type = "runtime-global",
+            minimum_value = 0,
+            default_value = 70,
+            order="bdb"
+        },
+    })
+end

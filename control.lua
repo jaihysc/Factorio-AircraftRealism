@@ -1,3 +1,12 @@
+local recognisedPlanes = { --!!Add more planes here as needed with new mods!!
+    "gunship",
+    "cargo-plane",
+    "jet",
+    "flying-fortress",
+    "better-cargo-plane",
+    "even-better-cargo-plane"
+}
+
 script.on_event({defines.events.on_tick}, function (e)
     if e.tick % 15 == 0 then --Check every quarter of a second
         for index,player in pairs(game.connected_players) do  --loop through all online players on the server
@@ -24,8 +33,6 @@ script.on_event({defines.events.on_tick}, function (e)
                 end
             end
         end
-
-        --todo
     end
 end)
 
@@ -38,88 +45,81 @@ script.on_event({defines.events.on_player_driving_changed_state}, function (e)
 
     if not player.driving and e.entity and IsAirbornePlane(e.entity.name) then
         e.entity.die()
-        -- TransitionPlane(
-        --     e.entity,
-        --     e.entity.surface.create_entity{name=string.sub(e.entity.name, 0, string.len(e.entity.name) - string.len("-airborne")), position=e.entity.position, force="neutral"},
-        --     game,
-        --     defines,
-        --     false
-        -- )
     end
 end)
 
-----------------------------------------------------Get plane type
+----------------------------------------------------Test for plane type
 
+--Tests for the name in the array of recognisedPlanes
 function IsGroundedPlane(name)
-    if name == "gunship" or name == "cargo-plane" or name == "jet" or name == "flying-fortress" then
-        return true
-    else
-        return false
+    for i,plane in pairs(recognisedPlanes) do
+        if name == plane then
+            return true
+        end
     end
+
+    return false
 end
 
 function IsAirbornePlane(name)
-    if name == "gunship-airborne" or name == "cargo-plane-airborne" or name == "jet-airborne" or name == "flying-fortress-airborne" then
-        return true
-    else
-        return false
+    for i,plane in pairs(recognisedPlanes) do
+        if name == (plane .. "-airborne") then
+            return true
+        end
     end
+
+    return false
 end
 
-----------------------------------------------------Takeoff landing
+----------------------------------------------------Takeoff / landing
 
 function PlaneTakeoff(player, game, defines, settings)
-    local takeoff = false
 
-    if player.vehicle.name == "gunship" and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-dropship"].value) then takeoff = true end
-    if player.vehicle.name == "cargo-plane" and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-cargo-plane"].value) then takeoff = true end
-    if player.vehicle.name == "jet" and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-jet"].value) then takeoff = true end
-    if player.vehicle.name == "flying-fortress" and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-flying-fortress"].value) then takeoff = true end
+    --Tests if player is grounded and plane is greater than the specified takeoff speed
+    for i,plane in pairs(recognisedPlanes) do
+        if player.vehicle.name == plane and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-" .. plane].value) then
+            TransitionPlane(
+                player.vehicle,
+                player.surface.create_entity{name=player.vehicle.name .. "-airborne", position=player.position, force=game.forces.player},
+                game,
+                defines,
+                true
+            )
 
-    if takeoff then
-        TransitionPlane(
-            player.vehicle,
-            player.surface.create_entity{name=player.vehicle.name .. "-airborne", position=player.position, force=game.forces.player},
-            game,
-            defines,
-            true
-        )
+            --Create some smoke to indicate to the player they have taken off
+            for i = 1, 3, 1 do
+                player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
+            end
 
-        --Create some smoke to indicate to the player they have taken off
-        for i = 1, 3, 1 do
-            player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
+            --Accelerate the new plane that the player is in so they don't need to press w again
+            player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
+            return
         end
-
-        --Accelerate the new plane that the player is in so they don't need to press w again
-        player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
     end
 end
 
 function PlaneLand(player, game, defines, settings)
-    local land = false
 
-    --If less than the specified landing speed for the plane
-    if player.vehicle.name == "gunship-airborne" and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-dropship"].value) then land = true end
-    if player.vehicle.name == "cargo-plane-airborne" and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-cargo-plane"].value) then land = true end
-    if player.vehicle.name == "jet-airborne" and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-jet"].value) then land = true end
-    if player.vehicle.name == "flying-fortress-airborne" and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-flying-fortress"].value) then land = true end
+    --Tests if player is airborne and plane is less than the specified landing speed
+    for i,plane in pairs(recognisedPlanes) do
+        if player.vehicle.name == (plane .. "-airborne") and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-" .. plane].value) then
+            TransitionPlane(
+                player.vehicle,
+                player.surface.create_entity{name=string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")), position=player.position, force=game.forces.player},
+                game,
+                defines,
+                false
+            )
 
+            --Create some smoke to indicate to the player they have landed
+            for i = 1, 5, 1 do
+                player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
+            end
 
-    if land then
-        TransitionPlane(
-            player.vehicle,
-            player.surface.create_entity{name=string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")), position=player.position, force=game.forces.player},
-            game,
-            defines,
-            false
-        )
-
-        --Create some smoke to indicate to the player they have landed
-        for i = 1, 5, 1 do
-            player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
+            --Auto brake
+            player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
+            return
         end
-
-        player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
     end
 end
 
@@ -213,8 +213,8 @@ function ObstacleCollision(surface, player, plane)
     end
     for k, entity in pairs (surface.find_tiles_filtered({position = player.position, radius = plane.get_radius()+2.5, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
         if plane.speed == 0 then --destroy the plane upon landing in water
-            plane.get_driver().die(player.force, plane) --Player dies too since they will just be stuck anyways
-            local passenger = plane.get_passenger() --Player dies too since they will just be stuck anyways
+            plane.get_driver().die(player.force, plane) --Player + passenger dies too since they will just be stuck anyways
+            local passenger = plane.get_passenger()
             if passenger then passenger.die(player.force, plane) end
             plane.die()
         end
@@ -225,7 +225,14 @@ end
 ----------------------------------------------------Aircraft pollution
 function CreatePollution(surface, plane)
     if settings.global["aircraft-emit-pollution"].value then
-        surface.pollute(plane.position, settings.global["aircraft-pollution-amount"].value * plane.speed) --More pollution is emitted at higher speeds
+
+        --More pollution is emitted at higher speeds, also depending on the fuel
+        local emissions = settings.global["aircraft-pollution-amount"].value
+        if plane.burner.currently_burning then
+            emissions = emissions * plane.burner.currently_burning.fuel_emissions_multiplier
+        end
+
+        surface.pollute(plane.position, emissions * math.abs(plane.speed))
     end
 end
 

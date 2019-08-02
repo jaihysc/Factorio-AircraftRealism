@@ -1,0 +1,29 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2019-08-02
+  Info:
+    - Wrote this changelog
+  Major Features:
+    - Added option to remove shadows from Aircraft off the ground
+    - Added support for Better Cargo Planes (https://mods.factorio.com/mod/betterCargoPlanes)
+    - Planes now glide so you don't need to always hold down accelerate
+  Minor Features:
+    - Tweaked handling of planes
+    - Lowered takeoff and landing speed of the jet
+  Bugfixes:
+    - Fixed misspelled words
+---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 2019-08-01
+  Bugfixes:
+    - Fixed equipment grid items not being transferred over on takeoff and landing
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 2019-08-01
+  Bugfixes:
+    - Fixed selected weapon not being saved on takeoff and landing
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2019-08-01
+  Info:
+    - Initial mod!

@@ -1,10 +1,10 @@
 {
     "name": "AircraftRealism",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "title": "Aircraft Realism",
     "author": "haih_ys",
-    "homepage": "", 
+    "homepage": "https://forums.factorio.com/viewtopic.php?f=190&t=73964",
     "factorio_version": "0.17",
-    "dependencies": ["base >= 0.17", "Aircraft >= 1.6.10"],
+    "dependencies": ["base >= 0.17", "Aircraft >= 1.6.10", "? betterCargoPlanes >= 1.0.8"],
     "description": "Makes the Aircraft mod's planes behave like planes"
 }
