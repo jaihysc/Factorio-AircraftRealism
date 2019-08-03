@@ -36,7 +36,7 @@ script.on_event({defines.events.on_tick}, function (e)
     end
 end)
 
-----------------------------------------------------If a player bails out of a speeding plane, destroy it since there is no pilot
+----------------------------------------------------If a player bails out of a speeding plane, destroy it if there is no passenger
 --I would perfer to have the plane glide away, but there is no easy way that I know of to track them and all the solutions
 --would likely lag if there is a large amount of planes
 
@@ -44,7 +44,14 @@ script.on_event({defines.events.on_player_driving_changed_state}, function (e)
    local player = game.get_player(e.player_index)
 
     if not player.driving and e.entity and IsAirbornePlane(e.entity.name) then
-        e.entity.die()
+
+        --If there is a passenger in the plane, they become the pilot
+        local passenger = e.entity.get_passenger()
+        if passenger then
+            e.entity.set_driver(passenger)
+        else
+            e.entity.die()
+        end
     end
 end)
 
@@ -194,32 +201,49 @@ end
 
 ----------------------------------------------------Object, water Collisions
 function ObstacleCollision(surface, player, plane)
-    if settings.global["aircraft-realism-environmental-impact"].value then
-        for k, entity in pairs (surface.find_entities_filtered({position = player.position, radius = plane.get_radius()+3, name = {"cliff"}})) do
-            --Over 35km/h
-            if plane.speed > 0.16203 or plane.speed > -0.16203 then --destroy the plane upon hitting a cliff
-                plane.die()
-            end
+
+    --Destroy the plane if the player LANDS ON a cliff
+    for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.2, name = {"cliff"}})) do
+        if plane.speed == 0 then
+            KillDriverAndPassenger(plane, player)
+
+            return;
+        end
+    end
+    --Destroy the plane upon landing in water
+    local tile = surface.get_tile(plane.position).name
+    if tile == "water" or tile == "water-shallow" or tile == "water-mud"or tile == "water-green" or tile == "deepwater" or tile == "deepwater-green" then
+        if plane.speed == 0 then  --Player + passenger dies too since they will just be stuck anyways
+            KillDriverAndPassenger(plane, player)
+
             return;
         end
     end
 
-    --Destroy the plane if the player LANDS ON a cliff
-    for k, entity in pairs (surface.find_entities_filtered({position = player.position, radius = plane.get_radius()+1, name = {"cliff"}})) do
-        if plane.speed == 0 then
-            plane.die()
+    if settings.global["aircraft-realism-environmental-impact"].value then
+        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"cliff"}})) do
+            --Over 35km/h
+            if plane.speed > 0.16203 or plane.speed < -0.16203 then --destroy the plane upon hitting a cliff
+                plane.die()
+
+                return;
+            end
         end
-        return;
-    end
-    for k, entity in pairs (surface.find_tiles_filtered({position = player.position, radius = plane.get_radius()+2.5, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
-        if plane.speed == 0 then --destroy the plane upon landing in water
-            plane.get_driver().die(player.force, plane) --Player + passenger dies too since they will just be stuck anyways
-            local passenger = plane.get_passenger()
-            if passenger then passenger.die(player.force, plane) end
-            plane.die()
+        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
+            if plane.speed > 0.16203 or plane.speed < -0.16203 then
+                plane.die()
+
+                return;
+            end
         end
-        return;
     end
+end
+
+function KillDriverAndPassenger(plane, player)
+    plane.get_driver().die(player.force, plane)
+    local passenger = plane.get_passenger()
+    if passenger then passenger.die(player.force, plane) end
+    plane.die()
 end
 
 ----------------------------------------------------Aircraft pollution

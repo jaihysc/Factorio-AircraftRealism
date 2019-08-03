@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.1
+Date: 2019-08-03
+  Minor Features:
+    - Made the flying fortress more powerful since it is so expensive
+    - If a passenger is present in a plane when the driver bails, the passenger becomes the driver instead of the plane blowing up
+  Bugfixes:
+    - Fixed the realism acceleration option not doing anything
+    - Fixed planes blowing up when stationary over water with the option Realistic environmental impacts
+---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2019-08-02
   Info:
