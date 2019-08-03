@@ -43,7 +43,7 @@ end
 --Gunship
 ExtendGroundedAircraft("gunship", 0.008, "380kW", 100, 3750, {{-2, -2}, {2, 2}})
 --Cargo plane
-ExtendGroundedAircraft("cargo-plane", 0.006, "510kW", 100, 27500, {{-1, -1.5}, {1, 1.5}})
+ExtendGroundedAircraft("cargo-plane", 0.006, "510kW", 100, 27500, {{-1.5, -1.5}, {1.5, 1.5}})
 --Jet
 ExtendGroundedAircraft("jet", 0.005, "540kW", 50, 1500, {{-2, -2}, {2, 2}})
 --Flying fortress
@@ -56,6 +56,6 @@ ExtendGroundedAircraft("flying-fortress", 0.01, "2620kW", 400, 15000, {{-2, -2},
 
 --Better cargo planes
 if mods["betterCargoPlanes"] then
-    ExtendGroundedAircraft("better-cargo-plane", 0.0065, "780kW", 200, 31500, {{-0.9, -1.3}, {0.9, 1.3}}) --Gets more breaking power, turn radius since it is better, heavier too since it has more inventory
-    ExtendGroundedAircraft("even-better-cargo-plane", 0.007, "1080kW", 400, 37500, {{-0.9, -1.3}, {0.9, 1.3}})
+    ExtendGroundedAircraft("better-cargo-plane", 0.0065, "780kW", 200, 31500, {{-1.3, -1.3}, {1.3, 1.3}}) --Gets more breaking power, turn radius since it is better, heavier too since it has more inventory
+    ExtendGroundedAircraft("even-better-cargo-plane", 0.007, "1080kW", 400, 37500, {{-1.3, -1.3}, {1.3, 1.3}})
 end

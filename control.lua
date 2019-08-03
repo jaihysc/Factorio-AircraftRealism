@@ -221,7 +221,7 @@ function ObstacleCollision(surface, player, plane)
     end
 
     if settings.global["aircraft-realism-environmental-impact"].value then
-        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"cliff"}})) do
+        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+3.5, name = {"cliff"}})) do
             --Over 35km/h
             if plane.speed > 0.16203 or plane.speed < -0.16203 then --destroy the plane upon hitting a cliff
                 plane.die()
@@ -229,7 +229,7 @@ function ObstacleCollision(surface, player, plane)
                 return;
             end
         end
-        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
+        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+3.5, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
             if plane.speed > 0.16203 or plane.speed < -0.16203 then
                 plane.die()
 
