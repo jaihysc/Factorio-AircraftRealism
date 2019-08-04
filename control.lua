@@ -93,15 +93,23 @@ function ValidateRunwayTile(surface, plane, player)
         --Cap the max speed to the max taxi speed when not on a runway
         if tile.prototype.vehicle_friction_modifier > settings.global["aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction"].value then
 
-            --Take off 20% of speed and damage the plane if past the max taxi speed
-            if plane.speed > 0.16203 or plane.speed < -0.16203 then
-                plane.speed = plane.speed - 15
-                plane.health = plane.health - 1
+            --Take off 10% of speed and damage the plane if past the max taxi speed by 2x
+            if plane.speed > ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) or plane.speed < -1 * ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) then
+                if plane.speed > 0 then
+                    plane.speed = plane.speed - 0.00925 --decrease speed by 2km/h per tick
+                elseif plane.speed < 0 then
+                    plane.speed = plane.speed + 0.00925
+                end
 
-                --If plane is out of health, it dies!
-                if plane.health <= 0 then
-                    plane.die()
-                    return false --false to indicate plane is already destroyed
+                --damage the plane if past the max taxi speed, this should only apply on landing, I added a margin of 20km/h so one should not be able to accelerate faster than it unless in jet or has afterburners
+                if plane.speed > ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) + 0.09259 or plane.speed < -1 * ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) - 0.009259  then
+                    plane.health = plane.health - 1
+
+                    --If plane is out of health, it dies!
+                    if plane.health <= 0 then
+                        plane.die()
+                        return false --false to indicate plane is already destroyed
+                    end
                 end
             end
         end
