@@ -7,6 +7,7 @@ Date: 2019-08-04
   Changes:
     - Raised activation speed for environmental obstacles from 35km/h to 40km/h
     - Inceased update rate of collision detection since it appears to occasionally fail to recognise cliff collisions
+    - Lowered default pollution amount emitted by planes
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 2019-08-03

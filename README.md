@@ -38,6 +38,10 @@ Jumping out of a flying plane will cause it to crash
 
 Planes emit pollution depending on their fuel type and speed
 
+### Strict runway checking
+
+planes must takeoff from tiles with a vehicle friction modifier less than what is set in the settings, otherwise the plane will take damage on takeoff and landing (disabled by default)
+
 ## Plane statistics
 
 Gunship: Medium takeoff, medium maneuverability

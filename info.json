@@ -5,6 +5,6 @@
     "author": "haih_ys",
     "homepage": "https://forums.factorio.com/viewtopic.php?f=190&t=73964",
     "factorio_version": "0.17",
-    "dependencies": ["base >= 0.17", "Aircraft >= 1.6.10", "? betterCargoPlanes >= 1.0.8"],
+    "dependencies": ["base >= 0.17", "Aircraft >= 1.6.10", "? betterCargoPlanes >= 1.0.8", "? Helicopters >= 0.3.14"],
     "description": "Makes the Aircraft mod's planes behave like planes"
 }

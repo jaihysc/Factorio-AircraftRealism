@@ -76,7 +76,7 @@ data:extend({
         name = "aircraft-pollution-amount",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 0.2,
+        default_value = 0.1,
         order="aak"
     },
     { --takeoff speed

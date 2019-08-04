@@ -7,13 +7,17 @@ local recognisedPlanes = { --!!Add more planes here as needed with new mods!!
     "even-better-cargo-plane"
 }
 
-script.on_event({defines.events.on_tick}, function (e)
+function OnTick(e)
     for index,player in pairs(game.connected_players) do  --loop through all online players on the server
 
         --if they are in a plane
         if player.character and player.driving then
 
             local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
+
+            if quarterSecond then
+                CheckHelicopterMod(player)
+            end
 
             if IsGroundedPlane(player.vehicle.name) then
                 --These don't need to be checked as often, so they run off quarterSecond
@@ -26,7 +30,7 @@ script.on_event({defines.events.on_tick}, function (e)
                 end
 
                 --Collision gets checked every tick for accuracy
-                if ValidateRunwayTile(player.surface, player.vehicle, player) then --Returns false if the plane did not pass and was destroyed
+                if ValidateRunwayTile(player.surface, player.vehicle) then --Returns false if the plane did not pass and was destroyed
                     --Test for obstacle collision (water, cliff)
                     ObstacleCollision(game.surfaces[1], player, player.vehicle)
                 end
@@ -38,14 +42,14 @@ script.on_event({defines.events.on_tick}, function (e)
             end
         end
     end
-end)
+end
 
-----------------------------------------------------If a player bails out of a speeding plane, destroy it if there is no passenger
+
+--If a player bails out of a speeding plane, destroy it if there is no passenger
 --I would perfer to have the plane glide away, but there is no easy way that I know of to track them and all the solutions
 --would likely lag if there is a large amount of planes
-
-script.on_event({defines.events.on_player_driving_changed_state}, function (e)
-   local player = game.get_player(e.player_index)
+function OnPlayerDrivingChangedState(e)
+    local player = game.get_player(e.player_index)
 
     if not player.driving and e.entity and IsAirbornePlane(e.entity.name) then
 
@@ -57,11 +61,16 @@ script.on_event({defines.events.on_player_driving_changed_state}, function (e)
             e.entity.die()
         end
     end
-end)
+end
 
-----------------------------------------------------Test for plane type
+--Special function for the helicopter mod
+function CheckHelicopterMod(player)
+    if player.vehicle.name == "heli-entity-_-" then
+        CreatePollution(player.surface, player.vehicle)
+    end
+end
 
---Tests for the name in the array of recognisedPlanes
+--Test for plane type for plane name in the array of recognisedPlanes
 function IsGroundedPlane(name)
     for i,plane in pairs(recognisedPlanes) do
         if name == plane then
@@ -82,8 +91,30 @@ function IsAirbornePlane(name)
     return false
 end
 
-----------------------------------------------------Runway tile material checker
-function ValidateRunwayTile(surface, plane, player)
+function ToFactorioUnit(kmH)
+    if settings.global["aircraft-speed-unit"].value == "imperial" then
+        kmH = kmH * 1.609 --Thanks google!
+    end
+
+    --Convert the lua speed into km/h with * 60 * 3.6
+    return kmH / 216
+end
+
+function CreatePollution(surface, plane)
+    if settings.global["aircraft-emit-pollution"].value then
+
+        --More pollution is emitted at higher speeds, also depending on the fuel
+        local emissions = settings.global["aircraft-pollution-amount"].value
+        if plane.burner.currently_burning then
+            emissions = emissions * plane.burner.currently_burning.fuel_emissions_multiplier
+        end
+
+        surface.pollute(plane.position, emissions * math.abs(plane.speed))
+    end
+end
+
+--Runway tile material checker
+function ValidateRunwayTile(surface, plane)
     local tile = surface.get_tile(plane.position)
     -- player.print(tile.name .. " | " ..tile.prototype.vehicle_friction_modifier) --For debug testing different surfaces
 
@@ -105,7 +136,6 @@ function ValidateRunwayTile(surface, plane, player)
                 if plane.speed > ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) + 0.09259 or plane.speed < -1 * ToFactorioUnit(settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) - 0.009259  then
                     plane.health = plane.health - 1
 
-                    --If plane is out of health, it dies!
                     if plane.health <= 0 then
                         plane.die()
                         return false --false to indicate plane is already destroyed
@@ -118,11 +148,8 @@ function ValidateRunwayTile(surface, plane, player)
     return true
 end
 
-----------------------------------------------------Takeoff / landing
-
 function PlaneTakeoff(player, game, defines, settings)
-
-    --Tests if player is grounded and plane is greater than the specified takeoff speed
+    --if player is grounded and plane is greater than the specified takeoff speed
     for i,plane in pairs(recognisedPlanes) do
         if player.vehicle.name == plane and player.vehicle.speed > ToFactorioUnit(settings.global["aircraft-takeoff-speed-" .. plane].value) then
             TransitionPlane(
@@ -146,8 +173,7 @@ function PlaneTakeoff(player, game, defines, settings)
 end
 
 function PlaneLand(player, game, defines, settings)
-
-    --Tests if player is airborne and plane is less than the specified landing speed
+    --if player is airborne and plane is less than the specified landing speed
     for i,plane in pairs(recognisedPlanes) do
         if player.vehicle.name == (plane .. "-airborne") and player.vehicle.speed < ToFactorioUnit(settings.global["aircraft-landing-speed-" .. plane].value) then
             TransitionPlane(
@@ -170,8 +196,7 @@ function PlaneLand(player, game, defines, settings)
     end
 end
 
-----------------------------------------------------Plane takeoff landing transition
-
+--Plane takeoff landing transition
 --Seemlessly shifts from one plane to another without the player noticing
 function TransitionPlane(oldPlane, newPlane, game, defines, takingOff)
     newPlane.copy_settings(oldPlane)
@@ -239,11 +264,11 @@ function InsertItems(inventory, items)
     end
 end
 
-----------------------------------------------------Object, water Collisions
+--Object, water Collisions
 function ObstacleCollision(surface, player, plane)
 
     --Destroy the plane if the player LANDS ON a cliff
-    for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.2, name = {"cliff"}})) do
+    for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
         if plane.speed == 0 then
             KillDriverAndPassenger(plane, player)
 
@@ -270,7 +295,7 @@ function ObstacleCollision(surface, player, plane)
             end
         end
         for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
-            if plane.speed > 0.185185 or plane.speed < -0.185185 then
+            if plane.speed > 0.185185 or plane.speed < -0.185185 then --upon hitting the shoreline
                 plane.die()
 
                 return;
@@ -286,26 +311,6 @@ function KillDriverAndPassenger(plane, player)
     plane.die()
 end
 
-----------------------------------------------------Aircraft pollution
-function CreatePollution(surface, plane)
-    if settings.global["aircraft-emit-pollution"].value then
-
-        --More pollution is emitted at higher speeds, also depending on the fuel
-        local emissions = settings.global["aircraft-pollution-amount"].value
-        if plane.burner.currently_burning then
-            emissions = emissions * plane.burner.currently_burning.fuel_emissions_multiplier
-        end
-
-        surface.pollute(plane.position, emissions * math.abs(plane.speed))
-    end
-end
-
-----------------------------------------------------Measurement Conversions
-function ToFactorioUnit(kmH)
-    if settings.global["aircraft-speed-unit"].value == "imperial" then
-        kmH = kmH * 1.609 --Thanks google!
-    end
-
-    --Convert the lua speed into km/h with * 60 * 3.6
-    return kmH / 216
-end
+--Events
+script.on_event(defines.events.on_tick, OnTick)
+script.on_event(defines.events.on_player_driving_changed_state, OnPlayerDrivingChangedState)
