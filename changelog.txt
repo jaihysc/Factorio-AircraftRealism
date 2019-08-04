@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.2
+Date: 2019-08-04
+  Major Features:
+    - Added option for strict runway checking (https://mods.factorio.com/mod/AircraftRealism/discussion/5d44c11ebce81e000df64f22)
+    - Added support for helicopters mod (https://mods.factorio.com/mod/AircraftRealism/discussion/5d452089de13a8000ca32a40)
+  Changes:
+    - Raised activation speed for environmental obstacles from 35km/h to 40km/h
+    - Inceased update rate of collision detection since it appears to occasionally fail to recognise cliff collisions
+---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 2019-08-03
   Minor Features:

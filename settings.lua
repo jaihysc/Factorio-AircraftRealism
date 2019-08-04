@@ -34,42 +34,57 @@ data:extend({
         default_value = true,
         order="aae"
     },
+    {--RUNTIME SETTINGS
+        type = "bool-setting",
+        name = "aircraft-realism-strict-runway-checking",
+        setting_type = "runtime-global",
+        default_value = false,
+        order="aaf"
+    },
+    {
+        type = "double-setting",
+        name = "aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction",
+        setting_type = "runtime-global",
+        minimum_value = 0,
+        default_value = 0.8,
+        order="aag"
+    },
     {
         type = "bool-setting",
         name = "aircraft-realism-environmental-impact",
         setting_type = "runtime-global",
         default_value = true,
-        order="aaf"
+        order="aah"
     },
     {
         type = "bool-setting",
         name = "aircraft-emit-pollution",
         setting_type = "runtime-global",
         default_value = true,
-        order="aag"
+        order="aai"
     },
     {
         type = "double-setting",
         name = "aircraft-pollution-amount",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 1,
-        order="aah"
+        default_value = 0.2,
+        order="aaj"
     },
-    {
+    { --takeoff speed
         type = "double-setting",
         name = "aircraft-takeoff-speed-gunship",
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 130,
-        order="aai"
+        order="aak"
     },
     {
         type = "double-setting",
         name = "aircraft-takeoff-speed-cargo-plane",
         setting_type = "runtime-global",
         default_value = 70,
-        order="aaj"
+        order="aal"
     },
     {
         type = "double-setting",
@@ -77,7 +92,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 320,
-        order="aak"
+        order="aam"
     },
     {
         type = "double-setting",
@@ -85,22 +100,22 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 140,
-        order="aal"
+        order="aan"
     },
-    {
+    { --landing speed
         type = "double-setting",
         name = "aircraft-landing-speed-gunship",
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 110,
-        order="aam"
+        order="aao"
     },
     {
         type = "double-setting",
         name = "aircraft-landing-speed-cargo-plane",
         setting_type = "runtime-global",
         default_value = 50,
-        order="aan"
+        order="aap"
     },
     {
         type = "double-setting",
@@ -108,7 +123,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 290,
-        order="aao"
+        order="aaq"
     },
     {
         type = "double-setting",
@@ -116,7 +131,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 120,
-        order="aap"
+        order="aar"
     },
     {
         type = "string-setting",
@@ -128,7 +143,7 @@ data:extend({
             "imperial"
         },
         allow_blank = false,
-        order="aaq"
+        order="aas"
     }
 })
 

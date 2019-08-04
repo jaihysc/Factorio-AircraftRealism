@@ -8,29 +8,33 @@ local recognisedPlanes = { --!!Add more planes here as needed with new mods!!
 }
 
 script.on_event({defines.events.on_tick}, function (e)
-    if e.tick % 15 == 0 then --Check every quarter of a second
-        for index,player in pairs(game.connected_players) do  --loop through all online players on the server
+    for index,player in pairs(game.connected_players) do  --loop through all online players on the server
 
-            --if they are in a plane
-            if player.character and player.driving then
+        --if they are in a plane
+        if player.character and player.driving then
 
-                --takeoff / landing | test for the 4 possible planes
-                if IsGroundedPlane(player.vehicle.name) then
+            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
+
+            if IsGroundedPlane(player.vehicle.name) then
+                --These don't need to be checked as often, so they run off quarterSecond
+                if quarterSecond then
                     CreatePollution(player.surface, player.vehicle)
-
                     --Create some smoke effects trailing behind the plane
                     player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
 
                     PlaneTakeoff(player, game, defines, settings)
+                end
 
+                --Collision gets checked every tick for accuracy
+                if ValidateRunwayTile(player.surface, player.vehicle, player) then --Returns false if the plane did not pass and was destroyed
                     --Test for obstacle collision (water, cliff)
                     ObstacleCollision(game.surfaces[1], player, player.vehicle)
-
-                elseif IsAirbornePlane(player.vehicle.name) then
-                    CreatePollution(player.surface, player.vehicle)
-
-                    PlaneLand(player, game, defines, settings)
                 end
+
+            elseif quarterSecond and IsAirbornePlane(player.vehicle.name) then
+                CreatePollution(player.surface, player.vehicle)
+
+                PlaneLand(player, game, defines, settings)
             end
         end
     end
@@ -76,6 +80,34 @@ function IsAirbornePlane(name)
     end
 
     return false
+end
+
+----------------------------------------------------Runway tile material checker
+function ValidateRunwayTile(surface, plane, player)
+    local tile = surface.get_tile(plane.position)
+    -- player.print(tile.name .. " | " ..tile.prototype.vehicle_friction_modifier) --For debug testing different surfaces
+
+    --If strict runways are set, limit the plane's speed when not on runway material, dealing damage if landing on it
+    if settings.global["aircraft-realism-strict-runway-checking"].value then
+
+        --Cap the max speed to the max taxi speed when not on a runway
+        if tile.prototype.vehicle_friction_modifier > settings.global["aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction"].value then
+
+            --Take off 20% of speed and damage the plane if past the max taxi speed
+            if plane.speed > 0.16203 or plane.speed < -0.16203 then
+                plane.speed = plane.speed - 15
+                plane.health = plane.health - 1
+
+                --If plane is out of health, it dies!
+                if plane.health <= 0 then
+                    plane.die()
+                    return false --false to indicate plane is already destroyed
+                end
+            end
+        end
+    end
+
+    return true
 end
 
 ----------------------------------------------------Takeoff / landing
@@ -221,16 +253,16 @@ function ObstacleCollision(surface, player, plane)
     end
 
     if settings.global["aircraft-realism-environmental-impact"].value then
-        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+3.5, name = {"cliff"}})) do
-            --Over 35km/h
-            if plane.speed > 0.16203 or plane.speed < -0.16203 then --destroy the plane upon hitting a cliff
+        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"cliff"}})) do
+            --Over 40km/h
+            if plane.speed > 0.185185 or plane.speed < -0.185185 then --destroy the plane upon hitting a cliff
                 plane.die()
 
                 return;
             end
         end
-        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+3.5, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
-            if plane.speed > 0.16203 or plane.speed < -0.16203 then
+        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
+            if plane.speed > 0.185185 or plane.speed < -0.185185 then
                 plane.die()
 
                 return;
