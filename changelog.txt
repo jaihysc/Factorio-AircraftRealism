@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.3
+Date: 2019-08-04
+  Changes:
+    - Moved duplication of airborne aircraft back into data-final-fixes to avoid mod conflicts
+  Bugfixes:
+    - Fixed crash if plane has no weapons on takeoff and landing
+---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 2019-08-04
   Major Features:

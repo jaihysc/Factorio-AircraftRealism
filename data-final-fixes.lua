@@ -1,6 +1,8 @@
 --Collision while on the ground is done by having a separate copy of each plane, teleporting the player into the grounded version once below landing speed
 --and out into the flyable one surpassing landing speed
 
+require("prototypes.airbornePlanes") --Make airborne plane clones first
+
 ------------------------------
 --Landed versions of planes
 ------------------------------

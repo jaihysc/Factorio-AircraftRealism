@@ -215,8 +215,11 @@ function TransitionPlane(oldPlane, newPlane, game, defines, takingOff)
     InsertItems(newPlane.get_inventory(defines.inventory.car_ammo), oldPlane.get_inventory(defines.inventory.car_ammo).get_contents())
 
     --Select the last weapon
-    if oldPlane.selected_gun_index then
-        newPlane.selected_gun_index = oldPlane.selected_gun_index
+    if oldPlane.selected_gun_index and newPlane.prototype.guns then
+        --Validate that the 2 planes both have the same weapons
+        if GetTableLength(newPlane.prototype.guns) > newPlane.selected_gun_index then
+            newPlane.selected_gun_index = oldPlane.selected_gun_index
+        end
     end
 
     --Transfer over equipment grid
@@ -262,6 +265,14 @@ function InsertItems(inventory, items)
     for name,count in pairs(items) do
         inventory.insert({name=name, count=count})
     end
+end
+
+function GetTableLength(table)
+    local count = 0
+    for _ in pairs(table) do
+        count = count + 1
+    end
+    return count
 end
 
 --Object, water Collisions
