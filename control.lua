@@ -18,25 +18,30 @@ end
 function OnPlayerDrivingChangedState(e)
     local player = game.get_player(e.player_index)
 
-    if not player.driving and e.entity and planeUtility.isAirbornePlane(e.entity.name) then
-
-        --If there is a passenger in the plane, they become the pilot
-        local passenger = e.entity.get_passenger()
-        if passenger then
-            e.entity.set_driver(passenger)
-        else
-            e.entity.die()
-        end
+    if e.entity and player.driving and planeUtility.isGroundedPlane(e.entity.name) and e.entity.speed == 0 then --Create gauges upon entering a plane
+        guiController.initializeGauges(player)
     end
 
-    -- guiController.initialize(player)
+    if not player.driving then
+        if e.entity and planeUtility.isAirbornePlane(e.entity.name) then
+            --If there is a passenger in the plane, they become the pilot
+            local passenger = e.entity.get_passenger()
+            if passenger then
+                e.entity.set_driver(passenger)
+            else
+                e.entity.die()
+            end
+        end
 
+        --Destroy gauges upon leaving a plane
+        guiController.deleteGauges(player)
+    end
 end
 
 --Special function for the helicopter mod
 function CheckHelicopterMod(player)
     if player.vehicle.name == "heli-entity-_-" then
-        planePollution.createPollution(player.surface, player.vehicle)
+        planePollution.createPollution(settings, player.surface, player.vehicle)
     end
 end
 

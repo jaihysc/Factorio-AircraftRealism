@@ -9,6 +9,16 @@ local function toFactorioUnit(settings, kmH)
     return kmH / 216
 end
 
+local function fromFactorioUnit(settings, unit)
+    unit = unit * 216
+
+    if settings.global["aircraft-speed-unit"].value == "imperial" then
+        unit = unit * 1.609
+    end
+
+    return unit
+end
+
 local function getTableLength(table)
     local count = 0
     for _ in pairs(table) do
@@ -17,11 +27,22 @@ local function getTableLength(table)
     return count
 end
 
+local function roundNumber(number)
+    if (number - (number % 0.1)) - (number - (number % 1)) < 0.5 then
+      number = number - (number % 1)
+    else
+      number = (number - (number % 1)) + 1
+    end
+   return number
+  end
+
 --Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.toFactorioUnit = toFactorioUnit
+functions.fromFactorioUnit = fromFactorioUnit
 functions.getTableLength = getTableLength
+functions.roundNumber = roundNumber
 
 
 return functions

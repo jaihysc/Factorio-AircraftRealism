@@ -3,6 +3,7 @@ local planePollution = require("logic.planePollution")
 local planeRunway = require("logic.planeRunway")
 local planeTakeoffLanding = require("logic.planeTakeoffLanding")
 local planeUtility = require("logic.planeUtility")
+local guiController = require("logic.guiController")
 
 
 --Checks the planes and performs all the functions a plane should do
@@ -24,6 +25,8 @@ local function checkPlanes(e, player, game, defines, settings)
             planeTakeoffLanding.planeTakeoff(player, game, defines, settings)
         end
 
+        guiController.updateGaugeArrows(player, settings)
+
         --Collision gets checked every tick for accuracy
         if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then --Returns false if the plane did not pass and was destroyed
             --Test for obstacle collision (water, cliff)
@@ -32,6 +35,8 @@ local function checkPlanes(e, player, game, defines, settings)
 
     elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
         planePollution.createPollution(settings, player.surface, player.vehicle)
+
+        guiController.updateGaugeArrows(player, settings)
 
         planeTakeoffLanding.planeLand(player, game, defines, settings)
     end

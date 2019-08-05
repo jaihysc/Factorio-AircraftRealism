@@ -1,0 +1,1 @@
+These are the scripts I wrote in aiding me to make this mod, I make them available in the event someone else is maintaining this mod in the future
