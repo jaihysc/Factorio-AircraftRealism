@@ -2,12 +2,10 @@
 --Airborne variants of the planes
 ------------------------------
 
---To cap the max speed, a field is available in control.lua
 --Faster acceleration since airborne and there is less resistance
 --Slightly increased braking power compared to grounded version
 --Wider turn radius compared to grounded version
 
---Creates airborn copies of the plane, spritesheetName is assumed to be name if empty
 function ExtendAirborneAircraft(name, rotation_speed, braking_power, max_health, weight, hasTakeoffSprites)
     local plane = table.deepcopy(data.raw.car[name])
 

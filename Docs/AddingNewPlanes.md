@@ -28,15 +28,13 @@ if mods["yourModName"] then
 end
 ```
 
-## In control.lua, 
+## In definitions/recognisedPlanes.lua, 
 
 Add the entity name of the plane to the **recognisedPlanes** array
 
 ## In settinga.lua
 
 Add the settings entries for the plane,
-
-
 
 ```
 if mods["yourModName"] then
