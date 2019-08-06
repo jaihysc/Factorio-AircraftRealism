@@ -16,6 +16,14 @@ data:extend({
     width = 60,
     height = 152
   },
+  {
+    type = "sprite",
+    name = "aircraft-realism-fuel-indicator-emergency-fuel-warning",
+    flags={"gui"},
+    width = 60,
+    height = 152,
+    filename = "__AircraftRealism__/graphics/gui/fuel_indicator_emergency_fuel_warning.png"
+  },
   -- Below contains...
   -- Fuel indicator bar left, 0 - 31
   -- Fuel indicator bar right, 0 - 30

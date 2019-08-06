@@ -46,7 +46,7 @@ end
 
 --------------------
 -- Fuel gauge
-local function getFuelGaugeLeftIndex(player, game)
+local function getFuelPercentage(player, game)
     local emptySlots = 0  -- Empty fuel inventory slots
     local totalSlots = player.vehicle.prototype.burner_prototype.fuel_inventory_size  -- Total fuel inventory slots
 
@@ -75,11 +75,19 @@ local function getFuelGaugeLeftIndex(player, game)
     -- If a slot is empty, its fuel value is average by the slots that does have fuel
     maxFuelValue = maxFuelValue + (maxFuelValue / (totalSlots - emptySlots) * emptySlots)
 
-    local fuelPercentage = countedFuelValue / maxFuelValue * 100
+    return countedFuelValue / maxFuelValue * 100
+end
+
+local function getFuelGaugeLeftIndex(fuelPercentage)
+
     return utils.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
 end
 
 local function getFuelGaugeRightIndex(player)
+    if not player.vehicle.burner.currently_burning then
+        return 0
+    end
+
     --Remaining energy of burning fuel compared to the full energy of the burning fuel
     local remainingBurningFuel = player.vehicle.burner.remaining_burning_fuel / player.vehicle.burner.currently_burning["fuel_value"] * 100
     return utils.roundNumber(remainingBurningFuel * 30 / 100)
@@ -159,11 +167,11 @@ local function updateGaugeArrows(player, settings, game)
     -- Fuel
     local fuelGauge = gauges["aircraft-realism-fuel-indicator-base"]
 
-    -- Gets the amount of fuel remaining in the fuel inventory compared to the max inventory size
+    local fuelPercentage = getFuelPercentage(player, game)
     updateGaugeOverlay(
         fuelGauge,
         "aircraft-realism-fuel-indicator-left-bar",
-        "aircraft-realism-fuel-indicator-left-" .. getFuelGaugeLeftIndex(player, game)
+        "aircraft-realism-fuel-indicator-left-" .. getFuelGaugeLeftIndex(fuelPercentage)
     )
 
     -- Fuel remaining in currently burning fuel
@@ -172,6 +180,21 @@ local function updateGaugeArrows(player, settings, game)
         "aircraft-realism-fuel-indicator-right-bar",
         "aircraft-realism-fuel-indicator-right-" .. getFuelGaugeRightIndex(player)
     )
+
+    -- Show fuel warning light when fuel is below set percentage
+    if fuelPercentage < 5 then
+        updateGaugeOverlay(
+            fuelGauge,
+            "aircraft-realism-fuel-indicator-emergency-fuel-warning",
+            "aircraft-realism-fuel-indicator-emergency-fuel-warning"
+        )
+    else
+        updateGaugeOverlay(
+            fuelGauge,
+            "aircraft-realism-fuel-indicator-emergency-fuel-warning",
+            ""
+        )
+    end
 end
 
 -- Return all the functions for gui back to control
