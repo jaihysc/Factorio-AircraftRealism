@@ -37,7 +37,15 @@ local function getGaugeGui(player)
     end
 end
 
+local function deleteGauges(player)
+    local gauge = getGaugeGui(player)
+    if gauge then
+        gauge.destroy()
+    end
+end
 
+--------------------
+-- Fuel gauge
 local function getFuelGaugeLeftIndex(player, game)
     local emptySlots = 0  -- Empty fuel inventory slots
     local totalSlots = player.vehicle.prototype.burner_prototype.fuel_inventory_size  -- Total fuel inventory slots
@@ -77,13 +85,8 @@ local function getFuelGaugeRightIndex(player)
     return utils.roundNumber(remainingBurningFuel * 30 / 100)
 end
 
-local function deleteGauges(player)
-    local gauge = getGaugeGui(player)
-    if gauge then
-        gauge.destroy()
-    end
-end
-
+--------------------
+-- Speed gauge
 -- Converts km or mph to an index on the speed gauge
 local function toSpeedGaugeIndex(speed, settings, inFactorioUnits)
     -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
@@ -107,7 +110,20 @@ local function getTakeoffLandingSpeed(player, settings)
     end
 end
 
---Updates the speed and fuel gauge arrows
+-- Updates the sprite on a gauge, if it does not exist, it is created
+local function updateGaugeOverlay(baseGauge, overlayName, spiteName)
+    if baseGauge[overlayName] then
+        baseGauge[overlayName].sprite = spiteName
+    else
+        baseGauge.add{
+            type = "sprite",
+            name = overlayName,
+            sprite = spiteName
+        }
+    end
+end
+
+-- Updates the speed and fuel gauge arrows
 local function updateGaugeArrows(player, settings, game)
     if not player.vehicle then
         return
@@ -115,41 +131,40 @@ local function updateGaugeArrows(player, settings, game)
 
     local gauges = getGaugeGui(player)
 
-
+    --------------------
     -- Airspeed
     local airspeedGauge = gauges["aircraft-realism-airspeed-indicator-base"]
-    airspeedGauge.clear()
 
-    airspeedGauge.add{
-        type = "sprite",
-        name = "aircraft-realism-airspeed-indicator-needle",
-        sprite = "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
-    }
-    --Takeoff and landing speed indicator
-    airspeedGauge.add{
-        type = "sprite",
-        name = "aircraft-realism-airspeed-indicator-warning-needle",
-        sprite = "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, false)
-    }
+    updateGaugeOverlay(
+        airspeedGauge,
+        "aircraft-realism-airspeed-indicator-needle", 
+        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
+    )
 
+    -- Takeoff and landing speed indicator
+    updateGaugeOverlay(
+        airspeedGauge,
+        "aircraft-realism-airspeed-indicator-warning-needle",
+        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, false)
+    )
+
+    --------------------
     -- Fuel
     local fuelGauge = gauges["aircraft-realism-fuel-indicator-base"]
-    fuelGauge.clear()
 
     -- Gets the amount of fuel remaining in the fuel inventory compared to the max inventory size
-    local fuelLeftGaugeIndex = getFuelGaugeLeftIndex(player, game)
-    fuelGauge.add{
-        type = "sprite",
-        name = "aircraft-realism-fuel-indicator-left-bar",
-        sprite = "aircraft-realism-fuel-indicator-left-" .. fuelLeftGaugeIndex
-    }
+    updateGaugeOverlay(
+        fuelGauge,
+        "aircraft-realism-fuel-indicator-left-bar",
+        "aircraft-realism-fuel-indicator-left-" .. getFuelGaugeLeftIndex(player, game)
+    )
 
-    local fuelRightGaugeIndex = getFuelGaugeRightIndex(player)
-    fuelGauge.add{
-        type = "sprite",
-        name = "aircraft-realism-fuel-indicator-right-bar",
-        sprite = "aircraft-realism-fuel-indicator-right-" .. fuelRightGaugeIndex
-    }
+    -- Fuel remaining in currently burning fuel
+    updateGaugeOverlay(
+        fuelGauge,
+        "aircraft-realism-fuel-indicator-right-bar",
+        "aircraft-realism-fuel-indicator-right-" .. getFuelGaugeRightIndex(player)
+    )
 end
 
 -- Return all the functions for gui back to control

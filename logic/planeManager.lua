@@ -6,7 +6,7 @@ local planeUtility = require("logic.planeUtility")
 local guiController = require("logic.guiController")
 
 
---Checks the planes and performs all the functions a plane should do
+-- Checks the planes and performs all the functions a plane should do
 local function checkPlanes(e, player, game, defines, settings)
     local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
@@ -15,7 +15,7 @@ local function checkPlanes(e, player, game, defines, settings)
     end
 
     if planeUtility.isGroundedPlane(player.vehicle.name) then
-        --These don't need to be checked as often, so they run off quarterSecond
+        -- These don't need to be checked as often, so they run off quarterSecond
         if quarterSecond then
 
             planePollution.createPollution(settings, player.surface, player.vehicle)
@@ -27,9 +27,9 @@ local function checkPlanes(e, player, game, defines, settings)
 
         guiController.updateGaugeArrows(player, settings, game)
 
-        --Collision gets checked every tick for accuracy
-        if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then --Returns false if the plane did not pass and was destroyed
-            --Test for obstacle collision (water, cliff)
+        -- Collision gets checked every tick for accuracy
+        if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then -- Returns false if the plane did not pass and was destroyed
+            -- Test for obstacle collision (water, cliff)
             planeCollisions.obstacleCollision(settings, game.surfaces[1], player, player.vehicle)
         end
 
@@ -43,7 +43,7 @@ local function checkPlanes(e, player, game, defines, settings)
 end
 
 
---Makes these functions available to the lua script which requires this file
+-- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.checkPlanes = checkPlanes

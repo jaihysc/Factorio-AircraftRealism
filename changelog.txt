@@ -1,3 +1,10 @@
+Version: 0.3.0
+Date: 2019-08-07
+  Major Features:
+    - Added gui gauges for fuel and speed
+  Features:
+    - Added configurable fuel usage setting
+    - Inventory items remain in their assigned slots on takeoff and landing
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: 2019-08-04

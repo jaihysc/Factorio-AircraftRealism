@@ -3,6 +3,8 @@ local planeManager = require("logic.planeManager")
 local planeUtility = require("logic.planeUtility")
 local planePollution = require("logic.planePollution")
 
+--Only functions for events are here, other functions are called from here
+
 function OnTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
 

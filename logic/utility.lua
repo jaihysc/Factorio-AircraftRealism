@@ -1,11 +1,11 @@
---A set of functions which aids the other lua scripts
+-- A set of functions which aids the other lua scripts
 
 local function toFactorioUnit(settings, kmH)
     if settings.global["aircraft-speed-unit"].value == "imperial" then
         kmH = kmH * 1.609 --Thanks google!
     end
 
-    --Convert the lua speed into km/h with * 60 * 3.6
+    -- Convert the lua speed into km/h with * 60 * 3.6
     return kmH / 216
 end
 
@@ -36,7 +36,7 @@ local function roundNumber(number)
    return number
   end
 
---Makes these functions available to the lua script which requires this file
+-- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.toFactorioUnit = toFactorioUnit

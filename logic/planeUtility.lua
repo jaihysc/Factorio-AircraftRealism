@@ -1,6 +1,6 @@
 local recognisedPlanes = require("definitions.recognisedPlanes")
 
---Test for plane type for plane name in the array of recognisedPlanes
+-- Test for plane type for plane name in the array of recognisedPlanes
 local function isGroundedPlane(name)
     for i,plane in pairs(recognisedPlanes) do
         if name == plane then
@@ -28,7 +28,7 @@ local function killDriverAndPassenger(plane, player)
     plane.die()
 end
 
---Makes these functions available to the lua script which requires this file
+-- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.isGroundedPlane = isGroundedPlane
