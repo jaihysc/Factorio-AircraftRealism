@@ -25,7 +25,7 @@ local function checkPlanes(e, player, game, defines, settings)
             planeTakeoffLanding.planeTakeoff(player, game, defines, settings)
         end
 
-        guiController.updateGaugeArrows(player, settings)
+        guiController.updateGaugeArrows(player, settings, game)
 
         --Collision gets checked every tick for accuracy
         if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then --Returns false if the plane did not pass and was destroyed
@@ -36,7 +36,7 @@ local function checkPlanes(e, player, game, defines, settings)
     elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
         planePollution.createPollution(settings, player.surface, player.vehicle)
 
-        guiController.updateGaugeArrows(player, settings)
+        guiController.updateGaugeArrows(player, settings, game)
 
         planeTakeoffLanding.planeLand(player, game, defines, settings)
     end
