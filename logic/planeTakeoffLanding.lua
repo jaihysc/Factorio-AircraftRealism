@@ -2,9 +2,10 @@
 local recognisedPlanes = require("definitions.recognisedPlanes")
 local utils = require("logic.utility")
 
-local function insertItems(inventory, items)
-    for name,count in pairs(items) do
-        inventory.insert({name=name, count=count})
+local function insertItems(oldInventory, newInventory)
+    -- With this method, inventory items stay in the same place
+    for i = 1, #oldInventory, 1 do
+        newInventory[i].set_stack(oldInventory[i])
     end
 end
 
@@ -18,13 +19,13 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     newPlane.burner.remaining_burning_fuel = oldPlane.burner.remaining_burning_fuel
 
     -- Set fuel inventory
-    insertItems(newPlane.get_fuel_inventory(), oldPlane.get_fuel_inventory().get_contents())
+    insertItems(oldPlane.get_fuel_inventory(), newPlane.get_fuel_inventory())
 
     -- Set item inventory
-    insertItems(newPlane.get_inventory(defines.inventory.car_trunk), oldPlane.get_inventory(defines.inventory.car_trunk).get_contents())
+    insertItems(oldPlane.get_inventory(defines.inventory.car_trunk), newPlane.get_inventory(defines.inventory.car_trunk))
 
     -- Set weapon item inventory
-    insertItems(newPlane.get_inventory(defines.inventory.car_ammo), oldPlane.get_inventory(defines.inventory.car_ammo).get_contents())
+    insertItems(oldPlane.get_inventory(defines.inventory.car_ammo).get_contents(), newPlane.get_inventory(defines.inventory.car_ammo))
 
     -- Select the last weapon
     if oldPlane.selected_gun_index and newPlane.prototype.guns then

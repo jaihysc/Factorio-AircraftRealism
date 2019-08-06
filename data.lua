@@ -16,6 +16,13 @@ data:extend({
     width = 60,
     height = 152
   },
+  -- Below contains...
+  -- Fuel indicator bar left, 0 - 31
+  -- Fuel indicator bar right, 0 - 30
+
+  -- Airspeed needle, 0 - 399
+  -- Airspeed warning needle, 0 - 3999
+
   -- for i in range(31):
   -- print("{\ntype = \"sprite\",\nname = \"aircraft-realism-fuel-indicator-right-" + str(i) + "\",\nfilename = \"__AircraftRealism__/graphics/gui/needles/fuel-left/burning_fuel_indicator_bar-" + str(i) + ".png\",\nflags={\"gui\"},\nwidth = 60,\nheight = 152\n},")
   --
