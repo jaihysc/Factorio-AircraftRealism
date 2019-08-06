@@ -1,5 +1,6 @@
 require("mod-gui")
 local utils = require("logic.utility")
+local planeUtils = require("logic.planeUtility")
 
 local functions = {}
 
@@ -83,6 +84,29 @@ local function deleteGauges(player)
     end
 end
 
+-- Converts km or mph to an index on the speed gauge
+local function toSpeedGaugeIndex(speed, settings, inFactorioUnits)
+    -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
+    if inFactorioUnits then
+        speed = utils.fromFactorioUnit(settings, speed)
+    end
+    return math.abs(utils.roundNumber(speed / 4))
+end
+
+
+-- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
+local function getTakeoffLandingSpeed(player, settings)
+
+    if planeUtils.isGroundedPlane(player.vehicle.name) then
+        return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
+
+    elseif planeUtils.isAirbornePlane(player.vehicle.name) then
+        -- Chop off the -airborne at the end to get the landing speed of the plane
+        return settings.global["aircraft-landing-speed-" .. string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))].value
+
+    end
+end
+
 --Updates the speed and fuel gauge arrows
 local function updateGaugeArrows(player, settings, game)
     if not player.vehicle then
@@ -96,13 +120,16 @@ local function updateGaugeArrows(player, settings, game)
     local airspeedGauge = gauges["aircraft-realism-airspeed-indicator-base"]
     airspeedGauge.clear()
 
-    -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
-    local gaugeIndex = math.abs(utils.roundNumber(utils.fromFactorioUnit(settings, player.vehicle.speed) / 4))
-
     airspeedGauge.add{
         type = "sprite",
         name = "aircraft-realism-airspeed-indicator-needle",
-        sprite = "aircraft-realism-airspeed-indicator-" .. gaugeIndex
+        sprite = "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
+    }
+    --Takeoff and landing speed indicator
+    airspeedGauge.add{
+        type = "sprite",
+        name = "aircraft-realism-airspeed-indicator-warning-needle",
+        sprite = "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, false)
     }
 
     -- Fuel

@@ -3722,5 +3722,6405 @@ data:extend({
     flags={"gui"},
     width = 152,
     height = 152
+  },
+    { --Warning Speed indicator needles, 400 of them, each at 4km/h intervals
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-0",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-0.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-1",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-1.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-2",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-2.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-3",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-3.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-4",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-4.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-5",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-5.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-6",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-6.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-7",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-7.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-8",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-8.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-9",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-9.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-10",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-10.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-11",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-11.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-12",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-12.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-13",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-13.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-14",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-14.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-15",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-15.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-16",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-16.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-17",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-17.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-18",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-18.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-19",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-19.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-20",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-20.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-21",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-21.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-22",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-22.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-23",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-23.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-24",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-24.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-25",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-25.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-26",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-26.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-27",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-27.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-28",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-28.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-29",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-29.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-30",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-30.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-31",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-31.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-32",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-32.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-33",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-33.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-34",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-34.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-35",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-35.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-36",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-36.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-37",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-37.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-38",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-38.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-39",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-39.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-40",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-40.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-41",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-41.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-42",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-42.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-43",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-43.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-44",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-44.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-45",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-45.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-46",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-46.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-47",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-47.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-48",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-48.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-49",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-49.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-50",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-50.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-51",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-51.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-52",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-52.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-53",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-53.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-54",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-54.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-55",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-55.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-56",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-56.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-57",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-57.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-58",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-58.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-59",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-59.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-60",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-60.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-61",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-61.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-62",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-62.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-63",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-63.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-64",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-64.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-65",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-65.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-66",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-66.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-67",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-67.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-68",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-68.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-69",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-69.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-70",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-70.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-71",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-71.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-72",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-72.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-73",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-73.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-74",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-74.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-75",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-75.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-76",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-76.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-77",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-77.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-78",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-78.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-79",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-79.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-80",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-80.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-81",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-81.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-82",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-82.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-83",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-83.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-84",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-84.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-85",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-85.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-86",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-86.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-87",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-87.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-88",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-88.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-89",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-89.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-90",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-90.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-91",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-91.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-92",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-92.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-93",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-93.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-94",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-94.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-95",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-95.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-96",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-96.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-97",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-97.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-98",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-98.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-99",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-99.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-100",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-100.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-101",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-101.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-102",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-102.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-103",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-103.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-104",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-104.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-105",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-105.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-106",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-106.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-107",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-107.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-108",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-108.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-109",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-109.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-110",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-110.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-111",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-111.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-112",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-112.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-113",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-113.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-114",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-114.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-115",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-115.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-116",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-116.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-117",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-117.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-118",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-118.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-119",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-119.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-120",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-120.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-121",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-121.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-122",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-122.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-123",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-123.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-124",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-124.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-125",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-125.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-126",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-126.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-127",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-127.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-128",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-128.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-129",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-129.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-130",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-130.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-131",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-131.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-132",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-132.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-133",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-133.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-134",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-134.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-135",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-135.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-136",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-136.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-137",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-137.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-138",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-138.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-139",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-139.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-140",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-140.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-141",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-141.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-142",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-142.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-143",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-143.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-144",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-144.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-145",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-145.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-146",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-146.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-147",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-147.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-148",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-148.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-149",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-149.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-150",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-150.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-151",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-151.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-152",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-152.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-153",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-153.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-154",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-154.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-155",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-155.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-156",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-156.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-157",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-157.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-158",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-158.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-159",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-159.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-160",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-160.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-161",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-161.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-162",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-162.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-163",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-163.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-164",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-164.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-165",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-165.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-166",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-166.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-167",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-167.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-168",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-168.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-169",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-169.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-170",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-170.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-171",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-171.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-172",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-172.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-173",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-173.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-174",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-174.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-175",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-175.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-176",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-176.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-177",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-177.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-178",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-178.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-179",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-179.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-180",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-180.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-181",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-181.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-182",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-182.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-183",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-183.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-184",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-184.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-185",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-185.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-186",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-186.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-187",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-187.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-188",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-188.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-189",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-189.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-190",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-190.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-191",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-191.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-192",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-192.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-193",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-193.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-194",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-194.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-195",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-195.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-196",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-196.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-197",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-197.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-198",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-198.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-199",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-199.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-200",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-200.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-201",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-201.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-202",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-202.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-203",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-203.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-204",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-204.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-205",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-205.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-206",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-206.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-207",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-207.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-208",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-208.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-209",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-209.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-210",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-210.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-211",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-211.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-212",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-212.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-213",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-213.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-214",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-214.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-215",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-215.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-216",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-216.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-217",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-217.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-218",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-218.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-219",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-219.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-220",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-220.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-221",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-221.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-222",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-222.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-223",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-223.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-224",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-224.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-225",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-225.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-226",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-226.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-227",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-227.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-228",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-228.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-229",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-229.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-230",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-230.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-231",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-231.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-232",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-232.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-233",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-233.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-234",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-234.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-235",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-235.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-236",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-236.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-237",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-237.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-238",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-238.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-239",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-239.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-240",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-240.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-241",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-241.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-242",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-242.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-243",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-243.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-244",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-244.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-245",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-245.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-246",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-246.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-247",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-247.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-248",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-248.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-249",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-249.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-250",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-250.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-251",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-251.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-252",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-252.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-253",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-253.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-254",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-254.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-255",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-255.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-256",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-256.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-257",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-257.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-258",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-258.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-259",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-259.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-260",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-260.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-261",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-261.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-262",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-262.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-263",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-263.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-264",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-264.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-265",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-265.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-266",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-266.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-267",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-267.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-268",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-268.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-269",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-269.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-270",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-270.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-271",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-271.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-272",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-272.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-273",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-273.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-274",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-274.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-275",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-275.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-276",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-276.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-277",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-277.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-278",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-278.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-279",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-279.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-280",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-280.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-281",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-281.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-282",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-282.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-283",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-283.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-284",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-284.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-285",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-285.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-286",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-286.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-287",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-287.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-288",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-288.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-289",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-289.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-290",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-290.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-291",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-291.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-292",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-292.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-293",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-293.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-294",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-294.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-295",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-295.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-296",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-296.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-297",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-297.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-298",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-298.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-299",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-299.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-300",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-300.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-301",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-301.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-302",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-302.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-303",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-303.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-304",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-304.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-305",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-305.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-306",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-306.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-307",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-307.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-308",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-308.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-309",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-309.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-310",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-310.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-311",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-311.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-312",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-312.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-313",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-313.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-314",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-314.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-315",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-315.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-316",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-316.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-317",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-317.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-318",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-318.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-319",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-319.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-320",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-320.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-321",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-321.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-322",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-322.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-323",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-323.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-324",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-324.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-325",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-325.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-326",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-326.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-327",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-327.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-328",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-328.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-329",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-329.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-330",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-330.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-331",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-331.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-332",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-332.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-333",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-333.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-334",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-334.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-335",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-335.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-336",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-336.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-337",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-337.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-338",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-338.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-339",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-339.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-340",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-340.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-341",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-341.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-342",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-342.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-343",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-343.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-344",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-344.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-345",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-345.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-346",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-346.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-347",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-347.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-348",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-348.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-349",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-349.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-350",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-350.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-351",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-351.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-352",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-352.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-353",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-353.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-354",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-354.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-355",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-355.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-356",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-356.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-357",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-357.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-358",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-358.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-359",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-359.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-360",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-360.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-361",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-361.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-362",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-362.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-363",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-363.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-364",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-364.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-365",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-365.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-366",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-366.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-367",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-367.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-368",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-368.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-369",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-369.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-370",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-370.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-371",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-371.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-372",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-372.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-373",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-373.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-374",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-374.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-375",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-375.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-376",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-376.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-377",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-377.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-378",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-378.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-379",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-379.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-380",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-380.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-381",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-381.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-382",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-382.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-383",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-383.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-384",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-384.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-385",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-385.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-386",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-386.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-387",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-387.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-388",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-388.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-389",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-389.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-390",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-390.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-391",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-391.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-392",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-392.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-393",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-393.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-394",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-394.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-395",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-395.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-396",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-396.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-397",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-397.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-398",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-398.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-399",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed/airspeed_indicator_warning_needle-399.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  { --Warning Speed indicator needles, 400 of them, each at 4km/h intervals
+  type = "sprite",
+  name = "aircraft-realism-airspeed-indicator-warning-0",
+  filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-0.png",
+  flags={"gui"},
+  width = 152,
+  height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-1",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-1.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-2",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-2.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-3",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-3.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-4",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-4.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-5",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-5.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-6",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-6.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-7",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-7.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-8",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-8.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-9",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-9.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-10",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-10.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-11",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-11.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-12",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-12.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-13",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-13.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-14",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-14.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-15",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-15.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-16",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-16.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-17",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-17.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-18",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-18.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-19",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-19.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-20",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-20.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-21",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-21.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-22",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-22.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-23",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-23.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-24",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-24.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-25",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-25.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-26",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-26.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-27",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-27.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-28",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-28.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-29",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-29.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-30",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-30.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-31",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-31.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-32",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-32.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-33",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-33.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-34",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-34.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-35",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-35.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-36",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-36.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-37",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-37.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-38",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-38.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-39",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-39.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-40",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-40.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-41",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-41.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-42",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-42.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-43",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-43.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-44",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-44.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-45",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-45.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-46",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-46.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-47",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-47.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-48",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-48.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-49",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-49.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-50",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-50.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-51",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-51.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-52",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-52.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-53",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-53.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-54",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-54.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-55",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-55.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-56",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-56.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-57",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-57.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-58",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-58.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-59",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-59.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-60",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-60.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-61",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-61.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-62",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-62.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-63",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-63.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-64",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-64.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-65",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-65.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-66",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-66.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-67",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-67.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-68",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-68.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-69",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-69.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-70",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-70.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-71",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-71.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-72",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-72.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-73",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-73.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-74",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-74.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-75",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-75.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-76",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-76.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-77",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-77.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-78",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-78.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-79",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-79.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-80",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-80.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-81",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-81.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-82",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-82.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-83",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-83.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-84",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-84.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-85",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-85.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-86",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-86.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-87",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-87.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-88",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-88.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-89",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-89.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-90",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-90.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-91",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-91.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-92",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-92.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-93",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-93.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-94",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-94.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-95",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-95.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-96",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-96.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-97",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-97.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-98",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-98.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-99",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-99.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-100",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-100.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-101",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-101.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-102",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-102.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-103",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-103.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-104",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-104.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-105",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-105.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-106",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-106.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-107",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-107.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-108",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-108.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-109",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-109.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-110",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-110.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-111",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-111.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-112",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-112.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-113",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-113.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-114",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-114.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-115",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-115.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-116",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-116.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-117",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-117.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-118",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-118.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-119",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-119.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-120",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-120.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-121",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-121.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-122",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-122.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-123",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-123.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-124",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-124.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-125",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-125.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-126",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-126.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-127",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-127.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-128",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-128.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-129",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-129.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-130",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-130.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-131",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-131.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-132",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-132.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-133",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-133.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-134",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-134.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-135",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-135.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-136",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-136.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-137",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-137.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-138",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-138.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-139",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-139.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-140",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-140.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-141",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-141.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-142",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-142.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-143",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-143.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-144",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-144.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-145",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-145.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-146",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-146.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-147",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-147.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-148",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-148.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-149",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-149.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-150",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-150.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-151",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-151.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-152",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-152.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-153",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-153.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-154",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-154.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-155",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-155.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-156",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-156.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-157",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-157.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-158",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-158.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-159",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-159.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-160",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-160.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-161",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-161.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-162",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-162.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-163",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-163.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-164",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-164.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-165",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-165.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-166",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-166.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-167",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-167.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-168",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-168.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-169",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-169.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-170",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-170.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-171",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-171.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-172",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-172.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-173",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-173.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-174",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-174.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-175",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-175.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-176",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-176.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-177",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-177.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-178",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-178.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-179",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-179.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-180",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-180.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-181",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-181.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-182",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-182.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-183",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-183.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-184",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-184.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-185",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-185.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-186",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-186.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-187",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-187.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-188",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-188.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-189",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-189.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-190",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-190.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-191",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-191.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-192",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-192.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-193",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-193.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-194",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-194.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-195",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-195.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-196",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-196.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-197",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-197.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-198",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-198.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-199",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-199.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-200",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-200.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-201",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-201.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-202",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-202.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-203",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-203.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-204",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-204.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-205",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-205.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-206",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-206.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-207",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-207.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-208",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-208.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-209",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-209.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-210",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-210.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-211",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-211.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-212",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-212.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-213",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-213.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-214",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-214.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-215",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-215.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-216",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-216.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-217",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-217.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-218",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-218.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-219",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-219.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-220",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-220.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-221",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-221.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-222",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-222.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-223",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-223.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-224",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-224.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-225",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-225.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-226",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-226.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-227",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-227.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-228",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-228.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-229",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-229.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-230",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-230.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-231",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-231.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-232",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-232.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-233",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-233.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-234",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-234.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-235",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-235.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-236",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-236.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-237",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-237.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-238",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-238.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-239",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-239.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-240",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-240.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-241",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-241.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-242",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-242.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-243",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-243.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-244",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-244.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-245",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-245.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-246",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-246.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-247",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-247.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-248",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-248.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-249",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-249.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-250",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-250.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-251",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-251.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-252",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-252.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-253",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-253.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-254",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-254.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-255",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-255.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-256",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-256.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-257",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-257.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-258",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-258.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-259",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-259.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-260",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-260.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-261",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-261.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-262",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-262.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-263",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-263.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-264",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-264.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-265",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-265.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-266",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-266.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-267",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-267.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-268",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-268.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-269",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-269.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-270",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-270.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-271",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-271.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-272",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-272.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-273",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-273.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-274",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-274.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-275",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-275.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-276",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-276.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-277",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-277.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-278",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-278.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-279",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-279.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-280",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-280.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-281",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-281.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-282",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-282.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-283",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-283.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-284",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-284.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-285",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-285.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-286",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-286.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-287",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-287.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-288",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-288.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-289",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-289.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-290",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-290.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-291",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-291.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-292",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-292.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-293",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-293.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-294",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-294.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-295",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-295.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-296",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-296.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-297",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-297.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-298",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-298.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-299",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-299.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-300",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-300.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-301",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-301.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-302",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-302.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-303",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-303.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-304",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-304.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-305",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-305.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-306",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-306.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-307",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-307.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-308",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-308.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-309",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-309.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-310",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-310.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-311",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-311.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-312",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-312.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-313",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-313.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-314",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-314.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-315",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-315.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-316",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-316.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-317",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-317.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-318",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-318.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-319",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-319.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-320",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-320.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-321",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-321.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-322",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-322.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-323",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-323.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-324",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-324.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-325",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-325.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-326",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-326.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-327",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-327.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-328",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-328.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-329",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-329.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-330",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-330.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-331",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-331.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-332",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-332.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-333",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-333.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-334",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-334.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-335",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-335.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-336",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-336.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-337",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-337.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-338",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-338.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-339",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-339.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-340",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-340.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-341",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-341.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-342",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-342.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-343",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-343.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-344",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-344.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-345",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-345.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-346",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-346.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-347",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-347.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-348",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-348.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-349",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-349.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-350",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-350.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-351",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-351.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-352",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-352.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-353",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-353.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-354",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-354.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-355",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-355.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-356",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-356.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-357",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-357.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-358",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-358.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-359",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-359.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-360",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-360.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-361",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-361.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-362",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-362.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-363",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-363.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-364",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-364.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-365",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-365.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-366",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-366.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-367",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-367.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-368",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-368.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-369",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-369.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-370",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-370.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-371",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-371.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-372",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-372.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-373",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-373.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-374",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-374.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-375",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-375.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-376",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-376.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-377",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-377.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-378",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-378.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-379",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-379.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-380",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-380.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-381",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-381.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-382",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-382.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-383",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-383.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-384",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-384.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-385",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-385.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-386",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-386.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-387",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-387.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-388",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-388.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-389",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-389.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-390",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-390.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-391",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-391.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-392",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-392.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-393",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-393.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-394",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-394.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-395",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-395.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-396",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-396.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-397",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-397.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-398",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-398.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
+  },
+  {
+    type = "sprite",
+    name = "aircraft-realism-airspeed-indicator-warning-399",
+    filename = "__AircraftRealism__/graphics/gui/needles/airspeed_warning/airspeed_indicator_warning_needle-399.png",
+    flags={"gui"},
+    width = 152,
+    height = 152
   }
 })
