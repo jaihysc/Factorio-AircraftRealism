@@ -93,7 +93,14 @@ local function toSpeedGaugeIndex(speed, settings, inFactorioUnits)
     if inFactorioUnits then
         speed = utils.fromFactorioUnit(settings, speed)
     end
-    return math.abs(utils.roundNumber(speed / 4))
+    local index = math.abs(utils.roundNumber(speed / 4))
+
+    -- Do not exceed 399 for index since that is the largest sprite
+    if index > 399 then
+        return 399
+    end
+
+    return index
 end
 
 
@@ -135,17 +142,17 @@ local function updateGaugeArrows(player, settings, game)
     -- Airspeed
     local airspeedGauge = gauges["aircraft-realism-airspeed-indicator-base"]
 
-    updateGaugeOverlay(
-        airspeedGauge,
-        "aircraft-realism-airspeed-indicator-needle", 
-        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
-    )
-
     -- Takeoff and landing speed indicator
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-warning-needle",
         "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, false)
+    )
+
+    updateGaugeOverlay(
+        airspeedGauge,
+        "aircraft-realism-airspeed-indicator-needle", 
+        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
     )
 
     --------------------

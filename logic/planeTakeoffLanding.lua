@@ -25,7 +25,7 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     insertItems(oldPlane.get_inventory(defines.inventory.car_trunk), newPlane.get_inventory(defines.inventory.car_trunk))
 
     -- Set weapon item inventory
-    insertItems(oldPlane.get_inventory(defines.inventory.car_ammo).get_contents(), newPlane.get_inventory(defines.inventory.car_ammo))
+    insertItems(oldPlane.get_inventory(defines.inventory.car_ammo), newPlane.get_inventory(defines.inventory.car_ammo))
 
     -- Select the last weapon
     if oldPlane.selected_gun_index and newPlane.prototype.guns then

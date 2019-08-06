@@ -1,10 +1,10 @@
 ------------------------------
---Airborne variants of the planes
+-- Airborne variants of the planes
 ------------------------------
 
---Faster acceleration since airborne and there is less resistance
---Slightly increased braking power compared to grounded version
---Wider turn radius compared to grounded version
+-- Faster acceleration since airborne and there is less resistance
+-- Slightly increased braking power compared to grounded version
+-- Wider turn radius compared to grounded version
 
 function ExtendAirborneAircraft(name, rotation_speed, braking_power, max_health, weight, hasTakeoffSprites)
     local plane = table.deepcopy(data.raw.car[name])
@@ -19,7 +19,7 @@ function ExtendAirborneAircraft(name, rotation_speed, braking_power, max_health,
 
     if settings.startup["aircraft-realism-acceleration"].value then
         plane.weight = weight
-        plane.friction = 0.0003 --Less friction so they glide and don't constantly need one to hold the accelerator
+        plane.friction = 0.0003 -- Less friction so they glide and don't constantly need one to hold the accelerator
     end
 
     if settings.startup["aircraft-realism-braking-speed"].value then
@@ -30,29 +30,40 @@ function ExtendAirborneAircraft(name, rotation_speed, braking_power, max_health,
         plane.max_health = max_health
     end
 
-    --Use custom sprotesheets with no shadows when airborne
+    -- Use custom sprotesheets with no shadows when airborne
     if settings.startup["aircraft-realism-braking-speed"].value and hasTakeoffSprites then
         plane.animation.filename = "__AircraftRealism__/graphics/" .. name .. "_Spritesheet_Shadowless.png"
     end
 
+    -- Fuel consumption multiplier
+    -- Substring off kW, convert to number, multiply, convert back to string and append kW
+    plane.consumption = tostring(
+        tonumber(
+            string.sub(plane.consumption, 1, string.len(plane.consumption) - 2)
+        ) * settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
+    ) .. string.sub(plane.consumption, string.len(plane.consumption) - 2)
+
+    -- Lower the fuel effectivity so the same energy goes to the wheels
+    plane.effectivity = plane.effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
+
     data:extend{plane}
 end
 
---Gunship
+-- Gunship
 ExtendAirborneAircraft("gunship", 0.005, "940kW", 500, 5000, true)
---Cargo-plane
+-- Cargo-plane
 ExtendAirborneAircraft("cargo-plane", 0.003, "920kW", 500, 32000, true)
---jet
+-- Jet
 ExtendAirborneAircraft("jet", 0.003, "950kW", 250, 1200, true)
---Flying fortress
+-- Flying fortress
 ExtendAirborneAircraft("flying-fortress", 0.008, "3420kW", 2000, 7500, true)
 
 
 ------------------------------------------------------
---OTHER MODS
+-- OTHER MODS
 ------------------------------------------------------
 
---Better cargo planes
+-- Better cargo planes
 if mods["betterCargoPlanes"] then
     ExtendAirborneAircraft("better-cargo-plane", 0.0035, "1480kW", 1000, 34000, false)
     ExtendAirborneAircraft("even-better-cargo-plane", 0.0045, "2160kW", 2000, 38000, false)
