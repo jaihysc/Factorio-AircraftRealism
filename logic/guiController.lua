@@ -96,10 +96,18 @@ end
 --------------------
 -- Speed gauge
 -- Converts km or mph to an index on the speed gauge
-local function toSpeedGaugeIndex(speed, settings, inFactorioUnits)
+local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
     -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
     if inFactorioUnits then
-        speed = utils.fromFactorioUnit(settings, speed)
+        speed = utils.fromFactorioUnitUser(settings, player, speed)
+
+    -- Not in factorio speed units, convert to user's measurement choice if global setting differs
+    elseif settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value ~= settings.global["aircraft-speed-unit"].value then
+        if settings.global["aircraft-speed-unit"].value == "imperial" then
+            speed = speed * 1.609  -- To metric
+        else
+            speed = speed / 1.609  -- To imperial
+        end
     end
     local index = math.abs(utils.roundNumber(speed / 4))
 
@@ -160,13 +168,13 @@ local function updateGaugeArrows(player, settings, game)
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-warning-needle",
-        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, false)
+        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, player, false)
     )
 
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-needle", 
-        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, true)
+        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, player, true)
     )
 
     --------------------

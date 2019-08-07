@@ -9,11 +9,23 @@ local function toFactorioUnit(settings, kmH)
     return kmH / 216
 end
 
+-- Converts factorio's speed to km/h or mph per runtime global
 local function fromFactorioUnit(settings, unit)
     unit = unit * 216
 
     if settings.global["aircraft-speed-unit"].value == "imperial" then
-        unit = unit * 1.609
+        unit = unit / 1.609
+    end
+
+    return unit
+end
+
+-- Converts factorio's speed to km/h or mph per the user's settings
+local function fromFactorioUnitUser(settings, player, unit)
+    unit = unit * 216
+
+    if settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value == "imperial" then
+        unit = unit / 1.609
     end
 
     return unit
@@ -41,6 +53,7 @@ local functions = {}
 
 functions.toFactorioUnit = toFactorioUnit
 functions.fromFactorioUnit = fromFactorioUnit
+functions.fromFactorioUnitUser = fromFactorioUnitUser
 functions.getTableLength = getTableLength
 functions.roundNumber = roundNumber
 

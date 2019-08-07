@@ -185,6 +185,18 @@ data:extend({
         default_value = 10,
         order="abb"
     },
+    {
+        type = "string-setting",
+        name = "aircraft-realism-user-speed-unit",
+        setting_type = "runtime-per-user",
+        default_value = "metric",
+        allowed_values = {
+            "metric",
+            "imperial"
+        },
+        allow_blank = false,
+        order="abc"
+    }
 })
 
 
