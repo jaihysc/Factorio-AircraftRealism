@@ -146,6 +146,12 @@ local function updateGaugeArrows(player, settings, game)
 
     local gauges = getGaugeGui(player)
 
+    -- If player enters the plane for the first time
+    if not gauges then
+        initializeGauges(player)
+        gauges = getGaugeGui(player)
+    end
+
     --------------------
     -- Airspeed
     local airspeedGauge = gauges["aircraft-realism-airspeed-indicator-base"]
@@ -182,7 +188,7 @@ local function updateGaugeArrows(player, settings, game)
     )
 
     -- Show fuel warning light when fuel is below set percentage
-    if fuelPercentage < 5 then
+    if fuelPercentage <= settings.get_player_settings(player)["aircraft-realism-user-low-fuel-warning-percentage"].value then
         updateGaugeOverlay(
             fuelGauge,
             "aircraft-realism-fuel-indicator-emergency-fuel-warning",
@@ -198,7 +204,6 @@ local function updateGaugeArrows(player, settings, game)
 end
 
 -- Return all the functions for gui back to control
-functions.initializeGauges = initializeGauges
 functions.deleteGauges = deleteGauges
 functions.updateGaugeArrows = updateGaugeArrows
 

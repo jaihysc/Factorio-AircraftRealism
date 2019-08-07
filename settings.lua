@@ -168,11 +168,30 @@ data:extend({
         },
         allow_blank = false,
         order="aav"
-    }
+    }, -- Per user settings
+    {
+        type = "bool-setting",
+        name = "aircraft-realism-user-enable-gauges",
+        setting_type = "runtime-per-user",
+        default_value = true,
+        order="aba"
+    },
+    {
+        type = "int-setting",
+        name = "aircraft-realism-user-low-fuel-warning-percentage",
+        setting_type = "runtime-per-user",
+        minimum_value = 0,
+        maximum_value = 100,
+        default_value = 10,
+        order="abb"
+    },
 })
 
+
+
+
 ------------------------------------------------------
---OTHER MODS
+-- OTHER MODS
 ------------------------------------------------------
 
 --Better cargo planes

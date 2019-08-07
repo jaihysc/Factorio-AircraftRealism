@@ -20,10 +20,6 @@ end
 function OnPlayerDrivingChangedState(e)
     local player = game.get_player(e.player_index)
 
-    if e.entity and player.driving and planeUtility.isGroundedPlane(e.entity.name) and e.entity.speed == 0 then -- Create gauges upon entering a plane
-        guiController.initializeGauges(player)
-    end
-
     if not player.driving then
         if e.entity and planeUtility.isAirbornePlane(e.entity.name) then
             -- If there is a passenger in the plane, they become the pilot

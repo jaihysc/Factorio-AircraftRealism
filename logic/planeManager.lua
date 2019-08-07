@@ -5,6 +5,14 @@ local planeTakeoffLanding = require("logic.planeTakeoffLanding")
 local planeUtility = require("logic.planeUtility")
 local guiController = require("logic.guiController")
 
+-- Creates, updates, or deletes the gauges depending on player settings
+local function updateGauges(player, settings, game)
+    if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
+        guiController.updateGaugeArrows(player, settings, game)
+    else
+        guiController.deleteGauges(player)
+    end
+end
 
 -- Checks the planes and performs all the functions a plane should do
 local function checkPlanes(e, player, game, defines, settings)
@@ -25,7 +33,7 @@ local function checkPlanes(e, player, game, defines, settings)
             planeTakeoffLanding.planeTakeoff(player, game, defines, settings)
         end
 
-        guiController.updateGaugeArrows(player, settings, game)
+        updateGauges(player, settings, game)
 
         -- Collision gets checked every tick for accuracy
         if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then -- Returns false if the plane did not pass and was destroyed
@@ -36,7 +44,7 @@ local function checkPlanes(e, player, game, defines, settings)
     elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
         planePollution.createPollution(settings, player.surface, player.vehicle)
 
-        guiController.updateGaugeArrows(player, settings, game)
+        updateGauges(player, settings, game)
 
         planeTakeoffLanding.planeLand(player, game, defines, settings)
     end
