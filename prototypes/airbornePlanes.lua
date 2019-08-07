@@ -65,6 +65,6 @@ ExtendAirborneAircraft("flying-fortress", 0.008, "3420kW", 2000, 7500, true)
 
 -- Better cargo planes
 if mods["betterCargoPlanes"] then
-    ExtendAirborneAircraft("better-cargo-plane", 0.0035, "1480kW", 1000, 34000, false)
-    ExtendAirborneAircraft("even-better-cargo-plane", 0.0045, "2160kW", 2000, 38000, false)
+    ExtendAirborneAircraft("better-cargo-plane", 0.0035, "1680kW", 1000, 34000, false)
+    ExtendAirborneAircraft("even-better-cargo-plane", 0.0045, "2660kW", 2000, 40000, false)
 end

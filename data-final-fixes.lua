@@ -71,6 +71,6 @@ ExtendGroundedAircraft("flying-fortress", 0.01, "2620kW", 400, 15000, {{-2, -2},
 
 -- Better cargo planes
 if mods["betterCargoPlanes"] then
-    ExtendGroundedAircraft("better-cargo-plane", 0.0065, "780kW", 200, 31500, {{-1.3, -1.3}, {1.3, 1.3}}) --Gets more breaking power, turn radius since it is better, heavier too since it has more inventory
-    ExtendGroundedAircraft("even-better-cargo-plane", 0.007, "1080kW", 400, 37500, {{-1.3, -1.3}, {1.3, 1.3}})
+    ExtendGroundedAircraft("better-cargo-plane", 0.0065, "1080kW", 200, 31500, {{-1.3, -1.3}, {1.3, 1.3}}) --Gets more breaking power, turn radius since it is better, heavier too since it has more inventory
+    ExtendGroundedAircraft("even-better-cargo-plane", 0.007, "1680kW", 400, 37500, {{-1.3, -1.3}, {1.3, 1.3}})
 end
