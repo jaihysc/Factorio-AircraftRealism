@@ -1,3 +1,14 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.3.1
+Date: 2019-08-31
+  Bugfixes:
+    - Hopping out of a moving aircraft as a passenger no longer destroys the plane
+    - If pilot hops out of a moving aircraft, passenger becomes the pilot
+  Changes:
+    - Changed mod config option names for clarity
+    - Increased braking force of cargo plane
+    - Lowered severity of impacts with "Increased ground collision damage" enabled
+---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2019-08-07
   Major Features:

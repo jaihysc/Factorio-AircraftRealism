@@ -22,11 +22,14 @@ function OnPlayerDrivingChangedState(e)
 
     if not player.driving then
         if e.entity and planeUtility.isAirbornePlane(e.entity.name) then
-            -- If there is a passenger in the plane, they become the pilot
+            local driver = e.entity.get_driver()
             local passenger = e.entity.get_passenger()
-            if passenger then
+
+            -- If driver bailed, passenger become the pilot
+            if passenger and not driver then
                 e.entity.set_driver(passenger)
-            else
+            -- If passenger and driver jumps out, nothing hapens
+            elseif not driver and not passenger then
                 e.entity.die()
             end
         end

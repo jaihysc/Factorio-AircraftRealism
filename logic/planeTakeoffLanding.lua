@@ -45,15 +45,15 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
         end
     end
 
-    -- Health (Grounded planes have 5x less health with realistic health option checked)
+    -- Health (Grounded planes have 2x less health with realistic health option checked)
     -- Test if planes have the different max healths, to perform health scaling
     if game.entity_prototypes[newPlane.name].max_health ~= game.entity_prototypes[oldPlane.name].max_health then
         if takingOff then
             -- Airborne
-            newPlane.health = oldPlane.health * 5
+            newPlane.health = oldPlane.health * 2
         else
             -- Grounded
-            newPlane.health = oldPlane.health / 5
+            newPlane.health = oldPlane.health / 2
 
         end
     else

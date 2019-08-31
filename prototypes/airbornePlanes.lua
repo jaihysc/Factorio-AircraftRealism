@@ -52,7 +52,7 @@ end
 -- Gunship
 ExtendAirborneAircraft("gunship", 0.005, "940kW", 500, 5000, true)
 -- Cargo-plane
-ExtendAirborneAircraft("cargo-plane", 0.003, "920kW", 500, 32000, true)
+ExtendAirborneAircraft("cargo-plane", 0.003, "1100kW", 500, 25000, true)
 -- Jet
 ExtendAirborneAircraft("jet", 0.003, "950kW", 250, 1200, true)
 -- Flying fortress
