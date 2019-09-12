@@ -20,7 +20,7 @@ end
 function OnPlayerDrivingChangedState(e)
     local player = game.get_player(e.player_index)
 
-    if not player.driving then
+    if player and not player.driving then
         if e.entity and planeUtility.isAirbornePlane(e.entity.name) then
             local driver = e.entity.get_driver()
             local passenger = e.entity.get_passenger()
@@ -39,6 +39,14 @@ function OnPlayerDrivingChangedState(e)
     end
 end
 
+-- When a player dies and respawns, delete their gauges
+function OnPlayerDied(e)
+    local player = game.get_player(e.player_index)
+    if player then
+        guiController.deleteGauges(player)
+    end
+end
+
 -- Special function for the helicopter mod
 function CheckHelicopterMod(player)
     if player.vehicle.name == "heli-entity-_-" then
@@ -49,3 +57,4 @@ end
 -- Events
 script.on_event(defines.events.on_tick, OnTick)
 script.on_event(defines.events.on_player_driving_changed_state, OnPlayerDrivingChangedState)
+script.on_event(defines.events.on_player_died, OnPlayerDied)

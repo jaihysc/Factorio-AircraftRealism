@@ -39,9 +39,27 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     if oldPlane.grid then
         for index,item in pairs(oldPlane.grid.equipment) do
             local addedEquipment = newPlane.grid.put{name=item.name, position=item.position}
-            -- Transfer over charge and shield capacity
-            if item.energy ~= 0 then addedEquipment.energy = item.energy end
-            if item.shield ~= 0 then addedEquipment.shield = item.shield end
+
+            if addedEquipment then
+                -- Transfer over charge and shield capacity
+                if item.energy ~= 0 then addedEquipment.energy = item.energy end
+                if item.shield ~= 0 then addedEquipment.shield = item.shield end
+
+                if item.burner ~= nil then
+                    local burner_inv = item.burner.inventory.get_contents()
+
+                    -- Transfer burner contents
+                    if burner_inv then
+                        for name, count in pairs(burner_inv) do
+                            addedEquipment.burner.inventory.insert({name=name, count=count})
+                        end
+                    end
+
+                    addedEquipment.burner.currently_burning = item.burner.currently_burning
+                    addedEquipment.burner.heat = item.burner.heat
+                    addedEquipment.burner.remaining_burning_fuel = item.burner.remaining_burning_fuel
+                end
+            end
         end
     end
 

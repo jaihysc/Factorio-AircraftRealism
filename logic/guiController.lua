@@ -79,8 +79,14 @@ local function getFuelPercentage(player, game)
 end
 
 local function getFuelGaugeLeftIndex(fuelPercentage)
+    local index = utils.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
 
-    return utils.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
+    -- When switching out of modded fuels, the stack size can be larger than normal
+    if index > 31 then
+        index = 31
+    end
+
+    return index
 end
 
 local function getFuelGaugeRightIndex(player)

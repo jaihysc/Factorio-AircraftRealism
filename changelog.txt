@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.2
+Date: 2019-09-12
+  Bugfixes:
+    - Fixed gauges not disappearing when plane crashes (https://mods.factorio.com/mod/AircraftRealism/discussion/5d7104eb52edf0000cf0cbe2)
+    - Fixed plane equipment grid with burners not being transferred on takeoff/landing (https://mods.factorio.com/mod/AircraftRealism/discussion/5d781ff6ec708b000b564668)
+  Changes:
+    - Added range and nil checking to defend against unpredicted values when switching between mods
+---------------------------------------------------------------------------------------------------
 Version: 0.3.1
 Date: 2019-08-31
   Bugfixes:
