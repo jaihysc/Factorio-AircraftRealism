@@ -3,9 +3,13 @@ local recognisedPlanes = require("definitions.recognisedPlanes")
 local utils = require("logic.utility")
 
 local function insertItems(oldInventory, newInventory)
-    -- With this method, inventory items stay in the same place
-    for i = 1, #oldInventory, 1 do
-        newInventory[i].set_stack(oldInventory[i])
+    if oldInventory and newInventory then
+        -- With this method, inventory items stay in the same place
+        for i = 1, #oldInventory, 1 do
+            if i <= #newInventory then
+                newInventory[i].set_stack(oldInventory[i])
+            end
+        end
     end
 end
 
@@ -46,14 +50,10 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
                 if item.shield ~= 0 then addedEquipment.shield = item.shield end
 
                 if item.burner ~= nil then
-                    local burner_inv = item.burner.inventory.get_contents()
+                    local burnerInv = item.burner.inventory
 
                     -- Transfer burner contents
-                    if burner_inv then
-                        for name, count in pairs(burner_inv) do
-                            addedEquipment.burner.inventory.insert({name=name, count=count})
-                        end
-                    end
+                    insertItems(burnerInv, addedEquipment.burner.inventory)
 
                     addedEquipment.burner.currently_burning = item.burner.currently_burning
                     addedEquipment.burner.heat = item.burner.heat
