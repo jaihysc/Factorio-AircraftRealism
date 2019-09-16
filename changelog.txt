@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.3
-Date: 2019-09-15
+Date: 2019-09-17
+  Bugfixes:
+    - Fixed crash if plane has no weapons
   Changes:
     - Added range checking to inventory transfers between different planes
 ---------------------------------------------------------------------------------------------------

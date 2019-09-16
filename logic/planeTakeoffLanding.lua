@@ -34,7 +34,8 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     -- Select the last weapon
     if oldPlane.selected_gun_index and newPlane.prototype.guns then
         -- Validate that the 2 planes both have the same weapons
-        if utils.getTableLength(newPlane.prototype.guns) > newPlane.selected_gun_index then
+        if newPlane.selected_gun_index and
+           utils.getTableLength(newPlane.prototype.guns) >= oldPlane.selected_gun_index then
             newPlane.selected_gun_index = oldPlane.selected_gun_index
         end
     end
