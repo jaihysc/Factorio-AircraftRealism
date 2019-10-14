@@ -6,7 +6,7 @@ local function validateRunwayTile(settings, surface, plane)
     -- player.print(tile.name .. " | " ..tile.prototype.vehicle_friction_modifier) --For debug testing different surfaces
 
     -- If strict runways are set, limit the plane's speed when not on runway material, dealing damage if landing on it
-    if settings.global["aircraft-realism-strict-runway-checking"].value then
+    if settings.global["aircraft-realism-strict-runway-checking"].value and tile ~= nil and tile.valid then
 
         -- Cap the max speed to the max taxi speed when not on a runway
         if tile.prototype.vehicle_friction_modifier > settings.global["aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction"].value then
