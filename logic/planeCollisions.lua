@@ -12,8 +12,11 @@ local function obstacleCollision(settings, surface, player, plane)
         end
     end
     -- Destroy the plane upon landing in water
-    local tile = surface.get_tile(plane.position).name
-    if tile == "water" or tile == "water-shallow" or tile == "water-mud"or tile == "water-green" or tile == "deepwater" or tile == "deepwater-green" then
+    local tile = surface.get_tile(plane.position)
+	if tile == nil or not tile.valid then
+		return;
+	end
+    if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud"or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
         if plane.speed == 0 then  --Player + passenger dies too since they will just be stuck anyways
             planeUtils.killDriverAndPassenger(plane, player)
 

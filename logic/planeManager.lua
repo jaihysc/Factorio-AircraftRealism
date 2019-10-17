@@ -38,7 +38,7 @@ local function checkPlanes(e, player, game, defines, settings)
         -- Collision gets checked every tick for accuracy
         if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then -- Returns false if the plane did not pass and was destroyed
             -- Test for obstacle collision (water, cliff)
-            planeCollisions.obstacleCollision(settings, game.surfaces[1], player, player.vehicle)
+            planeCollisions.obstacleCollision(settings, player.surface, player, player.vehicle)
         end
 
     elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
