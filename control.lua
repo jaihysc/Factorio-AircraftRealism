@@ -9,7 +9,8 @@ function OnTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
 
         -- if they are in a plane
-        if player.character and player.driving then
+        if player and player.character and player.driving and
+        player.vehicle then  -- This fixes a crash of nil vehicle when trying to ride the rocket
             planeManager.checkPlanes(e, player, game, defines, settings)
         end
     end

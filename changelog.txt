@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.4
+Date: 2019-10-17
+  Bugfixes:
+    - Fixed crash with a nil tile (https://github.com/jaihysc/Factorio-AircraftRealism/issues/3)
+    - Fixed crash with a nil player.vehicle when trying to ride rocket
+---------------------------------------------------------------------------------------------------
 Version: 0.3.3
 Date: 2019-09-17
   Bugfixes:
