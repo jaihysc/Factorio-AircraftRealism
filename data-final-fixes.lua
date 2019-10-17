@@ -17,7 +17,7 @@ require("prototypes.airbornePlanes") -- Make airborne plane clones first
 -- WARNING
 -- max_health must be the max_health of the original plane DIVIDED BY 2
 function ExtendGroundedAircraft(name, rotation_speed, braking_power, max_health, weight, collision_box)
-    data.raw.car[name].collision_mask = {"player-layer", "train-layer", "consider-tile-transitions"}
+    data.raw.car[name].collision_mask = {"player-layer", "train-layer"}
 
     if settings.startup["aircraft-realism-turn-radius"].value then
         data.raw.car[name].tank_driving = false
