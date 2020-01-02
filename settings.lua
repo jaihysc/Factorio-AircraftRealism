@@ -84,7 +84,7 @@ data:extend({
         type = "bool-setting",
         name = "aircraft-emit-pollution",
         setting_type = "runtime-global",
-        default_value = true,
+        default_value = false,
         order="aal"
     },
     {
@@ -115,7 +115,7 @@ data:extend({
         name = "aircraft-takeoff-speed-jet",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 320,
+        default_value = 280,
         order="aap"
     },
     {
@@ -146,7 +146,7 @@ data:extend({
         name = "aircraft-landing-speed-jet",
         setting_type = "runtime-global",
         minimum_value = 0,
-        default_value = 290,
+        default_value = 200,
         order="aat"
     },
     {
@@ -214,7 +214,7 @@ if mods["betterCargoPlanes"] then
             name = "aircraft-takeoff-speed-better-cargo-plane",
             setting_type = "runtime-global",
             minimum_value = 0,
-            default_value = 110,
+            default_value = 80,
             order="ada"
         },
         {
@@ -222,7 +222,7 @@ if mods["betterCargoPlanes"] then
             name = "aircraft-takeoff-speed-even-better-cargo-plane",
             setting_type = "runtime-global",
             minimum_value = 0,
-            default_value = 120,
+            default_value = 85,
             order="adb"
         },
         {

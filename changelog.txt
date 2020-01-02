@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.5
+Date: 2020-1-1
+  Bugfixes:
+    - Fixed incorrect health scaling with better cargo planes (https://github.com/jaihysc/Factorio-AircraftRealism/issues/6)
+  Changes:
+    - Lowered default takeoff speed of jet
+    - Turned off various features by default
+---------------------------------------------------------------------------------------------------
 Version: 0.3.4
 Date: 2019-10-17
   Bugfixes:
