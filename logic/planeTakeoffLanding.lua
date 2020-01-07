@@ -121,6 +121,13 @@ local function planeLand(player, game, defines, settings)
     -- If player is airborne and plane is less than the specified landing speed
     for i,plane in pairs(recognisedPlanes) do
         if player.vehicle.name == (plane .. "-airborne") and player.vehicle.speed < utils.toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. plane].value) then
+            -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
+            if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
+                player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
+                return
+            end
+
+            -- Brake held, land the plane ==========
             transitionPlane(
                 player.vehicle,
                 player.surface.create_entity{name=string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")), position=player.position, force=game.forces.player},

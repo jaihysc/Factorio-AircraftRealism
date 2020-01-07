@@ -6,11 +6,11 @@ Adds aircraft mechanics to make the planes actually behave like planes
 
 ![](https://i.imgur.com/eGXdOQv.png)
 
-## Features
+#### Everything can be configured, enabled and disabled from the ingame mod settings
 
-**Everything can be configured, enabled and disabled from the ingame mod settings**
+## New mechanics
 
-### Gauges!!
+### Gauges
 
 A speed and fuel indicator so you do not need to hover your cursor over the plane to find information
 
@@ -35,6 +35,28 @@ Slow down too much and the plane will land, colliding into any objects in the wa
 
 planes must takeoff from tiles with a vehicle friction modifier less than what is set in the settings, otherwise the plane will take damage on takeoff and landing (disabled by default)
 
+### Environmental damage
+
+Hitting cliffs and running into water on takeoff and landing will instantly destroy the plane
+
+Jumping out of a flying plane will cause it to crash
+
+### Pollution
+
+Planes emit pollution depending on their fuel type and speed
+
+## Plane modifications
+
+### Plane statistics
+
+Gunship: Medium takeoff, medium maneuverability
+
+Cargo plane: Short takeoff, low maneuverability
+
+Jet: Long takeoff, high maneuverability
+
+Flying fortress: Medium takeoff, high maneuverability
+
 ### Realistic turn radius
 
 Widens the turn radius of planes, planes can no longer spin on the spot
@@ -46,27 +68,3 @@ Slower acceleration and braking to feel more like a plane instead of a race car,
 ### Realistic debris damage
 
 Rocks, tree stumps and other objects will now damage the plane more on takeoff and landing
-
-### Environmental damage
-
-Hitting cliffs and running into water on takeoff and landing will instantly destroy the plane
-
-Jumping out of a flying plane will cause it to crash
-
-### Pollution
-
-Planes emit pollution depending on their fuel type and speed
-
-### Strict runway checking
-
-planes must takeoff from tiles with a vehicle friction modifier less than what is set in the settings, otherwise the plane will take damage on takeoff and landing (disabled by default)
-
-## Plane statistics
-
-Gunship: Medium takeoff, medium maneuverability
-
-Cargo plane: Short takeoff, low maneuverability
-
-Jet: Long takeoff, high maneuverability
-
-Flying fortress: Medium takeoff, high maneuverability

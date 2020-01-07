@@ -48,6 +48,12 @@ local function roundNumber(number)
    return number
   end
 
+-- You have no idea how scared I am writing a new function in Lua after seeing nils from all sorts of places
+local function playSound(settings, player, soundName)
+    if settings.get_player_settings(player)["aircraft-realism-sounds-enabled"].value then
+        player.play_sound({path=soundName})
+    end
+end
 -- Makes these functions available to the lua script which requires this file
 local functions = {}
 
@@ -56,6 +62,6 @@ functions.fromFactorioUnit = fromFactorioUnit
 functions.fromFactorioUnitUser = fromFactorioUnitUser
 functions.getTableLength = getTableLength
 functions.roundNumber = roundNumber
-
+functions.playSound = playSound
 
 return functions

@@ -153,7 +153,7 @@ local function updateGaugeOverlay(baseGauge, overlayName, spiteName)
 end
 
 -- Updates the speed and fuel gauge arrows
-local function updateGaugeArrows(player, settings, game)
+local function updateGaugeArrows(tick, player, settings, game)
     if not player.vehicle then
         return
     end
@@ -208,6 +208,10 @@ local function updateGaugeArrows(player, settings, game)
             "aircraft-realism-fuel-indicator-emergency-fuel-warning",
             "aircraft-realism-fuel-indicator-emergency-fuel-warning"
         )
+        -- Only play sounds every 15 ticks to avoid overlay
+        if tick % 15 == 0 then
+            utils.playSound(settings, player, "aircraft-realism-sound-master-warning")
+        end
     else
         updateGaugeOverlay(
             fuelGauge,

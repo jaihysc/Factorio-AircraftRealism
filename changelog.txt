@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.0
+Date: 2020-1-7
+  Features:
+    - Added low fuel sounds
+    - Added auto acceleration when not braking upon reaching the landing speed
+  Changes:
+    - Getting out of a plane is disallowed while the plane is in motion while grounded
+---------------------------------------------------------------------------------------------------
 Version: 0.3.5
 Date: 2020-1-1
   Bugfixes:

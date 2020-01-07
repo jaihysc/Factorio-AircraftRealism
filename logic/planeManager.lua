@@ -6,9 +6,9 @@ local planeUtility = require("logic.planeUtility")
 local guiController = require("logic.guiController")
 
 -- Creates, updates, or deletes the gauges depending on player settings
-local function updateGauges(player, settings, game)
+local function updateGauges(tick, player, settings, game)
     if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
-        guiController.updateGaugeArrows(player, settings, game)
+        guiController.updateGaugeArrows(tick, player, settings, game)
     else
         guiController.deleteGauges(player)
     end
@@ -22,6 +22,8 @@ local function checkPlanes(e, player, game, defines, settings)
         CheckHelicopterMod(player)
     end
 
+    updateGauges(e.tick, player, settings, game)
+
     if planeUtility.isGroundedPlane(player.vehicle.name) then
         -- These don't need to be checked as often, so they run off quarterSecond
         if quarterSecond then
@@ -33,8 +35,6 @@ local function checkPlanes(e, player, game, defines, settings)
             planeTakeoffLanding.planeTakeoff(player, game, defines, settings)
         end
 
-        updateGauges(player, settings, game)
-
         -- Collision gets checked every tick for accuracy
         if planeRunway.validateRunwayTile(settings, player.surface, player.vehicle) then -- Returns false if the plane did not pass and was destroyed
             -- Test for obstacle collision (water, cliff)
@@ -43,8 +43,6 @@ local function checkPlanes(e, player, game, defines, settings)
 
     elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
         planePollution.createPollution(settings, player.surface, player.vehicle)
-
-        updateGauges(player, settings, game)
 
         planeTakeoffLanding.planeLand(player, game, defines, settings)
     end

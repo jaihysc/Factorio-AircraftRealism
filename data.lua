@@ -1,5 +1,14 @@
---Adds sprites for the gui elements
+--Adds sprites and sounds for the gui elements
+
 data:extend({
+  -- Sound
+  {
+    type = "sound",
+    name = "aircraft-realism-sound-master-warning",
+    variations = { filename = "__AircraftRealism__/sound/plane-warn.ogg", volume = 1.5 }
+  },
+
+  -- Sprites
   {
     type = "sprite",
     name = "aircraft-realism-airspeed-indicator-base",
