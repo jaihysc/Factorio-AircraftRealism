@@ -97,9 +97,15 @@ local function planeTakeoff(player, game, defines, settings)
     -- If player is grounded and plane is greater than the specified takeoff speed
     for i,plane in pairs(recognisedPlanes) do
         if player.vehicle.name == plane and player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. plane].value) then
+            local newPlane = player.surface.create_entity{
+                name    =player.vehicle.name .. "-airborne",
+                position=player.position,
+                force   =player.force
+            }
+
             transitionPlane(
                 player.vehicle,
-                player.surface.create_entity{name=player.vehicle.name .. "-airborne", position=player.position, force=game.forces.player},
+                newPlane,
                 game,
                 defines,
                 true
