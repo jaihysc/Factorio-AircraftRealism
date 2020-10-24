@@ -3,6 +3,7 @@ Version: 1.1.1
 Date: 2020-10-24
   Bugfixes:
     - Fixed crash taking off if player's force is not of name "player" (https://mods.factorio.com/mod/AircraftRealism/discussion/5f8792825a290fb9bae06216)
+    - Fixed player dying landing if player's force is not of name "player"
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2020-8-14

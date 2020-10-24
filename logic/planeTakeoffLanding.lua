@@ -133,10 +133,16 @@ local function planeLand(player, game, defines, settings)
                 return
             end
 
+            local newPlane = player.surface.create_entity{
+                name    =string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")),
+                position=player.position,
+                force   =player.force
+            }
+
             -- Brake held, land the plane ==========
             transitionPlane(
                 player.vehicle,
-                player.surface.create_entity{name=string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")), position=player.position, force=game.forces.player},
+                newPlane,
                 game,
                 defines,
                 false
