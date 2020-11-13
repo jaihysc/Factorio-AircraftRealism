@@ -36,12 +36,28 @@ function ExtendAirborneAircraft(name, rotation_speed, braking_power, max_health,
     end
 
     -- Fuel consumption multiplier
-    -- Substring off kW, convert to number, multiply, convert back to string and append kW
-    plane.consumption = tostring(
-        tonumber(
-            string.sub(plane.consumption, 1, string.len(plane.consumption) - 2)
-        ) * settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
-    ) .. string.sub(plane.consumption, string.len(plane.consumption) - 2)
+
+    -- Get eng unit len of consumption
+    local engUnitLen = 0
+    for i=string.len(plane.consumption), 1, -1 do
+        if tonumber(string.sub(plane.consumption, i, i)) ~= nil then
+            break
+        end
+        engUnitLen = engUnitLen + 1
+    end
+
+    -- Multiply consumption
+    local oldConsumptionNum = tonumber(
+        string.sub(plane.consumption, 1, string.len(plane.consumption) - engUnitLen)
+    )
+
+    local newConsumptionNum = oldConsumptionNum * settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
+
+    -- Add eng unit back
+    local newConsumptionStr = tostring(newConsumptionNum) ..
+        string.sub(plane.consumption, string.len(plane.consumption) - engUnitLen + 1)
+
+    plane.consumption = newConsumptionStr
 
     -- Lower the fuel effectivity so the same energy goes to the wheels
     plane.effectivity = plane.effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
