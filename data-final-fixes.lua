@@ -39,12 +39,28 @@ function ExtendGroundedAircraft(name, rotation_speed, braking_power, max_health,
     end
 
     -- Fuel consumption multiplier
-    -- Substring off kW, convert to number, multiply, convert back to string and append kW
-    data.raw.car[name].consumption = tostring(
-        tonumber(
-            string.sub(data.raw.car[name].consumption, 1, string.len(data.raw.car[name].consumption) - 2)
-        ) * settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value / 10 --It seems to get it a decimal place off
-    ) .. string.sub(data.raw.car[name].consumption, string.len(data.raw.car[name].consumption) - 2)
+
+    -- Get eng unit len of consumption
+    local engUnitLen = 0
+    for i=string.len(data.raw.car[name].consumption), 1, -1 do
+        if tonumber(string.sub(data.raw.car[name].consumption, i, i)) ~= nil then
+            break
+        end
+        engUnitLen = engUnitLen + 1
+    end
+
+    -- Multiply consumption
+    local oldConsumptionNum = tonumber(
+        string.sub(data.raw.car[name].consumption, 1, string.len(data.raw.car[name].consumption) - engUnitLen)
+    )
+
+    local newConsumptionNum = oldConsumptionNum * settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value
+
+    -- Add eng unit back
+    local newConsumptionStr = tostring(newConsumptionNum) ..
+        string.sub(data.raw.car[name].consumption, string.len(data.raw.car[name].consumption) - engUnitLen + 1)
+
+    data.raw.car[name].consumption = newConsumptionStr
 
     -- Lower the fuel effectivity so the plane handles the same
     data.raw.car[name].effectivity = data.raw.car[name].effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value

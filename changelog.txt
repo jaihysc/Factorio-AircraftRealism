@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.2
+Date: 2020-11-13
+  Bugfixes:
+    - Fixed incorrect handling of fuel usage multiplier (https://mods.factorio.com/mod/AircraftRealism/discussion/5fad45c1e8199cb1974be722)
+---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 2020-10-24
   Bugfixes:
