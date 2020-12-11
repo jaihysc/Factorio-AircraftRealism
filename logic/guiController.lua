@@ -1,4 +1,4 @@
-require("mod-gui")
+local mod_gui = require("mod-gui")
 local utils = require("logic.utility")
 local planeUtils = require("logic.planeUtility")
 
