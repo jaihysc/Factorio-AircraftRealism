@@ -129,10 +129,10 @@ end
 -- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
 local function getTakeoffLandingSpeed(player, settings)
 
-    if planeUtils.isGroundedPlane(player.vehicle.name) then
+    if planeUtils.isGroundedPlane(player.vehicle.prototype.order) then
         return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
 
-    elseif planeUtils.isAirbornePlane(player.vehicle.name) then
+    elseif planeUtils.isAirbornePlane(player.vehicle.prototype.order) then
         -- Chop off the -airborne at the end to get the landing speed of the plane
         return settings.global["aircraft-landing-speed-" .. string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))].value
 

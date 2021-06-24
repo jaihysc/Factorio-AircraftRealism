@@ -1,6 +1,6 @@
 -- Handles the takeoff and landing of the plane
-local recognisedPlanes = require("definitions.recognisedPlanes")
 local utils = require("logic.utility")
+local planeUtils = require("logic.planeUtility")
 
 local function insertItems(oldInventory, newInventory)
     if oldInventory and newInventory then
@@ -95,68 +95,68 @@ end
 
 local function planeTakeoff(player, game, defines, settings)
     -- If player is grounded and plane is greater than the specified takeoff speed
-    for i,plane in pairs(recognisedPlanes) do
-        if player.vehicle.name == plane and player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. plane].value) then
-            local newPlane = player.surface.create_entity{
-                name    =player.vehicle.name .. "-airborne",
-                position=player.position,
-                force   =player.force
-            }
+    if planeUtils.isGroundedPlane(player.vehicle.prototype.order) and
+       player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value) then
+        local newPlane = player.surface.create_entity{
+            name    =player.vehicle.name .. "-airborne",
+            position=player.position,
+            force   =player.force
+        }
 
-            transitionPlane(
-                player.vehicle,
-                newPlane,
-                game,
-                defines,
-                true
-            )
+        transitionPlane(
+            player.vehicle,
+            newPlane,
+            game,
+            defines,
+            true
+        )
 
-            --Create some smoke to indicate to the player they have taken off
-            for i = 1, 3, 1 do
-                player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
-            end
-
-            --Accelerate the new plane that the player is in so they don't need to press w again
-            player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
-            return
+        --Create some smoke to indicate to the player they have taken off
+        for i = 1, 3, 1 do
+            player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
         end
+
+        --Accelerate the new plane that the player is in so they don't need to press w again
+        player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
+        return
     end
 end
 
 local function planeLand(player, game, defines, settings)
+    local groundedName = string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))
+
     -- If player is airborne and plane is less than the specified landing speed
-    for i,plane in pairs(recognisedPlanes) do
-        if player.vehicle.name == (plane .. "-airborne") and player.vehicle.speed < utils.toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. plane].value) then
-            -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
-            if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
-                player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
-                return
-            end
-
-            local newPlane = player.surface.create_entity{
-                name    =string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne")),
-                position=player.position,
-                force   =player.force
-            }
-
-            -- Brake held, land the plane ==========
-            transitionPlane(
-                player.vehicle,
-                newPlane,
-                game,
-                defines,
-                false
-            )
-
-            -- Create some smoke to indicate to the player they have landed
-            for i = 1, 5, 1 do
-                player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
-            end
-
-            --Auto brake
-            player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
+    if planeUtils.isAirbornePlane(player.vehicle.prototype.order) and
+       player.vehicle.speed < utils.toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. groundedName].value) then
+        -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
+        if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
+            player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
             return
         end
+
+        local newPlane = player.surface.create_entity{
+            name    =groundedName,
+            position=player.position,
+            force   =player.force
+        }
+
+        -- Brake held, land the plane ==========
+        transitionPlane(
+            player.vehicle,
+            newPlane,
+            game,
+            defines,
+            false
+        )
+
+        -- Create some smoke to indicate to the player they have landed
+        for i = 1, 5, 1 do
+            player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
+        end
+
+        --Auto brake
+        player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
+        return
     end
 end
 
