@@ -109,3 +109,8 @@ aircraft-takeoff-speed-<yourPlaneName>=Speed to takeoff and be airborne, no long
 
 aircraft-landing-speed-<yourPlaneName>=Speed to land, no longer airborne and has collision with other objects (Should be less than the takeoff speed)
 ```
+
+## Example
+
+Turn the vanilla car into a flying one.
+See `FlyingCar_0.1.0`, works as a standalone mod.
