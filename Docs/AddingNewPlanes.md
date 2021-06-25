@@ -1,6 +1,6 @@
 # Adding new planes
 
-*Written on June 24, 2021 with version 1.3.0*
+*Written on June 25, 2021 with version 1.3.0*
 
 To support taking off / landing, you must create 2 versions of your plane.
 The first version is the landed version, the second is airborne.
@@ -62,10 +62,10 @@ The values of all members is a true/false.
 
 Add settings in settings.lua, settings-updates.lua, or settings-final-fixes.lua
 
-\<yourPlaneName\> is the prototype name of your plane
+`<yourPlaneName>` is the prototype name of your plane
 
 ```lua
-data.extend({
+data:extend({
     {
         type = "double-setting",
         name = "aircraft-takeoff-speed-<yourPlaneName>",
@@ -89,7 +89,7 @@ data.extend({
 
 Your plane prototype is duplicated for the airborne version, possessing the suffix `-airborne`
 
-\<yourPlaneName\> is the prototype name of your plane
+`<yourPlaneName>` is the prototype name of your plane
 
 ```ini
 [entity-name]
