@@ -1,6 +1,6 @@
 # Adding new planes
 
-*Written on June 25, 2021 with version 1.3.0*
+*Written on June 29, 2021 with version 1.3.0*
 
 To support taking off / landing, you must create 2 versions of your plane.
 The first version is the landed version, the second is airborne.
@@ -54,6 +54,7 @@ The values of all members is a true/false.
 
 | Member            | Recommended changes to apply                                                             |
 |-------------------|------------------------------------------------------------------------------------------|
+| noAerialShadow    | Remove shadows from airborne plane                                                       |
 | rAcceleration     | Increase prototype weight. Reduce prototype friction for gliding                         |
 | rBraking          | Reduce braking power                                                                     |
 | rTurnRadius       | Decrease prototype rotation_speed                                                        |

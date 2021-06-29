@@ -22,7 +22,7 @@ function makeRealistic(plane, rotation_speed, braking_power, max_health, weight,
         plane.rotation_speed = rotation_speed
     end
 
-    if airborneSprite then
+    if s.noAerialShadow and airborneSprite then
         plane.animation.filename = airborneSprite
     end
 end

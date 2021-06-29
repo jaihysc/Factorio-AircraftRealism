@@ -120,6 +120,7 @@ end
 
 local function getSettings()
     return {
+        noAerialShadow = settings.startup["aircraft-realism-no-aerial-shadows"].value,
         rAcceleration = settings.startup["aircraft-realism-acceleration"].value,
         rBraking      = settings.startup["aircraft-realism-braking-speed"].value,
         rTurnRadius   = settings.startup["aircraft-realism-turn-radius"].value
