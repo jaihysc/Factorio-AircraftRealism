@@ -37,15 +37,17 @@ function toGroundedAircraft(name, rotation_speed, braking_power, max_health, wei
     return plane
 end
 
-local gunship        = toGroundedAircraft("gunship"        , 0.008, "380kW", 250, 3750, {{-2, -2}, {2, 2}})
-local cargoPlane     = toGroundedAircraft("cargo-plane"    , 0.006, "610kW", 250, 20500, {{-1.5, -1.5}, {1.5, 1.5}})
-local jet            = toGroundedAircraft("jet"            , 0.005, "540kW", 125, 1500, {{-2, -2}, {2, 2}})
-local flyingFortress = toGroundedAircraft("flying-fortress", 0.01, "2620kW", 1000, 15000, {{-2, -2}, {2, 2}})
+if mods["Aircraft"] then
+    local gunship        = toGroundedAircraft("gunship"        , 0.008, "380kW", 250, 3750, {{-2, -2}, {2, 2}})
+    local cargoPlane     = toGroundedAircraft("cargo-plane"    , 0.006, "610kW", 250, 20500, {{-1.5, -1.5}, {1.5, 1.5}})
+    local jet            = toGroundedAircraft("jet"            , 0.005, "540kW", 125, 1500, {{-2, -2}, {2, 2}})
+    local flyingFortress = toGroundedAircraft("flying-fortress", 0.01, "2620kW", 1000, 15000, {{-2, -2}, {2, 2}})
 
-aircraftMaker.makeGrounded({prototype=gunship})
-aircraftMaker.makeGrounded({prototype=cargoPlane})
-aircraftMaker.makeGrounded({prototype=jet})
-aircraftMaker.makeGrounded({prototype=flyingFortress})
+    aircraftMaker.makeGrounded({prototype=gunship})
+    aircraftMaker.makeGrounded({prototype=cargoPlane})
+    aircraftMaker.makeGrounded({prototype=jet})
+    aircraftMaker.makeGrounded({prototype=flyingFortress})
+end
 
 ------------------------------------------------------
 -- OTHER MODS

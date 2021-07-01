@@ -27,15 +27,17 @@ function makeRealistic(plane, rotation_speed, braking_power, max_health, weight,
     end
 end
 
-local gunship        = aircraftMaker.makeAirborne({name="gunship"})
-local cargoPlane     = aircraftMaker.makeAirborne({name="cargo-plane"})
-local jet            = aircraftMaker.makeAirborne({name="jet"})
-local flyingFortress = aircraftMaker.makeAirborne({name="flying-fortress"})
+if mods["Aircraft"] then
+    local gunship        = aircraftMaker.makeAirborne({name="gunship"})
+    local cargoPlane     = aircraftMaker.makeAirborne({name="cargo-plane"})
+    local jet            = aircraftMaker.makeAirborne({name="jet"})
+    local flyingFortress = aircraftMaker.makeAirborne({name="flying-fortress"})
 
-makeRealistic(gunship       , 0.005, "940kW", 500, 5000, "__AircraftRealism__/graphics/gunship_Spritesheet_Shadowless.png")
-makeRealistic(cargoPlane    , 0.003, "1100kW", 500, 25000, "__AircraftRealism__/graphics/cargo-plane_Spritesheet_Shadowless.png")
-makeRealistic(jet           , 0.003, "950kW", 250, 1200, "__AircraftRealism__/graphics/jet_Spritesheet_Shadowless.png")
-makeRealistic(flyingFortress, 0.008, "3420kW", 2000, 7500, "__AircraftRealism__/graphics/flying-fortress_Spritesheet_Shadowless.png")
+    makeRealistic(gunship       , 0.005, "940kW", 500, 5000, "__AircraftRealism__/graphics/gunship_Spritesheet_Shadowless.png")
+    makeRealistic(cargoPlane    , 0.003, "1100kW", 500, 25000, "__AircraftRealism__/graphics/cargo-plane_Spritesheet_Shadowless.png")
+    makeRealistic(jet           , 0.003, "950kW", 250, 1200, "__AircraftRealism__/graphics/jet_Spritesheet_Shadowless.png")
+    makeRealistic(flyingFortress, 0.008, "3420kW", 2000, 7500, "__AircraftRealism__/graphics/flying-fortress_Spritesheet_Shadowless.png")
+end
 
 ------------------------------------------------------
 -- OTHER MODS
