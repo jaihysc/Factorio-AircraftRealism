@@ -22,7 +22,7 @@ local function checkPlanes(e, player, game, defines, settings)
         CheckHelicopterMod(player)
     end
 
-    if planeUtility.isGroundedPlane(player.vehicle.name) then
+    if planeUtility.isGroundedPlane(player.vehicle.prototype.order) then
         updateGauges(e.tick, player, settings, game)
 
         -- These don't need to be checked as often, so they run off quarterSecond
@@ -41,7 +41,7 @@ local function checkPlanes(e, player, game, defines, settings)
             planeCollisions.obstacleCollision(settings, player.surface, player, player.vehicle)
         end
 
-    elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.name) then
+    elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.prototype.order) then
         updateGauges(e.tick, player, settings, game)
 
         planePollution.createPollution(settings, player.surface, player.vehicle)

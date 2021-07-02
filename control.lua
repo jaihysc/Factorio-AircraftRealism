@@ -23,7 +23,7 @@ function OnPlayerDrivingChangedState(e)
 
     if player and not player.driving then
         if e.entity then
-            if planeUtility.isAirbornePlane(e.entity.name) then
+            if planeUtility.isAirbornePlane(e.entity.prototype.order) then
                 local driver = e.entity.get_driver()
                 local passenger = e.entity.get_passenger()
                 -- If driver bailed, passenger become the pilot
@@ -33,7 +33,7 @@ function OnPlayerDrivingChangedState(e)
                 elseif not driver and not passenger then
                     e.entity.die()
                 end
-            elseif planeUtility.isGroundedPlane(e.entity.name) then
+            elseif planeUtility.isGroundedPlane(e.entity.prototype.order) then
                 -- Driver of the plane MUST NOT exit until the plane has stopped in order for collision logic to work
                 local driver = e.entity.get_driver()
                 if not driver then

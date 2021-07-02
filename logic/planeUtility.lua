@@ -1,24 +1,14 @@
-local recognisedPlanes = require("definitions.recognisedPlanes")
-
 -- Test for plane type for plane name in the array of recognisedPlanes
-local function isGroundedPlane(name)
-    for i,plane in pairs(recognisedPlanes) do
-        if name == plane then
-            return true
-        end
-    end
 
-    return false
+-- Information is stored in the prototype order on whether or not it is a plane
+local function isGroundedPlane(order)
+    local suffix = "-__Z9ZC_G"
+    return order:sub(-string.len(suffix)) == suffix
 end
 
-local function isAirbornePlane(name)
-    for i,plane in pairs(recognisedPlanes) do
-        if name == (plane .. "-airborne") then
-            return true
-        end
-    end
-
-    return false
+local function isAirbornePlane(order)
+    local suffix = "-__Z9ZC_A"
+    return order:sub(-string.len(suffix)) == suffix
 end
 
 local function killDriverAndPassenger(plane, player)
