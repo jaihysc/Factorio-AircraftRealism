@@ -2,7 +2,7 @@
 
 local function toFactorioUnit(settings, kmH)
     if settings.global["aircraft-speed-unit"].value == "imperial" then
-        kmH = kmH * 1.609 --Thanks google!
+        kmH = kmH * 1.609
     end
 
     -- Convert the lua speed into km/h with * 60 * 3.6
@@ -41,20 +41,19 @@ end
 
 local function roundNumber(number)
     if (number - (number % 0.1)) - (number - (number % 1)) < 0.5 then
-      number = number - (number % 1)
+        number = number - (number % 1)
     else
-      number = (number - (number % 1)) + 1
+        number = (number - (number % 1)) + 1
     end
-   return number
-  end
+    return number
+end
 
--- You have no idea how scared I am writing a new function in Lua after seeing nils from all sorts of places
 local function playSound(settings, player, soundName)
     if settings.get_player_settings(player)["aircraft-realism-sounds-enabled"].value then
         player.play_sound({path=soundName})
     end
 end
--- Makes these functions available to the lua script which requires this file
+
 local functions = {}
 
 functions.toFactorioUnit = toFactorioUnit

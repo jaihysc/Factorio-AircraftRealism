@@ -16,6 +16,7 @@ end
 
 -- Checks the planes and performs all the functions a plane should do
 local function checkPlanes(e, player, game, defines, settings)
+    assert(player.vehicle)
     local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
     if quarterSecond then
@@ -51,7 +52,6 @@ local function checkPlanes(e, player, game, defines, settings)
 end
 
 
--- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.checkPlanes = checkPlanes

@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.1
+Date: 2021-08-01
+  Bugfixes:
+    - Fixed crash when trying to kill player in sandbox mode
+  Changes:
+    - Guard against modded fuels changing, resulting in current burn time > fuel burn time
+    - Handle planes with no burner
+    - Asserts fail on incorrect creation of grounded and airborne plane prototypes
+    - Only realistic turn radius is on by default (Less harsh for new users)
+---------------------------------------------------------------------------------------------------
 Version: 1.3.0
 Date: 2021-06-24
   Features:

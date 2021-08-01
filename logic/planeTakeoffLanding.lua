@@ -3,7 +3,8 @@ local utils = require("logic.utility")
 local planeUtils = require("logic.planeUtility")
 
 local function insertItems(oldInventory, newInventory)
-    if oldInventory and newInventory then
+    if oldInventory then
+        assert(newInventory, "Old plane has inventory, new plane does not. Check plane prototypes")
         -- With this method, inventory items stay in the same place
         for i = 1, #oldInventory, 1 do
             if i <= #newInventory then
@@ -19,9 +20,13 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     newPlane.copy_settings(oldPlane)
 
     -- Set Fuel bar
-    newPlane.burner.currently_burning = oldPlane.burner.currently_burning
-    newPlane.burner.remaining_burning_fuel = oldPlane.burner.remaining_burning_fuel
+    if oldPlane.burner then
+        assert(newPlane.burner, "Old plane has burner, new plane does not. Check plane prototypes")
+        newPlane.burner.currently_burning = oldPlane.burner.currently_burning
+        newPlane.burner.remaining_burning_fuel = oldPlane.burner.remaining_burning_fuel
+    end
 
+    -- The inventories cannot differ, or else items disappear
     -- Set fuel inventory
     insertItems(oldPlane.get_fuel_inventory(), newPlane.get_fuel_inventory())
 
@@ -32,34 +37,30 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     insertItems(oldPlane.get_inventory(defines.inventory.car_ammo), newPlane.get_inventory(defines.inventory.car_ammo))
 
     -- Select the last weapon
-    if oldPlane.selected_gun_index and newPlane.prototype.guns then
-        -- Validate that the 2 planes both have the same weapons
-        if newPlane.selected_gun_index and
-           utils.getTableLength(newPlane.prototype.guns) >= oldPlane.selected_gun_index then
-            newPlane.selected_gun_index = oldPlane.selected_gun_index
-        end
+    if oldPlane.selected_gun_index then
+        assert(utils.getTableLength(oldPlane.prototype.guns) == utils.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
+        newPlane.selected_gun_index = oldPlane.selected_gun_index
     end
 
     -- Transfer over equipment grid
     if oldPlane.grid then
+        assert(newPlane.grid, "Old plane has grid, new plane does not. Check plane prototypes")
         for index,item in pairs(oldPlane.grid.equipment) do
             local addedEquipment = newPlane.grid.put{name=item.name, position=item.position}
+            assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
 
-            if addedEquipment then
-                -- Transfer over charge and shield capacity
-                if item.energy ~= 0 then addedEquipment.energy = item.energy end
-                if item.shield ~= 0 then addedEquipment.shield = item.shield end
+            -- Transfer over charge and shield capacity
+            addedEquipment.energy = item.energy
+            addedEquipment.shield = item.shield
 
-                if item.burner ~= nil then
-                    local burnerInv = item.burner.inventory
+            if item.burner then
+                assert(addedEquipment.burner, "Old plane equipment has burner, new plane equipment does not. Check plane prototypes")
+                -- Transfer burner contents
+                insertItems(item.burner.inventory, addedEquipment.burner.inventory)
 
-                    -- Transfer burner contents
-                    insertItems(burnerInv, addedEquipment.burner.inventory)
-
-                    addedEquipment.burner.currently_burning = item.burner.currently_burning
-                    addedEquipment.burner.heat = item.burner.heat
-                    addedEquipment.burner.remaining_burning_fuel = item.burner.remaining_burning_fuel
-                end
+                addedEquipment.burner.currently_burning = item.burner.currently_burning
+                addedEquipment.burner.heat = item.burner.heat
+                addedEquipment.burner.remaining_burning_fuel = item.burner.remaining_burning_fuel
             end
         end
     end
@@ -94,6 +95,7 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
 end
 
 local function planeTakeoff(player, game, defines, settings)
+    assert(player.vehicle)
     -- If player is grounded and plane is greater than the specified takeoff speed
     if planeUtils.isGroundedPlane(player.vehicle.prototype.order) and
        player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value) then
@@ -123,6 +125,7 @@ local function planeTakeoff(player, game, defines, settings)
 end
 
 local function planeLand(player, game, defines, settings)
+    assert(player.vehicle)
     local groundedName = string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))
 
     -- If player is airborne and plane is less than the specified landing speed
@@ -160,11 +163,9 @@ local function planeLand(player, game, defines, settings)
     end
 end
 
--- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.planeTakeoff = planeTakeoff
 functions.planeLand = planeLand
-
 
 return functions

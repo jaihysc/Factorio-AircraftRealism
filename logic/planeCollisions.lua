@@ -1,4 +1,4 @@
--- Handles environmental collisions of the plane (cliffs, water)
+-- Handles environmental collisions of the plane WITH DRIVER (cliffs, water)
 local planeUtils = require("logic.planeUtility")
 
 local function obstacleCollision(settings, surface, player, plane)
@@ -43,7 +43,6 @@ local function obstacleCollision(settings, surface, player, plane)
     end
 end
 
--- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.obstacleCollision = obstacleCollision

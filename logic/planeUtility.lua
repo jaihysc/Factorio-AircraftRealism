@@ -1,5 +1,3 @@
--- Test for plane type for plane name in the array of recognisedPlanes
-
 -- Information is stored in the prototype order on whether or not it is a plane
 local function isGroundedPlane(order)
     local suffix = "-__Z9ZC_G"
@@ -12,13 +10,22 @@ local function isAirbornePlane(order)
 end
 
 local function killDriverAndPassenger(plane, player)
-    plane.get_driver().die(player.force, plane)
+    local driver = plane.get_driver()
+
+    -- get_driver() and get_passenger() returns LuaPlayer OR LuaEntity
+    -- die() only exists for LuaEntity
+    if driver and not driver.is_player() then
+        driver.die(player.force, plane)
+    end
+
     local passenger = plane.get_passenger()
-    if passenger then passenger.die(player.force, plane) end
+    if passenger and not passenger.is_player() then
+        passenger.die(player.force, plane)
+    end
+
     plane.die()
 end
 
--- Makes these functions available to the lua script which requires this file
 local functions = {}
 
 functions.isGroundedPlane = isGroundedPlane
