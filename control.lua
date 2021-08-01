@@ -29,7 +29,7 @@ function OnPlayerDrivingChangedState(e)
                 -- If driver bailed, passenger become the pilot
                 if passenger and not driver then
                     e.entity.set_driver(passenger)
-                -- If passenger and driver jumps out, nothing hapens
+                -- If passenger and driver jumps out, plane crashes
                 elseif not driver and not passenger then
                     e.entity.die()
                 end
@@ -46,6 +46,7 @@ function OnPlayerDrivingChangedState(e)
         end
 
         -- Destroy gauges upon leaving a plane
+        -- The gauges are recreated later if the player is still in plane
         guiController.deleteGauges(player)
     end
 end
@@ -60,6 +61,7 @@ end
 
 -- Special function for the helicopter mod
 function CheckHelicopterMod(player)
+    assert(player.vehicle)
     if player.vehicle.name == "heli-entity-_-" then
         planePollution.createPollution(settings, player.surface, player.vehicle)
     end

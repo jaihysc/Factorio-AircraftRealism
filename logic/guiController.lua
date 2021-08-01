@@ -27,7 +27,7 @@ end
 local function getGaugeGui(player)
     local gui_elements = mod_gui.get_frame_flow(player)
 
-    -- Find the aircraft gauge elemen
+    -- Find the aircraft gauge element
     -- gui_elements["aircraft-realism-gauge-frame"]
 
     for i,element in pairs(gui_elements.children) do
@@ -47,6 +47,7 @@ end
 --------------------
 -- Fuel gauge
 local function getFuelPercentage(player, game)
+    assert(player.vehicle)
     local emptySlots = 0  -- Empty fuel inventory slots
     local totalSlots = player.vehicle.prototype.burner_prototype.fuel_inventory_size  -- Total fuel inventory slots
 
@@ -90,13 +91,21 @@ local function getFuelGaugeLeftIndex(fuelPercentage)
 end
 
 local function getFuelGaugeRightIndex(player)
-    if not player.vehicle.burner.currently_burning then
+    assert(player.vehicle)
+    if not player.vehicle.burner or not player.vehicle.burner.currently_burning then
         return 0
     end
 
     --Remaining energy of burning fuel compared to the full energy of the burning fuel
     local remainingBurningFuel = player.vehicle.burner.remaining_burning_fuel / player.vehicle.burner.currently_burning["fuel_value"] * 100
-    return utils.roundNumber(remainingBurningFuel * 30 / 100)
+    local index = utils.roundNumber(remainingBurningFuel * 30 / 100)
+
+    -- Guard against modded fuel values changing
+    if index > 30 then
+        index = 30
+    end
+
+    return index
 end
 
 --------------------
@@ -128,7 +137,7 @@ end
 
 -- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
 local function getTakeoffLandingSpeed(player, settings)
-
+    assert(player.vehicle)
     if planeUtils.isGroundedPlane(player.vehicle.prototype.order) then
         return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
 
@@ -221,7 +230,6 @@ local function updateGaugeArrows(tick, player, settings, game)
     end
 end
 
--- Return all the functions for gui back to control
 functions.deleteGauges = deleteGauges
 functions.updateGaugeArrows = updateGaugeArrows
 
