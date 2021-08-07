@@ -50,8 +50,11 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
             assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
 
             -- Transfer over charge and shield capacity
-            addedEquipment.energy = item.energy
-            addedEquipment.shield = item.shield
+
+            -- We MUST check for non zero, otherwise attempting to set for item which
+            -- does not have energy or shield is an error
+            if item.energy ~= 0 then addedEquipment.energy = item.energy end
+            if item.shield ~= 0 then addedEquipment.shield = item.shield end
 
             if item.burner then
                 assert(addedEquipment.burner, "Old plane equipment has burner, new plane equipment does not. Check plane prototypes")
