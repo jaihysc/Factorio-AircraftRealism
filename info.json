@@ -6,5 +6,5 @@
     "homepage": "https://forums.factorio.com/viewtopic.php?f=190&t=73964",
     "factorio_version": "1.1",
     "dependencies": ["base >= 0.18", "? Aircraft >= 1.7.0", "? betterCargoPlanes >= 1.0.8", "? Helicopters >= 0.3.14", "(?) aai-programmable-vehicles"],
-    "description": "Makes planes behave like planes"
+    "description": "Adds a variety of mechanics to make vehicles behave like planes"
 }
