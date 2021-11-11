@@ -6,35 +6,35 @@ data:extend({
         name = "aircraft-realism-turn-radius",
         setting_type = "startup",
         default_value = true,
-        order="aaa"
+        order = "aaa"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-acceleration",
         setting_type = "startup",
         default_value = false,
-        order="aab"
+        order = "aab"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-braking-speed",
         setting_type = "startup",
         default_value = false,
-        order="aac"
+        order = "aac"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-takeoff-health",
         setting_type = "startup",
         default_value = false,
-        order="aad"
+        order = "aad"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-no-aerial-shadows",
         setting_type = "startup",
         default_value = true,
-        order="aae"
+        order = "aae"
     },
     {
         type = "double-setting",
@@ -42,7 +42,7 @@ data:extend({
         setting_type = "startup",
         minimum_value = 0,
         default_value = 2,
-        order="aba"
+        order = "aba"
     },
     {
         type = "double-setting",
@@ -50,14 +50,14 @@ data:extend({
         setting_type = "startup",
         minimum_value = 0,
         default_value = 2.25,
-        order="abb"
+        order = "abb"
     },
     { -- RUNTIME SETTINGS
         type = "bool-setting",
         name = "aircraft-realism-strict-runway-checking",
         setting_type = "runtime-global",
         default_value = false,
-        order="aca"
+        order = "aca"
     },
     {
         type = "double-setting",
@@ -65,7 +65,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 0.8,
-        order="acb"
+        order = "acb"
     },
     {
         type = "double-setting",
@@ -73,21 +73,21 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 1,
         default_value = 35,
-        order="acc"
+        order = "acc"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-environmental-impact",
         setting_type = "runtime-global",
         default_value = false,
-        order="ace"
+        order = "ace"
     },
     {
         type = "bool-setting",
         name = "aircraft-emit-pollution",
         setting_type = "runtime-global",
         default_value = false,
-        order="acf"
+        order = "acf"
     },
     {
         type = "double-setting",
@@ -95,7 +95,7 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 0.1,
-        order="acg"
+        order = "acg"
     },
     {
         type = "string-setting",
@@ -107,14 +107,14 @@ data:extend({
             "imperial"
         },
         allow_blank = false,
-        order="ach"
+        order = "ach"
     }, -- Per user settings
     {
         type = "bool-setting",
         name = "aircraft-realism-user-enable-gauges",
         setting_type = "runtime-per-user",
         default_value = true,
-        order="aba"
+        order = "aba"
     },
     {
         type = "int-setting",
@@ -123,7 +123,7 @@ data:extend({
         minimum_value = 0,
         maximum_value = 100,
         default_value = 10,
-        order="abb"
+        order = "abb"
     },
     {
         type = "string-setting",
@@ -135,20 +135,20 @@ data:extend({
             "imperial"
         },
         allow_blank = false,
-        order="abc"
+        order = "abc"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-sounds-enabled",
         setting_type = "runtime-per-user",
         default_value = true,
-        order="abd"
+        order = "abd"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-auto-accelerate-on-landing-speed-no-brake",
         setting_type = "runtime-per-user",
         default_value = true,
-        order="abe"
+        order = "abe"
     }
 })

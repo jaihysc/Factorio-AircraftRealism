@@ -6,14 +6,14 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 130,
-            order="ata"
+            order = "ata"
         },
         {
             type = "double-setting",
             name = "aircraft-takeoff-speed-cargo-plane",
             setting_type = "runtime-global",
             default_value = 70,
-            order="atb"
+            order = "atb"
         },
         {
             type = "double-setting",
@@ -21,7 +21,7 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 280,
-            order="atc"
+            order = "atc"
         },
         {
             type = "double-setting",
@@ -29,7 +29,7 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 140,
-            order="atd"
+            order = "atd"
         },
         { --landing speed
             type = "double-setting",
@@ -37,14 +37,14 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 110,
-            order="ala"
+            order = "ala"
         },
         {
             type = "double-setting",
             name = "aircraft-landing-speed-cargo-plane",
             setting_type = "runtime-global",
             default_value = 50,
-            order="alb"
+            order = "alb"
         },
         {
             type = "double-setting",
@@ -52,7 +52,7 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 200,
-            order="alc"
+            order = "alc"
         },
         {
             type = "double-setting",
@@ -60,7 +60,7 @@ if mods["Aircraft"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 120,
-            order="ald"
+            order = "ald"
         }
     })
 end
@@ -73,7 +73,7 @@ if mods["betterCargoPlanes"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 80,
-            order="ada"
+            order = "ada"
         },
         {
             type = "double-setting",
@@ -81,7 +81,7 @@ if mods["betterCargoPlanes"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 85,
-            order="adb"
+            order = "adb"
         },
         {
             type = "double-setting",
@@ -89,7 +89,7 @@ if mods["betterCargoPlanes"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 60,
-            order="bda"
+            order = "bda"
         },
         {
             type = "double-setting",
@@ -97,7 +97,7 @@ if mods["betterCargoPlanes"] then
             setting_type = "runtime-global",
             minimum_value = 0,
             default_value = 70,
-            order="bdb"
+            order = "bdb"
         }
     })
 end

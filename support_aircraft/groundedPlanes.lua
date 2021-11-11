@@ -43,10 +43,10 @@ if mods["Aircraft"] then
     local jet            = toGroundedAircraft("jet"            , 0.005, "540kW", 125, 1500, {{-2, -2}, {2, 2}})
     local flyingFortress = toGroundedAircraft("flying-fortress", 0.01, "2620kW", 1000, 15000, {{-2, -2}, {2, 2}})
 
-    aircraftMaker.makeGrounded({prototype=gunship})
-    aircraftMaker.makeGrounded({prototype=cargoPlane})
-    aircraftMaker.makeGrounded({prototype=jet})
-    aircraftMaker.makeGrounded({prototype=flyingFortress})
+    aircraftMaker.makeGrounded({prototype = gunship})
+    aircraftMaker.makeGrounded({prototype = cargoPlane})
+    aircraftMaker.makeGrounded({prototype = jet})
+    aircraftMaker.makeGrounded({prototype = flyingFortress})
 end
 
 ------------------------------------------------------
@@ -58,6 +58,6 @@ if mods["betterCargoPlanes"] then
     -- Gets more breaking power, turn radius since it is better, heavier too since it has more inventory
     local bCargoPlane  = toGroundedAircraft("better-cargo-plane"     , 0.0065, "1080kW", 500, 31500, {{-1.3, -1.3}, {1.3, 1.3}})
     local ebCargoPlane = toGroundedAircraft("even-better-cargo-plane", 0.007, "1680kW", 1000, 37500, {{-1.3, -1.3}, {1.3, 1.3}})
-    aircraftMaker.makeGrounded({prototype=bCargoPlane})
-    aircraftMaker.makeGrounded({prototype=ebCargoPlane})
+    aircraftMaker.makeGrounded({prototype = bCargoPlane})
+    aircraftMaker.makeGrounded({prototype = ebCargoPlane})
 end
