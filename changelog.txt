@@ -2,7 +2,8 @@
 Version: 1.3.4
 Date: 2021-11-11
   Changes:
-    - Updated to Aircraft 1.8 (removed shadowless version and make actual shadow invisible instead)
+    - Updated to Aircraft 1.8 (removed shadowless version and make actual shadow invisible instead).
+    - Optimized images losslessly with PNGGauntlet.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.3
 Date: 2021-10-13
