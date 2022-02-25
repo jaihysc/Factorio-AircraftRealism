@@ -1,17 +1,46 @@
 local guiController = require("logic.guiController")
 local planeManager = require("logic.planeManager")
+local planeTakeoffLanding = require("logic.planeTakeoffLanding")
 local planeUtility = require("logic.planeUtility")
 local planePollution = require("logic.planePollution")
 
---Only functions for events are here, other functions are called from here
+local showTakeoffDistShortcut = "aircraft-realism-show-takeoff-distance"
+
+--[[
+    Global table:
+        showTakeoffDist[]: LuaEntity
+            Index by player index
+            Holds the plane the player has selected to show takeoff distance for
+]]
 
 function OnTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
+        if player then
+            -- Set takeoff distance line target to currently hovered over
+            if player.selected and
+               planeUtility.isGroundedPlane(player.selected.prototype.order) and
+               player.is_shortcut_toggled(showTakeoffDistShortcut) then
+                if not global.showTakeoffDist then
+                    global.showTakeoffDist = {}
+                end
+                global.showTakeoffDist[player.index] = player.selected
+            end
+            -- Draw takeoff distance line
+            if global.showTakeoffDist and
+               global.showTakeoffDist[player.index] then
+                if global.showTakeoffDist[player.index].valid then
+                    planeTakeoffLanding.showTakeoffDist(player, global.showTakeoffDist[player.index], 2)
+                else
+                    -- Plane gone (destroyed, took off, etc)
+                    global.showTakeoffDist[player.index] = nil
+                end
+            end
 
-        -- if they are in a plane
-        if player and player.driving and
-        player.vehicle then  -- This fixes a crash of nil vehicle when trying to ride the rocket
-            planeManager.checkPlanes(e, player, game, defines, settings)
+            -- if they are in a plane
+            if player.driving and
+            player.vehicle then  -- This fixes a crash of nil vehicle when trying to ride the rocket
+                planeManager.checkPlanes(e, player, game, defines, settings)
+            end
         end
     end
 end
@@ -59,6 +88,23 @@ function OnPlayerDied(e)
     end
 end
 
+function OnLuaShortcut(e)
+    if e.prototype_name == showTakeoffDistShortcut then
+        local player = game.get_player(e.player_index)
+        if player then
+            local newState = not player.is_shortcut_toggled(showTakeoffDistShortcut)
+            player.set_shortcut_toggled(showTakeoffDistShortcut, newState)
+
+            -- Stop showing takeoff distance
+            if newState == false and
+               global.showTakeoffDist and
+               global.showTakeoffDist[player.index] then
+                global.showTakeoffDist[player.index] = nil
+            end
+        end
+    end
+end
+
 -- Special function for the helicopter mod
 function CheckHelicopterMod(player)
     assert(player.vehicle)
@@ -71,3 +117,4 @@ end
 script.on_event(defines.events.on_tick, OnTick)
 script.on_event(defines.events.on_player_driving_changed_state, OnPlayerDrivingChangedState)
 script.on_event(defines.events.on_player_died, OnPlayerDied)
+script.on_event(defines.events.on_lua_shortcut, OnLuaShortcut)

@@ -101,7 +101,7 @@ local function planeTakeoff(player, game, defines, settings)
     assert(player.vehicle)
     -- If player is grounded and plane is greater than the specified takeoff speed
     if planeUtils.isGroundedPlane(player.vehicle.prototype.order) and
-       player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value) then
+       player.vehicle.speed > planeUtils.getTakeoffSpeed(player.vehicle.name) then
         local newPlane = player.surface.create_entity{
             name    =player.vehicle.name .. "-airborne",
             position=player.position,
@@ -133,7 +133,7 @@ local function planeLand(player, game, defines, settings)
 
     -- If player is airborne and plane is less than the specified landing speed
     if planeUtils.isAirbornePlane(player.vehicle.prototype.order) and
-       player.vehicle.speed < utils.toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. groundedName].value) then
+       player.vehicle.speed < planeUtils.getLandingSpeed(groundedName) then
         -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
         if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
             player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
@@ -166,9 +166,118 @@ local function planeLand(player, game, defines, settings)
     end
 end
 
+-- Draws line indicating takeoff distance for player plane
+-- lineLife: Ticks to show line drawn
+local function showTakeoffDist(player, plane, lineLife)
+    assert(player)
+    assert(plane)
+    assert(type(lineLife) == "number")
+
+    assert(plane.prototype.weight, "Plane prototype missing weight. Check plane prototypes")
+    assert(plane.prototype.consumption, "Plane prototype missing consumption. Check plane prototypes")
+    assert(plane.prototype.friction_force, "Plane prototype missing friction_force. Check plane prototypes")
+    assert(plane.prototype.effectivity, "Plane prototype missing effectivity. Check plane prototypes")
+
+    local maxTime = 30 -- Give up calculation if takeoff time too long
+
+    -- TODO replace tk/ landing speed
+    -- TODO does not handle afterburner
+
+    -- Use SI units to avoid confusion and conversion errors
+
+    local dt = 1/60 -- 1/60 second = 1 tick
+    local m = plane.prototype.weight -- Mass (kg)
+    -- For speed: tile/tick -> m/s
+    local v_0 = plane.speed * 60 -- Initial speed (m/s)
+    local v_tk = planeUtils.getTakeoffSpeed(plane.name) * 60 -- Takeoff speed (m/s)
+    -- J/tick -> J/s
+    local c = plane.prototype.consumption * 60 -- Consumption (W)
+    local u_fc = plane.prototype.friction_force -- Car friction
+    local u_be = plane.prototype.effectivity -- Effectivity
+    -- Fuel acceleration multiplier
+    local u_bf = 1
+    if plane.burner then
+        if plane.burner.currently_burning then
+            -- Use burning fuel for acceleration multiplier
+            u_bf = plane.burner.currently_burning.fuel_acceleration_multiplier
+        elseif plane.burner.inventory then
+            -- Use first fuel in fuel slot for acceleration multiplier
+            for i = 1, #plane.burner.inventory, 1 do
+                local slot = plane.burner.inventory[i]
+                if slot.valid_for_read then
+                    u_bf = slot.prototype.fuel_acceleration_multiplier
+                    break
+                end
+            end
+        end
+    end
+
+    -- Cannot take off with negative speeds, treat as 0
+    if v_0 < 0 then
+        v_0 = 0
+    end
+
+    local E_gain = (u_be*u_bf*c) -- Energy plane gains (J/s)
+    local E = 0.5 * m * v_0*v_0 -- Initial energy (J)
+    local s = 0 -- Initial displacement (m)
+    local t = 0 -- Initial time (s)
+
+    -- Construct unit vector to compute plane position
+    -- Note this is clockwise from north
+    local planeRad = plane.orientation*2*math.pi
+    local r_x = math.sin(planeRad)
+    local r_y = -math.cos(planeRad) -- Positive y is downwards
+
+    while t < maxTime do
+        v = math.sqrt(2*E/m) -- speed
+        if v >= v_tk then
+            break
+        end
+
+        t = t + dt
+
+        -- Friction loss is a function of tile currently over
+        local tile = player.surface.get_tile({x=plane.position.x + r_x*s, y=plane.position.y + r_y*s})
+        local u_ft = tile.prototype.vehicle_friction_modifier -- Terrain friction
+        u_f = 1 - u_fc*(1 + u_ft)
+
+        -- Factorio calculates friction loss as E * friction multiplier
+        E = E*u_f + E_gain*dt
+        s = s +v*dt
+    end
+
+    local takeoffPos = {x=plane.position.x + r_x*s, y=plane.position.y + r_y*s}
+    rendering.draw_line{
+        surface=player.surface,
+        from=plane.position, to=takeoffPos,
+        color={0, 0.5, 0, 0.5},
+        width=10,
+        time_to_live=lineLife,
+        players={player},
+        draw_on_ground=true
+    }
+
+    -- The player can add their own factor of safety
+    --[[
+    -- Add a factor of safety to prediction
+    local marginDist = 10
+    local safeTakeoffPos = {x=takeoffPos.x + r_x*marginDist, y=takeoffPos.y + r_y*marginDist}
+    rendering.draw_line{
+        surface=player.surface,
+        from=takeoffPos, to=safeTakeoffPos,
+        color={0.9, 0.5, 0.1, 0.5},
+        width=10,
+        time_to_live=lineLife,
+        players={player},
+        draw_on_ground=true
+    }
+    ]]
+end
+
 local functions = {}
 
 functions.planeTakeoff = planeTakeoff
 functions.planeLand = planeLand
+functions.showTakeoffDist = showTakeoffDist
 
 return functions
