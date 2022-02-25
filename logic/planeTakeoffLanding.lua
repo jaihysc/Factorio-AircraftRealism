@@ -178,10 +178,9 @@ local function showTakeoffDist(player, plane, lineLife)
     assert(plane.prototype.friction_force, "Plane prototype missing friction_force. Check plane prototypes")
     assert(plane.prototype.effectivity, "Plane prototype missing effectivity. Check plane prototypes")
 
-    local maxTime = 30 -- Give up calculation if takeoff time too long
+    local maxTime = 15 -- Give up calculation if takeoff time too long
 
-    -- TODO replace tk/ landing speed
-    -- TODO does not handle afterburner
+    -- TODO effectivity, consumption, friction modifier not preserved on takeoff
 
     -- Use SI units to avoid confusion and conversion errors
 
@@ -192,24 +191,40 @@ local function showTakeoffDist(player, plane, lineLife)
     local v_tk = planeUtils.getTakeoffSpeed(plane.name) * 60 -- Takeoff speed (m/s)
     -- J/tick -> J/s
     local c = plane.prototype.consumption * 60 -- Consumption (W)
-    local u_fc = plane.prototype.friction_force -- Car friction
-    local u_be = plane.prototype.effectivity -- Effectivity
+    local u_fc = 1 -- Vehicle friction
+    u_fc = u_fc * plane.prototype.friction_force
+    u_fc = u_fc * plane.friction_modifier
+
+    local u_c = 1 -- Multiplier on consumption
+    u_c = u_c * plane.prototype.effectivity
+    u_c = u_c * plane.effectivity_modifier
+    u_c = u_c * plane.consumption_modifier
     -- Fuel acceleration multiplier
-    local u_bf = 1
     if plane.burner then
         if plane.burner.currently_burning then
             -- Use burning fuel for acceleration multiplier
-            u_bf = plane.burner.currently_burning.fuel_acceleration_multiplier
+            u_c = u_c * plane.burner.currently_burning.fuel_acceleration_multiplier
         elseif plane.burner.inventory then
             -- Use first fuel in fuel slot for acceleration multiplier
             for i = 1, #plane.burner.inventory, 1 do
                 local slot = plane.burner.inventory[i]
                 if slot.valid_for_read then
-                    u_bf = slot.prototype.fuel_acceleration_multiplier
+                    u_c = u_c * slot.prototype.fuel_acceleration_multiplier
                     break
                 end
             end
         end
+    end
+    -- Acceleration multiplier
+    if plane.grid and not plane.grid.inhibit_movement_bonus then
+        local bonus = 1
+        for i=1, #plane.grid.equipment, 1 do
+            local equipment = plane.grid.equipment[i]
+            if equipment.energy and equipment.energy > 0 then
+                bonus = bonus + equipment.movement_bonus
+            end
+        end
+        u_c = u_c * bonus
     end
 
     -- Cannot take off with negative speeds, treat as 0
@@ -217,7 +232,7 @@ local function showTakeoffDist(player, plane, lineLife)
         v_0 = 0
     end
 
-    local E_gain = (u_be*u_bf*c) -- Energy plane gains (J/s)
+    local E_gain = u_c*c -- Energy plane gains (J/s)
     local E = 0.5 * m * v_0*v_0 -- Initial energy (J)
     local s = 0 -- Initial displacement (m)
     local t = 0 -- Initial time (s)
@@ -228,17 +243,23 @@ local function showTakeoffDist(player, plane, lineLife)
     local r_x = math.sin(planeRad)
     local r_y = -math.cos(planeRad) -- Positive y is downwards
 
+    local succeeded = false
     while t < maxTime do
         v = math.sqrt(2*E/m) -- speed
         if v >= v_tk then
+            succeeded = true
             break
         end
 
         t = t + dt
 
         -- Friction loss is a function of tile currently over
+        local u_ft = 1
         local tile = player.surface.get_tile({x=plane.position.x + r_x*s, y=plane.position.y + r_y*s})
-        local u_ft = tile.prototype.vehicle_friction_modifier -- Terrain friction
+        -- Tile may not exist (out of map)
+        if tile.valid then
+            u_ft = tile.prototype.vehicle_friction_modifier -- Terrain friction
+        end
         u_f = 1 - u_fc*(1 + u_ft)
 
         -- Factorio calculates friction loss as E * friction multiplier
@@ -246,11 +267,16 @@ local function showTakeoffDist(player, plane, lineLife)
         s = s +v*dt
     end
 
+    -- Show orange line to show calculation timed out
+    local line_color = {0, 0.5, 0, 0.5} -- Green
+    if not succeeded then
+        line_color = {0.9, 0.5, 0.1, 0.5} -- Orange
+    end
     local takeoffPos = {x=plane.position.x + r_x*s, y=plane.position.y + r_y*s}
     rendering.draw_line{
         surface=player.surface,
         from=plane.position, to=takeoffPos,
-        color={0, 0.5, 0, 0.5},
+        color=line_color,
         width=10,
         time_to_live=lineLife,
         players={player},

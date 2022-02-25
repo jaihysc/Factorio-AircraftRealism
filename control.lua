@@ -17,7 +17,9 @@ function OnTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
         if player then
             -- Set takeoff distance line target to currently hovered over
+            -- if on same force
             if player.selected and
+               player.selected.force == player.force and
                planeUtility.isGroundedPlane(player.selected.prototype.order) and
                player.is_shortcut_toggled(showTakeoffDistShortcut) then
                 if not global.showTakeoffDist then
