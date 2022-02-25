@@ -83,7 +83,15 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
         newPlane.health = oldPlane.health
     end
 
-    -- Physics
+    newPlane.destructible = oldPlane.destructible
+    newPlane.operable = oldPlane.operable
+    if oldPlane.relative_turret_orientation then
+        assert(newPlane.relative_turret_orientation, "Old plane has relative_turret_orientation, new plane does not. Check plane prototypes")
+        newPlane.relative_turret_orientation = oldPlane.relative_turret_orientation
+    end
+    newPlane.effectivity_modifier = oldPlane.effectivity_modifier
+    newPlane.consumption_modifier = oldPlane.consumption_modifier
+    newPlane.friction_modifier = oldPlane.friction_modifier
     newPlane.speed = oldPlane.speed
     newPlane.orientation = oldPlane.orientation
 
@@ -180,8 +188,6 @@ local function showTakeoffDist(player, plane, lineLife)
 
     local maxTime = 15 -- Give up calculation if takeoff time too long
 
-    -- TODO effectivity, consumption, friction modifier not preserved on takeoff
-
     -- Use SI units to avoid confusion and conversion errors
 
     local dt = 1/60 -- 1/60 second = 1 tick
@@ -253,6 +259,7 @@ local function showTakeoffDist(player, plane, lineLife)
 
         t = t + dt
 
+        -- TODO friction calculation for tiles not that accurate
         -- Friction loss is a function of tile currently over
         local u_ft = 1
         local tile = player.surface.get_tile({x=plane.position.x + r_x*s, y=plane.position.y + r_y*s})
