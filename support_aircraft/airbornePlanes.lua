@@ -48,6 +48,16 @@ if mods["Aircraft"] then
     local jet            = aircraftMaker.makeAirborne({name="jet"})
     local flyingFortress = aircraftMaker.makeAirborne({name="flying-fortress"})
 
+    -- TODO update documentaiton on how to use this
+    aircraftMaker.makeShadow({
+        name="gunship",
+        animation=gunship.animation.layers[ANIMATION_SHADOW_LAYER],
+        animation_frames=10,
+        -- Temp, initial should from aircraft mod, final: Think of some better values
+        animation_scale={initial=0.5, final=0.1},
+        hr_animation_scale={initial=0.5, final=0.1}
+    })
+
     makeRealistic(gunship       , 0.005, "940kW", 500, 5000)
     makeRealistic(cargoPlane    , 0.003, "1100kW", 500, 25000)
     makeRealistic(jet           , 0.003, "950kW", 250, 1200)

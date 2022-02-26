@@ -4,6 +4,7 @@ local planeRunway = require("logic.planeRunway")
 local planeTakeoffLanding = require("logic.planeTakeoffLanding")
 local planeUtility = require("logic.planeUtility")
 local guiController = require("logic.guiController")
+local utils = require("logic.utility")
 
 -- Creates, updates, or deletes the gauges depending on player settings
 local function updateGauges(tick, player, settings, game)
@@ -49,6 +50,9 @@ local function checkPlanes(e, player, game, defines, settings)
 
         planeTakeoffLanding.planeLand(player, game, defines, settings)
     end
+
+    -- TODO the shadow lags slightly behind the plane
+    planeTakeoffLanding.updatePlaneShadow(player, quarterSecond)
 end
 
 

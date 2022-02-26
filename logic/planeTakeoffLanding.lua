@@ -113,7 +113,8 @@ local function planeTakeoff(player, game, defines, settings)
         local newPlane = player.surface.create_entity{
             name    =player.vehicle.name .. "-airborne",
             position=player.position,
-            force   =player.force
+            force   =player.force,
+            create_build_effect_smoke=false
         }
 
         transitionPlane(
@@ -123,14 +124,19 @@ local function planeTakeoff(player, game, defines, settings)
             defines,
             true
         )
-
-        --Create some smoke to indicate to the player they have taken off
-        for i = 1, 3, 1 do
-            player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
-        end
-
         --Accelerate the new plane that the player is in so they don't need to press w again
         player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
+
+        -- Start takeoff animation
+        if not global.transitionAnimation then
+            global.transitionAnimation = {}
+        end
+        if global.transitionAnimation[player.index] and
+           global.transitionAnimation[player.index].valid then
+            -- TODO remove old animation
+        end
+        global.transitionAnimation[player.index] = true -- Indicate animation begun
+
         return
     end
 end
@@ -138,6 +144,8 @@ end
 local function planeLand(player, game, defines, settings)
     assert(player.vehicle)
     local groundedName = string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))
+
+    -- TODO auto reaccelerate is bad, can dip below landing speed and remain airborne
 
     -- If player is airborne and plane is less than the specified landing speed
     if planeUtils.isAirbornePlane(player.vehicle.prototype.order) and
@@ -151,7 +159,8 @@ local function planeLand(player, game, defines, settings)
         local newPlane = player.surface.create_entity{
             name    =groundedName,
             position=player.position,
-            force   =player.force
+            force   =player.force,
+            create_build_effect_smoke=false
         }
 
         -- Brake held, land the plane ==========
@@ -162,11 +171,6 @@ local function planeLand(player, game, defines, settings)
             defines,
             false
         )
-
-        -- Create some smoke to indicate to the player they have landed
-        for i = 1, 5, 1 do
-            player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
-        end
 
         --Auto brake
         player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
@@ -307,10 +311,67 @@ local function showTakeoffDist(player, plane, lineLife)
     ]]
 end
 
+-- Updates the shadow for the player's plane
+-- TODO qsec is temporary, animation should be speed dependent
+-- TODO this is hardcoded to only handle 10 frames
+local function updatePlaneShadow(player, qsec)
+    local baseShadowName = "gunship-shadow" -- Without frame
+
+    if global.transitionAnimation and
+        global.transitionAnimation[player.index] then
+
+        -- ~= true means a shadow Entity was created
+        local newFrame = 0
+        if global.transitionAnimation[player.index] ~= true and
+            global.transitionAnimation[player.index].valid then
+            local oldShadow = global.transitionAnimation[player.index]
+            local oldFrame = tonumber(string.sub(oldShadow.prototype.name, string.len(baseShadowName) + 2))
+
+            oldShadow.destroy{}
+
+            -- Forward animation
+            newFrame = oldFrame
+            if qsec then
+                -- Animation completed
+                if oldFrame == 9 then
+                    global.transitionAnimation[player.index] = nil
+                    return
+                end
+                newFrame = oldFrame + 1
+            end
+        end
+
+        -- Create new shadow entity
+        local newShadowName = baseShadowName .. "-" .. tostring(newFrame)
+        local shadow = player.surface.create_entity{
+            name=newShadowName,
+            -- Using vehicle position instead of player pos fixes shadow jerking up on takeoff
+            position=player.vehicle.position,
+            force=player.force,
+            create_build_effect_smoke=false,
+            move_stuck_players=false
+        }
+        global.transitionAnimation[player.index] = shadow
+
+        shadow.active = false
+        -- Use the same fuel as the current plane, as modded planes may use custom fuels
+        if shadow.burner then
+            assert(player.vehicle.burner, "Plane shadow has burner, plane does not. Check plane prototypes")
+            shadow.burner.currently_burning = player.vehicle.burner.currently_burning
+            shadow.burner.remaining_burning_fuel = 5000
+        end
+        shadow.destructible = false
+        shadow.minable = false
+        shadow.operable = false
+        shadow.orientation = player.vehicle.orientation
+    end
+end
+
 local functions = {}
 
 functions.planeTakeoff = planeTakeoff
 functions.planeLand = planeLand
 functions.showTakeoffDist = showTakeoffDist
+functions.updatePlaneShadow = updatePlaneShadow
 
 return functions

@@ -118,6 +118,93 @@ local function makeAirborne(config)
     return plane
 end
 
+-- TODO option to disable shadows since this adds a lot of extra sprites
+local function makeShadow(config)
+    -- Since mod authors may set scale only on top level animation not the shadow animation
+    -- we have to ask for scale
+
+    -- Validate config
+    if config.name == nil then
+        error("Missing table member: name")
+    end
+    if config.animation == nil then
+        error("Missing table member: animation")
+    end
+    if config.animation_frames == nil then
+        error("Missing table member: animation_frames")
+    end
+    if config.animation_scale == nil then
+        error("Missing table member: animation_scale")
+    end
+    if config.animation_scale.initial == nil then
+        error("Missing table member: animation_scale.initial")
+    end
+    if config.animation_scale.final == nil then
+        error("Missing table member: animation_scale.final")
+    end
+    if config.animation.hr_version then
+        if config.hr_animation_scale == nil then
+            error("Missing table member: hr_animation_scale")
+        end
+        if config.hr_animation_scale.initial == nil then
+            error("Missing table member: hr_animation_scale.initial")
+        end
+        if config.hr_animation_scale.final == nil then
+            error("Missing table member: hr_animation_scale.final")
+        end
+    end
+
+    local baseShadow = table.deepcopy(data.raw.car[config.name])
+    baseShadow.light = {type="basic", intensity=0, size=1} -- Disable light
+    baseShadow.allow_passengers = false
+    baseShadow.alert_when_damaged = false
+    baseShadow.collision_box = {{0, 0}, {0, 0}}
+    baseShadow.collision_mask = {}
+    baseShadow.flags = {
+        "placeable-off-grid",
+        "not-repairable",
+        "not-on-map",
+        "not-blueprintable",
+        "not-deconstructable",
+        "hidden",
+        "hide-alt-info",
+        "not-flammable",
+        "no-automated-item-removal",
+        "no-automated-item-insertion",
+        "not-selectable-in-game",
+        "not-in-kill-statistics"
+    }
+    baseShadow.selection_box = {{0, 0}, {0, 0}}
+    baseShadow.water_reflection = nil
+
+    -- Computes the scale for the nth frame
+    -- The scale linearily decreases from initial scale to final scale with
+    -- -1 |-> initialScale
+    -- frames |-> finalScale
+    -- First frame starts smaller than intial scale, makes the animation look nicer
+    local scale = function(n, initialScale, finalScale)
+        return (finalScale - initialScale) * (n+1) / (config.animation_frames) + initialScale
+    end
+
+    -- Create the different scales of shadow
+    for i=0,config.animation_frames-1,1 do
+        local shadow = table.deepcopy(baseShadow)
+        shadow.name = config.name .. "-shadow-" .. tostring(i) -- Shadow naming starts from 0
+
+        local anim = table.deepcopy(config.animation)
+        anim.scale = scale(i, config.animation_scale.initial, config.animation_scale.final)
+        if anim.hr_version then
+            anim.hr_version.scale =
+                scale(i, config.hr_animation_scale.initial, config.hr_animation_scale.final)
+        end
+
+        shadow.animation = anim
+        data:extend{shadow}
+    end
+
+    return {} -- Returning a table here allows for additional values in future
+end
+
 local function getSettings()
     return {
         noAerialShadow = settings.startup["aircraft-realism-no-aerial-shadows"].value,
@@ -129,6 +216,7 @@ end
 
 functions.makeGrounded = makeGrounded
 functions.makeAirborne = makeAirborne
+functions.makeShadow = makeShadow
 functions.getSettings = getSettings
 
 return functions
