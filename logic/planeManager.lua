@@ -2,7 +2,7 @@ local planeCollisions = require("logic.planeCollisions")
 local planePollution = require("logic.planePollution")
 local planeRunway = require("logic.planeRunway")
 local planeTakeoffLanding = require("logic.planeTakeoffLanding")
-local planeUtility = require("logic.planeUtility")
+local utility = require("logic.utility")
 local guiController = require("logic.guiController")
 local utils = require("logic.utility")
 
@@ -24,7 +24,7 @@ local function checkPlanes(e, player, game, defines, settings)
         CheckHelicopterMod(player)
     end
 
-    if planeUtility.isGroundedPlane(player.vehicle.prototype.order) then
+    if utility.isGroundedPlane(player.vehicle.prototype.order) then
         updateGauges(e.tick, player, settings, game)
 
         -- These don't need to be checked as often, so they run off quarterSecond
@@ -43,7 +43,7 @@ local function checkPlanes(e, player, game, defines, settings)
             planeCollisions.obstacleCollision(settings, player.surface, player, player.vehicle)
         end
 
-    elseif quarterSecond and planeUtility.isAirbornePlane(player.vehicle.prototype.order) then
+    elseif quarterSecond and utility.isAirbornePlane(player.vehicle.prototype.order) then
         updateGauges(e.tick, player, settings, game)
 
         planePollution.createPollution(settings, player.surface, player.vehicle)

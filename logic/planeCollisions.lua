@@ -1,12 +1,12 @@
 -- Handles environmental collisions of the plane WITH DRIVER (cliffs, water)
-local planeUtils = require("logic.planeUtility")
+local utility = require("logic.utility")
 
 local function obstacleCollision(settings, surface, player, plane)
 
     -- Destroy the plane if the player LANDS ON a cliff
     for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
         if plane.speed == 0 then
-            planeUtils.killDriverAndPassenger(plane, player)
+            utility.killDriverAndPassenger(plane, player)
 
             return;
         end
@@ -18,7 +18,7 @@ local function obstacleCollision(settings, surface, player, plane)
 	end
     if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud"or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
         if plane.speed == 0 then  --Player + passenger dies too since they will just be stuck anyways
-            planeUtils.killDriverAndPassenger(plane, player)
+            utility.killDriverAndPassenger(plane, player)
 
             return;
         end

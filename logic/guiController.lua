@@ -1,6 +1,5 @@
 local mod_gui = require("mod-gui")
-local utils = require("logic.utility")
-local planeUtils = require("logic.planeUtility")
+local utility = require("logic.utility")
 
 local functions = {}
 
@@ -80,7 +79,7 @@ local function getFuelPercentage(player, game)
 end
 
 local function getFuelGaugeLeftIndex(fuelPercentage)
-    local index = utils.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
+    local index = utility.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
 
     -- When switching out of modded fuels, the stack size can be larger than normal
     if index > 31 then
@@ -98,7 +97,7 @@ local function getFuelGaugeRightIndex(player)
 
     --Remaining energy of burning fuel compared to the full energy of the burning fuel
     local remainingBurningFuel = player.vehicle.burner.remaining_burning_fuel / player.vehicle.burner.currently_burning["fuel_value"] * 100
-    local index = utils.roundNumber(remainingBurningFuel * 30 / 100)
+    local index = utility.roundNumber(remainingBurningFuel * 30 / 100)
 
     -- Guard against modded fuel values changing
     if index > 30 then
@@ -114,7 +113,7 @@ end
 local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
     -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
     if inFactorioUnits then
-        speed = utils.fromFactorioUnitUser(settings, player, speed)
+        speed = utility.fromFactorioUnitUser(settings, player, speed)
 
     -- Not in factorio speed units, convert to user's measurement choice if global setting differs
     elseif settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value ~= settings.global["aircraft-speed-unit"].value then
@@ -124,7 +123,7 @@ local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
             speed = speed / 1.609  -- To imperial
         end
     end
-    local index = math.abs(utils.roundNumber(speed / 4))
+    local index = math.abs(utility.roundNumber(speed / 4))
 
     -- Do not exceed 399 for index since that is the largest sprite
     if index > 399 then
@@ -138,10 +137,10 @@ end
 -- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
 local function getTakeoffLandingSpeed(player, settings)
     assert(player.vehicle)
-    if planeUtils.isGroundedPlane(player.vehicle.prototype.order) then
+    if utility.isGroundedPlane(player.vehicle.prototype.order) then
         return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
 
-    elseif planeUtils.isAirbornePlane(player.vehicle.prototype.order) then
+    elseif utility.isAirbornePlane(player.vehicle.prototype.order) then
         -- Chop off the -airborne at the end to get the landing speed of the plane
         return settings.global["aircraft-landing-speed-" .. string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))].value
 
@@ -219,7 +218,7 @@ local function updateGaugeArrows(tick, player, settings, game)
         )
         -- Only play sounds every 15 ticks to avoid overlay
         if tick % 15 == 0 then
-            utils.playSound(settings, player, "aircraft-realism-sound-master-warning")
+            utility.playSound(settings, player, "aircraft-realism-sound-master-warning")
         end
     else
         updateGaugeOverlay(
