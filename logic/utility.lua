@@ -65,6 +65,10 @@ local function isAirbornePlane(order)
     return order:sub(-string.len(suffix)) == suffix
 end
 
+local function isPlane(order)
+    return isGroundedPlane(order) or isAirbornePlane(order)
+end
+
 -- Fetches plane takeoff speed in factorio units
 -- planeName: grounded plane name
 local function getTakeoffSpeed(planeName)
@@ -106,6 +110,7 @@ functions.roundNumber = roundNumber
 functions.playSound = playSound
 functions.isGroundedPlane = isGroundedPlane
 functions.isAirbornePlane = isAirbornePlane
+functions.isPlane = isPlane
 functions.getTakeoffSpeed = getTakeoffSpeed
 functions.getLandingSpeed = getLandingSpeed
 functions.killDriverAndPassenger = killDriverAndPassenger

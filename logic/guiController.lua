@@ -1,8 +1,6 @@
 local mod_gui = require("mod-gui")
 local utility = require("logic.utility")
 
-local functions = {}
-
 -- Draws the fuel and airspeed gauges withOUT needles on the hud
 local function initializeGauges(player)
     local frame_flow = mod_gui.get_frame_flow(player)
@@ -229,7 +227,41 @@ local function updateGaugeArrows(tick, player, settings, game)
     end
 end
 
-functions.deleteGauges = deleteGauges
-functions.updateGaugeArrows = updateGaugeArrows
+local function onPlayerDied(e)
+    -- When a player dies and respawns, delete their gauges
+    local player = game.get_player(e.player_index)
+    if player then
+        deleteGauges(player)
+    end
+end
 
-return functions
+local function onPlayerDrivingChangedState(e)
+    local player = game.get_player(e.player_index)
+
+    -- Destroy gauges upon leaving a plane
+    -- The gauges are recreated later if the player is still in plane
+    if player and not player.driving then
+        deleteGauges(player)
+    end
+end
+
+local function onTick(e)
+    for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
+        if player and player.driving and player.vehicle then
+            if utility.isPlane(player.vehicle.prototype.order) then
+                -- Creates, updates, or deletes the gauges depending on player settings
+                if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
+                    updateGaugeArrows(e.tick, player, settings, game)
+                else
+                    deleteGauges(player)
+                end
+            end
+        end
+    end
+end
+
+local handlers = {}
+handlers[defines.events.on_player_died] = onPlayerDied
+handlers[defines.events.on_player_driving_changed_state] = onPlayerDrivingChangedState
+handlers[defines.events.on_tick] = onTick
+return handlers
