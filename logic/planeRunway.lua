@@ -36,8 +36,19 @@ local function validateRunwayTile(settings, surface, plane)
     return true
 end
 
-local functions = {}
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            -- Reduce performance impact, don't need to be checked as often, so run off quarterSecond
+            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
-functions.validateRunwayTile = validateRunwayTile
+            if quarterSecond and utility.isGroundedPlane(player.vehicle.prototype.order) then
+                validateRunwayTile(settings, player.surface, player.vehicle)
+            end
+        end
+    end
+end
 
-return functions
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers

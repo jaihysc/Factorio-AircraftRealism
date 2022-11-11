@@ -1,3 +1,5 @@
+local utility = require("logic.utility")
+
 -- Handles polluting the surface
 local function createPollution(settings, surface, plane)
     if settings.global["aircraft-emit-pollution"].value then
@@ -10,8 +12,31 @@ local function createPollution(settings, surface, plane)
     end
 end
 
-local functions = {}
+-- TODO should this be removed?
+-- Special function for the helicopter mod
+function CheckHelicopterMod(player)
+    assert(player.vehicle)
+    if player.vehicle.name == "heli-entity-_-" then
+        createPollution(settings, player.surface, player.vehicle)
+    end
+end
 
-functions.createPollution = createPollution
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            -- These don't need to be checked as often, so they run off quarterSecond
+            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
-return functions
+            if quarterSecond then
+                CheckHelicopterMod(player)
+                if utility.isPlane(player.vehicle.prototype.order) then
+                    createPollution(settings, player.surface, player.vehicle)
+                end
+            end
+        end
+    end
+end
+
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers

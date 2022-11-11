@@ -43,8 +43,18 @@ local function obstacleCollision(settings, surface, player, plane)
     end
 end
 
-local functions = {}
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            -- Collision gets checked every tick for accuracy
+            if utility.isGroundedPlane(player.vehicle.prototype.order) then
+                -- Test for obstacle collision (water, cliff)
+                obstacleCollision(settings, player.surface, player, player.vehicle)
+            end
+        end
+    end
+end
 
-functions.obstacleCollision = obstacleCollision
-
-return functions
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers

@@ -233,10 +233,29 @@ local function updatePlaneShadow(player, qsec)
     end
 end
 
-local functions = {}
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            -- These don't need to be checked as often, so they run off quarterSecond
+            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
-functions.planeTakeoff = planeTakeoff
-functions.planeLand = planeLand
-functions.updatePlaneShadow = updatePlaneShadow
+            if quarterSecond then
+                if utility.isGroundedPlane(player.vehicle.prototype.order) then
+                    --Create some smoke effects trailing behind the plane
+                    player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
 
-return functions
+                    planeTakeoff(player, game, defines, settings)
+                elseif utility.isAirbornePlane(player.vehicle.prototype.order) then
+                    planeLand(player, game, defines, settings)
+                end
+            end
+
+            -- TODO the shadow lags slightly behind the plane
+            updatePlaneShadow(player, quarterSecond)
+        end
+    end
+end
+
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers
