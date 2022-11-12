@@ -66,6 +66,30 @@ local function makeAirborne(config)
         error("Missing table member: name")
     end
 
+    if config.shadow then
+        if config.shadow.filename == nil then
+            error("Missing shadow table member: filename")
+        end
+        if config.shadow.width == nil then
+            error("Missing shadow table member: width")
+        end
+        if config.shadow.height == nil then
+            error("Missing shadow table member: height")
+        end
+        if config.shadow.lineLength == nil then
+            error("Missing table member: lineLength")
+        end
+        if config.shadow.directionCount == nil then
+            error("Missing table member: directionCount")
+        end
+        if config.shadow.shift == nil then
+            config.shadow.shift = {0, 0}
+        end
+        if config.shadow.scale == nil then
+            config.shadow.scale = 1
+        end
+    end
+
     --
     local plane = table.deepcopy(data.raw.car[config.name])
 
@@ -112,97 +136,30 @@ local function makeAirborne(config)
 
     -- Lower the fuel effectivity so the same energy goes to the wheels
     plane.effectivity = plane.effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
-
-
     data:extend{plane}
+
+
+    -- Shadow creation
+    if config.shadow then
+        -- Load each rotation as its own sprite, so it can be rendered
+        for i=0,config.shadow.directionCount-1,1  do
+            local xPos = i % config.shadow.lineLength
+            local yPos = math.floor(i / config.shadow.lineLength)
+            data:extend{{
+                type = "sprite",
+                name = config.name .. "-airborne-shadow-" .. tostring(i),
+                filename = config.shadow.filename,
+                width = config.shadow.width,
+                height = config.shadow.height,
+                x = xPos * config.shadow.width,
+                y = yPos * config.shadow.height,
+                shift = config.shadow.shift,
+                scale = config.shadow.scale,
+                -- TODO document that draw_as_shadow puts the shadow on the wrong layer - below the entities
+            }}
+        end
+    end
     return plane
-end
-
--- TODO option to disable shadows since this adds a lot of extra sprites
-local function makeShadow(config)
-    -- Since mod authors may set scale only on top level animation not the shadow animation
-    -- we have to ask for scale
-
-    -- Validate config
-    if config.name == nil then
-        error("Missing table member: name")
-    end
-    if config.animation == nil then
-        error("Missing table member: animation")
-    end
-    if config.animation_frames == nil then
-        error("Missing table member: animation_frames")
-    end
-    if config.animation_scale == nil then
-        error("Missing table member: animation_scale")
-    end
-    if config.animation_scale.initial == nil then
-        error("Missing table member: animation_scale.initial")
-    end
-    if config.animation_scale.final == nil then
-        error("Missing table member: animation_scale.final")
-    end
-    if config.animation.hr_version then
-        if config.hr_animation_scale == nil then
-            error("Missing table member: hr_animation_scale")
-        end
-        if config.hr_animation_scale.initial == nil then
-            error("Missing table member: hr_animation_scale.initial")
-        end
-        if config.hr_animation_scale.final == nil then
-            error("Missing table member: hr_animation_scale.final")
-        end
-    end
-
-    local baseShadow = table.deepcopy(data.raw.car[config.name])
-    baseShadow.light = {type="basic", intensity=0, size=1} -- Disable light
-    baseShadow.allow_passengers = false
-    baseShadow.alert_when_damaged = false
-    baseShadow.collision_box = {{0, 0}, {0, 0}}
-    baseShadow.collision_mask = {}
-    baseShadow.flags = {
-        "placeable-off-grid",
-        "not-repairable",
-        "not-on-map",
-        "not-blueprintable",
-        "not-deconstructable",
-        "hidden",
-        "hide-alt-info",
-        "not-flammable",
-        "no-automated-item-removal",
-        "no-automated-item-insertion",
-        "not-selectable-in-game",
-        "not-in-kill-statistics"
-    }
-    baseShadow.selection_box = {{0, 0}, {0, 0}}
-    baseShadow.water_reflection = nil
-
-    -- Computes the scale for the nth frame
-    -- The scale linearily decreases from initial scale to final scale with
-    -- -1 |-> initialScale
-    -- frames |-> finalScale
-    -- First frame starts smaller than intial scale, makes the animation look nicer
-    local scale = function(n, initialScale, finalScale)
-        return (finalScale - initialScale) * (n+1) / (config.animation_frames) + initialScale
-    end
-
-    -- Create the different scales of shadow
-    for i=0,config.animation_frames-1,1 do
-        local shadow = table.deepcopy(baseShadow)
-        shadow.name = config.name .. "-shadow-" .. tostring(i) -- Shadow naming starts from 0
-
-        local anim = table.deepcopy(config.animation)
-        anim.scale = scale(i, config.animation_scale.initial, config.animation_scale.final)
-        if anim.hr_version then
-            anim.hr_version.scale =
-                scale(i, config.hr_animation_scale.initial, config.hr_animation_scale.final)
-        end
-
-        shadow.animation = anim
-        data:extend{shadow}
-    end
-
-    return {} -- Returning a table here allows for additional values in future
 end
 
 local function getSettings()
@@ -216,7 +173,6 @@ end
 
 functions.makeGrounded = makeGrounded
 functions.makeAirborne = makeAirborne
-functions.makeShadow = makeShadow
 functions.getSettings = getSettings
 
 return functions

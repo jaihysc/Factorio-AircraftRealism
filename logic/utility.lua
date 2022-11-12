@@ -48,6 +48,19 @@ local function roundNumber(number)
     return number
 end
 
+-- Maps RealOrientation to a number between [0, upper), obeying orthogonal projection
+-- The resulting number can be used to select the appropriate sprite to represent that orientation
+local function orientationToIdx(orientation, upper)
+    assert(orientation)
+    assert(upper)
+	orientation = orientation + 0.25
+	local x = math.sin(orientation * math.pi * 2)
+	local y = -math.cos(orientation * math.pi * 2)
+	y = y * math.cos(math.pi / 4)
+	local deprojectedOrientation = (math.atan2(x, -y) / (math.pi * 2)) - 0.25
+	return math.floor((deprojectedOrientation * upper) + 0.5) % upper
+end
+
 local function playSound(settings, player, soundName)
     if settings.get_player_settings(player)["aircraft-realism-sounds-enabled"].value then
         player.play_sound({path=soundName})
@@ -107,6 +120,7 @@ functions.fromFactorioUnit = fromFactorioUnit
 functions.fromFactorioUnitUser = fromFactorioUnitUser
 functions.getTableLength = getTableLength
 functions.roundNumber = roundNumber
+functions.orientationToIdx = orientationToIdx
 functions.playSound = playSound
 functions.isGroundedPlane = isGroundedPlane
 functions.isAirbornePlane = isAirbornePlane

@@ -60,8 +60,4 @@ end
         showTakeoffDist[]: LuaEntity
             Index by player index
             Holds the plane the player has selected to show takeoff distance for
-        transitionAnimation[]: LuaEntity or boolean
-            Index by player index
-            Holds the shadow entity which is the current frame in takeoff/landing animation for player plane
-            If animation just started and no shadow entity spawned yet, table holds boolean true
 ]]

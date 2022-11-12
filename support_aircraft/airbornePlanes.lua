@@ -40,23 +40,25 @@ function makeRealistic(plane, rotation_speed, braking_power, max_health, weight)
             end
         end
     end
+    plane.render_layer = "air-object"
 end
 
 if mods["Aircraft"] then
-    local gunship        = aircraftMaker.makeAirborne({name="gunship"})
+    -- TODO update documentation on how to use this
+    local gunship = aircraftMaker.makeAirborne({
+        name="gunship",
+        shadow={
+            filename="__Aircraft__/graphics/entity/gunship/gunship_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+            lineLength = 6,
+            directionCount = 36
+        }
+    })
     local cargoPlane     = aircraftMaker.makeAirborne({name="cargo-plane"})
     local jet            = aircraftMaker.makeAirborne({name="jet"})
     local flyingFortress = aircraftMaker.makeAirborne({name="flying-fortress"})
-
-    -- TODO update documentaiton on how to use this
-    aircraftMaker.makeShadow({
-        name="gunship",
-        animation=gunship.animation.layers[ANIMATION_SHADOW_LAYER],
-        animation_frames=10,
-        -- Temp, initial should from aircraft mod, final: Think of some better values
-        animation_scale={initial=0.5, final=0.1},
-        hr_animation_scale={initial=0.5, final=0.1}
-    })
 
     makeRealistic(gunship       , 0.005, "940kW", 500, 5000)
     makeRealistic(cargoPlane    , 0.003, "1100kW", 500, 25000)

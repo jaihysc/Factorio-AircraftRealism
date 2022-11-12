@@ -126,16 +126,6 @@ local function planeTakeoff(player, game, defines, settings)
         --Accelerate the new plane that the player is in so they don't need to press w again
         player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
 
-        -- Start takeoff animation
-        if not global.transitionAnimation then
-            global.transitionAnimation = {}
-        end
-        if global.transitionAnimation[player.index] and
-           global.transitionAnimation[player.index].valid then
-            -- TODO remove old animation
-        end
-        global.transitionAnimation[player.index] = true -- Indicate animation begun
-
         return
     end
 end
@@ -178,58 +168,37 @@ local function planeLand(player, game, defines, settings)
 end
 
 -- Updates the shadow for the player's plane
--- TODO qsec is temporary, animation should be speed dependent
--- TODO this is hardcoded to only handle 10 frames
 local function updatePlaneShadow(player, qsec)
-    local baseShadowName = "gunship-shadow" -- Without frame
+    if player.vehicle and player.surface and player.position then
+        -- TODO load all of this per plane (somehow)
+        -- speed (v) to begin/end animation
+        local vBegin = 140 / 216
+        local vEnd = 180 / 216
+        local tileOffsetFinal = {50, 20}
+        local renderlayer = "smoke" -- Layer right below air-object
+        local alphaInitial = 0.5
+        local totalFrames = 36
 
-    if global.transitionAnimation and
-        global.transitionAnimation[player.index] then
+        if player.vehicle.speed > vBegin and player.vehicle.speed < vEnd then
+            -- Map the orientation to a sprite
+            local spriteIdx = utility.orientationToIdx(player.vehicle.orientation, totalFrames)
+            -- Progress of animation, [0,1)
+            local progress = (player.vehicle.speed - vBegin) / (vEnd - vBegin)
 
-        -- ~= true means a shadow Entity was created
-        local newFrame = 0
-        if global.transitionAnimation[player.index] ~= true and
-            global.transitionAnimation[player.index].valid then
-            local oldShadow = global.transitionAnimation[player.index]
-            local oldFrame = tonumber(string.sub(oldShadow.prototype.name, string.len(baseShadowName) + 2))
-
-            oldShadow.destroy{}
-
-            -- Forward animation
-            newFrame = oldFrame
-            if qsec then
-                -- Animation completed
-                if oldFrame == 9 then
-                    global.transitionAnimation[player.index] = nil
-                    return
-                end
-                newFrame = oldFrame + 1
-            end
+            rendering.draw_sprite{
+                sprite = player.vehicle.prototype.name .. "-shadow-" .. tostring(spriteIdx),
+                target = {
+                    player.position.x + tileOffsetFinal[1]*progress,
+                    player.position.y + tileOffsetFinal[2]*progress
+                },
+                x_scale = 1 - progress,
+                y_scale = 1 - progress,
+                tint = {0, 0, 0, alphaInitial * (1 - progress*progress*progress*progress)}, -- Fade out 1 - x^4
+                render_layer = renderlayer,
+                surface = player.surface,
+                time_to_live = 2
+            }
         end
-
-        -- Create new shadow entity
-        local newShadowName = baseShadowName .. "-" .. tostring(newFrame)
-        local shadow = player.surface.create_entity{
-            name=newShadowName,
-            -- Using vehicle position instead of player pos fixes shadow jerking up on takeoff
-            position=player.vehicle.position,
-            force=player.force,
-            create_build_effect_smoke=false,
-            move_stuck_players=false
-        }
-        global.transitionAnimation[player.index] = shadow
-
-        shadow.active = false
-        -- Use the same fuel as the current plane, as modded planes may use custom fuels
-        if shadow.burner then
-            assert(player.vehicle.burner, "Plane shadow has burner, plane does not. Check plane prototypes")
-            shadow.burner.currently_burning = player.vehicle.burner.currently_burning
-            shadow.burner.remaining_burning_fuel = 5000
-        end
-        shadow.destructible = false
-        shadow.minable = false
-        shadow.operable = false
-        shadow.orientation = player.vehicle.orientation
     end
 end
 
@@ -250,7 +219,6 @@ local function onTick(e)
                 end
             end
 
-            -- TODO the shadow lags slightly behind the plane
             updatePlaneShadow(player, quarterSecond)
         end
     end
