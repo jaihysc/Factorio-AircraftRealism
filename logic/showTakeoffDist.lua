@@ -22,7 +22,7 @@ local function showTakeoffDist(player, plane, lineLife)
     local m = plane.prototype.weight -- Mass (kg)
     -- For speed: tile/tick -> m/s
     local v_0 = plane.speed * 60 -- Initial speed (m/s)
-    local v_tk = utility.getTakeoffSpeed(plane.name) * 60 -- Takeoff speed (m/s)
+    local v_tk = utility.getTransitionSpeed(plane.prototype) * 60 -- Takeoff speed (m/s)
     -- J/tick -> J/s
     local c = plane.prototype.consumption * 60 -- Consumption (W)
     local u_fc = 1 -- Vehicle friction

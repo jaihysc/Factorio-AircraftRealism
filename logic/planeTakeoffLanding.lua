@@ -108,7 +108,7 @@ local function planeTakeoff(player, game, defines, settings)
     assert(player.vehicle)
     -- If player is grounded and plane is greater than the specified takeoff speed
     if utility.isGroundedPlane(player.vehicle.prototype.order) and
-       player.vehicle.speed > utility.getTakeoffSpeed(player.vehicle.name) then
+       player.vehicle.speed > utility.getTransitionSpeed(player.vehicle.prototype) then
         local newPlane = player.surface.create_entity{
             name    =player.vehicle.name .. "-airborne",
             position=player.position,
@@ -138,7 +138,7 @@ local function planeLand(player, game, defines, settings)
 
     -- If player is airborne and plane is less than the specified landing speed
     if utility.isAirbornePlane(player.vehicle.prototype.order) and
-       player.vehicle.speed < utility.getLandingSpeed(groundedName) then
+       player.vehicle.speed < utility.getTransitionSpeed(player.vehicle.prototype) then
         -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
         if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
             player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}

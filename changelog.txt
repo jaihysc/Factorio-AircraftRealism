@@ -4,6 +4,8 @@ Date: 2022-10-22
   Features:
     - Add aircraft takeoff distance indicator
     - Add animated shadows
+  Changes:
+    - Planes now define a single speed (transition speed for takeoff and landing)
   Bugfixes:
     - Fix some aircraft properties not being copied over on takeoff/landing
 ---------------------------------------------------------------------------------------------------

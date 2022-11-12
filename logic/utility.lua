@@ -82,18 +82,18 @@ local function isPlane(order)
     return isGroundedPlane(order) or isAirbornePlane(order)
 end
 
--- Fetches plane takeoff speed in factorio units
--- planeName: grounded plane name
-local function getTakeoffSpeed(planeName)
-    assert(planeName)
-    return toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. planeName].value)
-end
-
--- Fetches plane landing speed in factorio units
--- planeName: grounded plane name
-local function getLandingSpeed(planeName)
-    assert(planeName)
-    return toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. planeName].value)
+-- Fetches plane takeoff/landing speed straight from settings in factorio units
+-- plane: plane prototype
+local function getTransitionSpeed(plane)
+    assert(plane)
+    local speed = 0
+    if isGroundedPlane(plane.order) then
+        speed = settings.global["aircraft-takeoff-speed-" .. plane.name].value
+    elseif isAirbornePlane(plane.order) then
+        -- Chop off the -airborne at the end
+        speed = settings.global["aircraft-takeoff-speed-" .. string.sub(plane.name, 0, string.len(plane.name) - string.len("-airborne"))].value
+    end
+    return toFactorioUnit(settings, speed)
 end
 
 local function killDriverAndPassenger(plane, player)
@@ -125,8 +125,7 @@ functions.playSound = playSound
 functions.isGroundedPlane = isGroundedPlane
 functions.isAirbornePlane = isAirbornePlane
 functions.isPlane = isPlane
-functions.getTakeoffSpeed = getTakeoffSpeed
-functions.getLandingSpeed = getLandingSpeed
+functions.getTransitionSpeed = getTransitionSpeed
 functions.killDriverAndPassenger = killDriverAndPassenger
 
 return functions

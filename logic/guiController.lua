@@ -107,20 +107,10 @@ end
 
 --------------------
 -- Speed gauge
--- Converts km or mph to an index on the speed gauge
-local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
+-- Converts speed in Factorio units to index on the speed gauge based on user units
+local function toSpeedGaugeIndex(speed, settings, player)
     -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
-    if inFactorioUnits then
-        speed = utility.fromFactorioUnitUser(settings, player, speed)
-
-    -- Not in factorio speed units, convert to user's measurement choice if global setting differs
-    elseif settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value ~= settings.global["aircraft-speed-unit"].value then
-        if settings.global["aircraft-speed-unit"].value == "imperial" then
-            speed = speed * 1.609  -- To metric
-        else
-            speed = speed / 1.609  -- To imperial
-        end
-    end
+    speed = utility.fromFactorioUnitUser(settings, player, speed)
     local index = math.abs(utility.roundNumber(speed / 4))
 
     -- Do not exceed 399 for index since that is the largest sprite
@@ -129,20 +119,6 @@ local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
     end
 
     return index
-end
-
-
--- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
-local function getTakeoffLandingSpeed(player, settings)
-    assert(player.vehicle)
-    if utility.isGroundedPlane(player.vehicle.prototype.order) then
-        return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
-
-    elseif utility.isAirbornePlane(player.vehicle.prototype.order) then
-        -- Chop off the -airborne at the end to get the landing speed of the plane
-        return settings.global["aircraft-landing-speed-" .. string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))].value
-
-    end
 end
 
 -- Updates the sprite on a gauge, if it does not exist, it is created
@@ -180,13 +156,13 @@ local function updateGaugeArrows(tick, player, settings, game)
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-warning-needle",
-        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, player, false)
+        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(utility.getTransitionSpeed(player.vehicle.prototype), settings, player)
     )
 
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-needle", 
-        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, player, true)
+        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, player)
     )
 
     --------------------

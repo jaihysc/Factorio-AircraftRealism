@@ -74,13 +74,6 @@ data:extend({
         minimum_value = 0,
         default_value = 110,
     },
-    {
-        type = "double-setting",
-        name = "aircraft-landing-speed-<yourPlaneName>",
-        setting_type = "runtime-global",
-        minimum_value = 0,
-        default_value = 60,
-    },
 
     -- ...
 })
@@ -103,12 +96,9 @@ Your plane prototype is duplicated for the airborne version, possessing the suff
 
 [mod-setting-name]
 aircraft-takeoff-speed-<yourPlaneName>=Takeoff speed
-aircraft-landing-speed-<yourPlaneName>=Landing speed
 
 [mod-setting-description]
-aircraft-takeoff-speed-<yourPlaneName>=Speed to takeoff and be airborne, no longer colliding with anything (Should be greater than the landing speed)
-
-aircraft-landing-speed-<yourPlaneName>=Speed to land, no longer airborne and has collision with other objects (Should be less than the takeoff speed)
+aircraft-takeoff-speed-<yourPlaneName>=Speed to takeoff and be airborne, no longer colliding with anything
 ```
 
 ## Example
