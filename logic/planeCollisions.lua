@@ -47,7 +47,7 @@ local function onTick(e)
     for index, player in pairs(game.connected_players) do
         if player and player.driving and player.vehicle and player.surface then
             -- Collision gets checked every tick for accuracy
-            if utility.isGroundedPlane(player.vehicle.prototype.order) then
+            if utility.isGroundedPlane(player.vehicle.prototype.name) then
                 -- Test for obstacle collision (water, cliff)
                 obstacleCollision(settings, player.surface, player, player.vehicle)
             end

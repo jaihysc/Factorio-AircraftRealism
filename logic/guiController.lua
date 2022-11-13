@@ -156,7 +156,7 @@ local function updateGaugeArrows(tick, player, settings, game)
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-warning-needle",
-        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(utility.getTransitionSpeed(player.vehicle.prototype), settings, player)
+        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(utility.getTransitionSpeed(player.vehicle.prototype.name), settings, player)
     )
 
     updateGaugeOverlay(
@@ -224,7 +224,7 @@ end
 local function onTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
         if player and player.driving and player.vehicle then
-            if utility.isPlane(player.vehicle.prototype.order) then
+            if utility.isPlane(player.vehicle.prototype.name) then
                 -- Creates, updates, or deletes the gauges depending on player settings
                 if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
                     updateGaugeArrows(e.tick, player, settings, game)

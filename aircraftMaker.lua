@@ -1,22 +1,39 @@
+local utility = require("logic.utility")
 local functions = {}
 
 -- Stores runtime information about planes
 -- airborne: true if is airborne plane, false if grounded
-local function setupRuntimeInfo(plane, airborne)
-    -- Identify the plane by storing a symbol in order
-    if plane.order ~= nil then
-        if airborne then
-            plane.order = plane.order .. "-__Z9ZC_A"
+-- setupData: Function accepting table, modifies the data about current plane in the plane data table
+--            nil if not used
+local function setupRuntimeInfo(groundedName, airborneName, airborne, setupData)
+    local planeData = utility.getPlaneData(true)
+
+    -- Manipulate data
+    local dataIdx = 0
+    if airborne then
+        if planeData.grounded[groundedName] then
+            -- Already created grounded plane, save data using its index
+            dataIdx = planeData.grounded[groundedName]
         else
-            plane.order = plane.order .. "-__Z9ZC_G"
+            table.insert(planeData.data, {})
+            dataIdx = utility.getTableLength(planeData.data)
         end
+        planeData.airborne[airborneName] = dataIdx
     else
-        if airborne then
-            plane.order = "-__Z9ZC_A"
+        if planeData.airborne[airborneName] then
+            -- Already created airborne plane, save data using its index
+            dataIdx = planeData.airborne[airborneName]
         else
-            plane.order = "-__Z9ZC_G"
+            table.insert(planeData.data, {})
+            dataIdx = utility.getTableLength(planeData.data)
         end
+        planeData.grounded[groundedName] = dataIdx
     end
+    if setupData then
+        setupData(planeData.data[dataIdx])
+    end
+
+    utility.savePlaneData(planeData)
 end
 
 -- Adjusts health of plane for increased damage
@@ -80,7 +97,7 @@ local function makeGrounded(config)
 
     local plane = config.prototype
 
-    setupRuntimeInfo(plane, false)
+    setupRuntimeInfo(plane.name, plane.name .. utility.AIRBORNE_PLANE_SUFFIX, false)
     setupHealth(plane)
     setupHandling(plane)
     setupFuelConsumption(plane, false)
@@ -116,11 +133,20 @@ local function makeAirborne(config)
         end
     end
 
+    setupRuntimeInfo(config.name, config.name .. utility.AIRBORNE_PLANE_SUFFIX, true, function(data)
+        assert(data.shadow == nil, "Plane already has shadow data, did you call makeAirborne twice?")
+        data.shadow = {}
+        data.shadow.endSpeed = 180 / 216
+        data.shadow.tileOffsetFinal = {50, 20}
+        data.shadow.renderLayer = "smoke" -- Layer right below air-object
+        data.shadow.alphaInitial = 0.5
+        data.shadow.totalFrames = 36
+    end)
+
     local plane = table.deepcopy(data.raw.car[config.name])
-    plane.name  = config.name .. "-airborne" -- Identifies plane, avoids name conflicts
+    plane.name  = config.name .. utility.AIRBORNE_PLANE_SUFFIX
 
     plane.collision_mask = {}
-    setupRuntimeInfo(plane, true)
     setupHealth(plane)
     setupHandling(plane)
     setupFuelConsumption(plane, true)

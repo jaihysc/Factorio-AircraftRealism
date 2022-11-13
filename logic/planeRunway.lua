@@ -42,7 +42,7 @@ local function onTick(e)
             -- Reduce performance impact, don't need to be checked as often, so run off quarterSecond
             local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
-            if quarterSecond and utility.isGroundedPlane(player.vehicle.prototype.order) then
+            if quarterSecond and utility.isGroundedPlane(player.vehicle.prototype.name) then
                 validateRunwayTile(settings, player.surface, player.vehicle)
             end
         end

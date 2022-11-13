@@ -29,7 +29,7 @@ local function onTick(e)
 
             if quarterSecond then
                 CheckHelicopterMod(player)
-                if utility.isPlane(player.vehicle.prototype.order) then
+                if utility.isPlane(player.vehicle.prototype.name) then
                     createPollution(settings, player.surface, player.vehicle)
                 end
             end
