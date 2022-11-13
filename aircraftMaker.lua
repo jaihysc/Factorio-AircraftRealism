@@ -1,26 +1,26 @@
 local functions = {}
 
-local function makeGrounded(config)
-    -- Validate config
-    if config.prototype == nil then
-        error("Missing table member: prototype")
-    end
-
-    --
-    local plane = config.prototype
-
+-- Stores runtime information about planes
+-- airborne: true if is airborne plane, false if grounded
+local function setupRuntimeInfo(plane, airborne)
     -- Identify the plane by storing a symbol in order
     if plane.order ~= nil then
-        plane.order = plane.order .. "-__Z9ZC_G"
+        if airborne then
+            plane.order = plane.order .. "-__Z9ZC_A"
+        else
+            plane.order = plane.order .. "-__Z9ZC_G"
+        end
     else
-        plane.order = "-__Z9ZC_G"
+        if airborne then
+            plane.order = "-__Z9ZC_A"
+        else
+            plane.order = "-__Z9ZC_G"
+        end
     end
+end
 
-    
-    if settings.startup["aircraft-realism-turn-radius"].value then
-        plane.tank_driving = false
-    end
-
+-- Adjusts health of plane for increased damage
+local function setupHealth(plane)
     if settings.startup["aircraft-realism-takeoff-health"].value then
         plane.max_health = plane.max_health / 2
         -- Account for less health by reducing the repair speed by 2x
@@ -30,9 +30,21 @@ local function makeGrounded(config)
             plane.repair_speed_modifier = 0.5
         end
     end
+end
 
+local function setupHandling(plane)
+    if settings.startup["aircraft-realism-turn-radius"].value then
+        plane.tank_driving = false
+    end
+end
 
-    -- Fuel consumption multiplier
+-- Setup fuel consumption multiplier
+-- airborne: true if is airborne plane, false if grounded
+local function setupFuelConsumption(plane, airborne)
+    local multiplier = settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value
+    if airborne then
+        multiplier = settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
+    end
 
     -- Get eng unit len of consumption
     local engUnitLen = 0
@@ -48,7 +60,7 @@ local function makeGrounded(config)
         string.sub(plane.consumption, 1, string.len(plane.consumption) - engUnitLen)
     )
 
-    local newConsumptionNum = oldConsumptionNum * settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value
+    local newConsumptionNum = oldConsumptionNum * multiplier
 
     -- Add eng unit back
     local newConsumptionStr = tostring(newConsumptionNum) ..
@@ -57,7 +69,21 @@ local function makeGrounded(config)
     plane.consumption = newConsumptionStr
 
     -- Lower the fuel effectivity so the plane handles the same
-    plane.effectivity = plane.effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-grounded"].value
+    plane.effectivity = plane.effectivity / multiplier
+end
+
+local function makeGrounded(config)
+    -- Validate config
+    if config.prototype == nil then
+        error("Missing table member: prototype")
+    end
+
+    local plane = config.prototype
+
+    setupRuntimeInfo(plane, false)
+    setupHealth(plane)
+    setupHandling(plane)
+    setupFuelConsumption(plane, false)
 end
 
 local function makeAirborne(config)
@@ -90,52 +116,14 @@ local function makeAirborne(config)
         end
     end
 
-    --
     local plane = table.deepcopy(data.raw.car[config.name])
-
     plane.name  = config.name .. "-airborne" -- Identifies plane, avoids name conflicts
-    if plane.order ~= nil then
-        plane.order = plane.order .. "-__Z9ZC_A"
-    else
-        plane.order = "-__Z9ZC_A"
-    end
 
     plane.collision_mask = {}
-
-    if settings.startup["aircraft-realism-takeoff-health"].value then
-        plane.max_health = plane.max_health * 2 -- Was divided by 2 in grounded version
-    end
-
-    if settings.startup["aircraft-realism-turn-radius"].value then
-        plane.tank_driving = false
-    end
-
-    -- Fuel consumption multiplier
-
-    -- Get eng unit len of consumption
-    local engUnitLen = 0
-    for i=string.len(plane.consumption), 1, -1 do
-        if tonumber(string.sub(plane.consumption, i, i)) ~= nil then
-            break
-        end
-        engUnitLen = engUnitLen + 1
-    end
-
-    -- Multiply consumption
-    local oldConsumptionNum = tonumber(
-        string.sub(plane.consumption, 1, string.len(plane.consumption) - engUnitLen)
-    )
-
-    local newConsumptionNum = oldConsumptionNum * settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
-
-    -- Add eng unit back
-    local newConsumptionStr = tostring(newConsumptionNum) ..
-        string.sub(plane.consumption, string.len(plane.consumption) - engUnitLen + 1)
-
-    plane.consumption = newConsumptionStr
-
-    -- Lower the fuel effectivity so the same energy goes to the wheels
-    plane.effectivity = plane.effectivity / settings.startup["aircraft-realism-fuel-usage-multiplier-airborne"].value
+    setupRuntimeInfo(plane, true)
+    setupHealth(plane)
+    setupHandling(plane)
+    setupFuelConsumption(plane, true)
     data:extend{plane}
 
 
