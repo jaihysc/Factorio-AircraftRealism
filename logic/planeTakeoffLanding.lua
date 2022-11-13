@@ -186,17 +186,26 @@ local function updatePlaneShadow(player, qsec)
                 -- Map the orientation to a sprite
                 local spriteIdx = utility.orientationToIdx(player.vehicle.orientation, totalFrames)
                 -- Progress of animation, [0,1)
+                -- linear, and polynomial as some animations look better if slower initially
                 local progress = (player.vehicle.speed - vBegin) / (vEnd - vBegin)
+                local nomialProgress = progress*progress
+
+                -- Since the shadow trails by 1 tick, we account for it by moving the shadow forwards using the plane's velocity
+                -- Speed in tiles/tick
+                local shadowOffsetX = player.vehicle.speed * math.sin(2*math.pi*player.vehicle.orientation)
+                local shadowOffsetY = player.vehicle.speed * -math.cos(2*math.pi*player.vehicle.orientation)
 
                 rendering.draw_sprite{
                     sprite = player.vehicle.prototype.name .. "-shadow-" .. tostring(spriteIdx),
                     target = {
-                        player.position.x + tileOffsetFinal[1]*progress,
-                        player.position.y + tileOffsetFinal[2]*progress
+                        -- Use the vehicle position, if the player's position is used, the shadow flickers
+                        -- briefly on takeoff
+                        player.vehicle.position.x + shadowOffsetX + tileOffsetFinal[1]*nomialProgress,
+                        player.vehicle.position.y + shadowOffsetY + tileOffsetFinal[2]*nomialProgress
                     },
-                    x_scale = 1 - progress,
-                    y_scale = 1 - progress,
-                    tint = {0, 0, 0, alphaInitial * (1 - progress*progress*progress*progress)}, -- Fade out 1 - x^4
+                    x_scale = 1 - nomialProgress,
+                    y_scale = 1 - nomialProgress,
+                    tint = {0, 0, 0, alphaInitial * (1 - nomialProgress)},
                     render_layer = renderlayer,
                     surface = player.surface,
                     time_to_live = 2
@@ -209,18 +218,17 @@ end
 local function onTick(e)
     for index, player in pairs(game.connected_players) do
         if player and player.driving and player.vehicle and player.surface then
-            -- These don't need to be checked as often, so they run off quarterSecond
-            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
+            local quarterSecond = e.tick % 15 == 0
 
-            if quarterSecond then
-                if utility.isGroundedPlane(player.vehicle.prototype.name) then
-                    --Create some smoke effects trailing behind the plane
+            -- Check takeoff every tick so shadow animation is smooth
+            if utility.isGroundedPlane(player.vehicle.prototype.name) then
+                --Create some smoke effects trailing behind the plane
+                if quarterSecond then
                     player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
-
-                    planeTakeoff(player, game, defines, settings)
-                elseif utility.isAirbornePlane(player.vehicle.prototype.name) then
-                    planeLand(player, game, defines, settings)
                 end
+                planeTakeoff(player, game, defines, settings)
+            elseif utility.isAirbornePlane(player.vehicle.prototype.name) then
+                planeLand(player, game, defines, settings)
             end
 
             updatePlaneShadow(player, quarterSecond)
