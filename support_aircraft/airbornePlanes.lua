@@ -44,7 +44,6 @@ function makeRealistic(plane, rotation_speed, braking_power, max_health, weight)
 end
 
 if mods["Aircraft"] then
-    -- TODO update documentation on how to use this
     local gunship = aircraftMaker.makeAirborne({
         name="gunship",
         shadow={
@@ -53,7 +52,8 @@ if mods["Aircraft"] then
             height = 224,
             shift = util.by_pixel(54, 35),
             lineLength = 6,
-            directionCount = 36
+            directionCount = 36,
+            endSpeed = 60 / 216
         }
     })
     local cargoPlane     = aircraftMaker.makeAirborne({name="cargo-plane"})

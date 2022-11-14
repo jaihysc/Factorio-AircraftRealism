@@ -176,11 +176,11 @@ local function updatePlaneShadow(player, qsec)
         -- Plane must support shadows
         if data.shadow then
             local vBegin = utility.getTransitionSpeed(player.vehicle.name)
-            local vEnd = data.shadow.endSpeed
+            local vEnd = vBegin + data.shadow.endSpeed
             local tileOffsetFinal = data.shadow.tileOffsetFinal
             local renderlayer = data.shadow.renderLayer
             local alphaInitial = data.shadow.alphaInitial
-            local totalFrames = data.shadow.totalFrames
+            local totalFrames = data.shadow.directionCount
 
             if player.vehicle.speed > vBegin and player.vehicle.speed < vEnd then
                 -- Map the orientation to a sprite

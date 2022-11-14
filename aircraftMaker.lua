@@ -131,16 +131,30 @@ local function makeAirborne(config)
         if config.shadow.scale == nil then
             config.shadow.scale = 1
         end
+        if config.shadow.endSpeed == nil then
+            error("Missing table member: endSpeed")
+        end
+        if config.shadow.tileOffsetFinal == nil then
+            config.shadow.tileOffsetFinal = {50, 20}
+        end
+        if config.shadow.renderLayer == nil then
+            config.shadow.renderLayer = "smoke" -- Layer right below air-object
+        end
+        if config.shadow.alphaInitial == nil then
+            config.shadow.alphaInitial = 0.5
+        end
     end
 
     setupRuntimeInfo(config.name, config.name .. utility.AIRBORNE_PLANE_SUFFIX, true, function(data)
-        assert(data.shadow == nil, "Plane already has shadow data, did you call makeAirborne twice?")
-        data.shadow = {}
-        data.shadow.endSpeed = 180 / 216
-        data.shadow.tileOffsetFinal = {50, 20}
-        data.shadow.renderLayer = "smoke" -- Layer right below air-object
-        data.shadow.alphaInitial = 0.5
-        data.shadow.totalFrames = 36
+        if config.shadow then
+            assert(data.shadow == nil, "Plane already has shadow data, did you call makeAirborne twice?")
+            data.shadow = {}
+            data.shadow.endSpeed = config.shadow.endSpeed
+            data.shadow.tileOffsetFinal = config.shadow.tileOffsetFinal
+            data.shadow.renderLayer = config.shadow.renderLayer
+            data.shadow.alphaInitial = config.shadow.alphaInitial
+            data.shadow.directionCount = config.shadow.directionCount
+        end
     end)
 
     local plane = table.deepcopy(data.raw.car[config.name])
@@ -169,7 +183,7 @@ local function makeAirborne(config)
                 y = yPos * config.shadow.height,
                 shift = config.shadow.shift,
                 scale = config.shadow.scale,
-                -- TODO document that draw_as_shadow puts the shadow on the wrong layer - below the entities
+                -- draw_as_shadow puts the shadow on the wrong layer - below the entities
             }}
         end
     end
