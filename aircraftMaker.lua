@@ -37,14 +37,18 @@ local function setupRuntimeInfo(groundedName, airborneName, airborne, setupData)
 end
 
 -- Adjusts health of plane for increased damage
-local function setupHealth(plane)
+local function setupHealth(plane, airborne)
     if settings.startup["aircraft-realism-takeoff-health"].value then
-        plane.max_health = plane.max_health / 2
-        -- Account for less health by reducing the repair speed by 2x
-        if plane.repair_speed_modifier ~= nil then
-            plane.repair_speed_modifier = plane.repair_speed_modifier / 2; 
+        if airborne then
+            plane.max_health = plane.max_health * 2 -- Was divided by 2 in grounded version
         else
-            plane.repair_speed_modifier = 0.5
+            plane.max_health = plane.max_health / 2
+            -- Account for less health by reducing the repair speed by 2x
+            if plane.repair_speed_modifier ~= nil then
+                plane.repair_speed_modifier = plane.repair_speed_modifier / 2
+            else
+                plane.repair_speed_modifier = 0.5
+            end
         end
     end
 end
@@ -98,7 +102,7 @@ local function makeGrounded(config)
     local plane = config.prototype
 
     setupRuntimeInfo(plane.name, plane.name .. utility.AIRBORNE_PLANE_SUFFIX, false)
-    setupHealth(plane)
+    setupHealth(plane, false)
     setupHandling(plane)
     setupFuelConsumption(plane, false)
 end
@@ -191,7 +195,7 @@ local function makeAirborne(config)
     plane.name  = config.name .. utility.AIRBORNE_PLANE_SUFFIX
 
     plane.collision_mask = {}
-    setupHealth(plane)
+    setupHealth(plane, true)
     setupHandling(plane)
     setupFuelConsumption(plane, true)
     data:extend{plane}
