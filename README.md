@@ -42,8 +42,6 @@ _Enable/disable, Max vehicle friction modifier for tiles, max speed when not on 
 
 ### Environmental damage [Default: Disabled]
 
-Not recommended for now, the detection is somewhat inaccurate and sometimes falsely destroys the plane.
-
 Hitting cliffs and running into water on takeoff and landing will destroy the plane. Otherwise the plane just stops.
 
 _Enable/disable in the ingame mod menu_

@@ -1,6 +1,13 @@
 -- Handles environmental collisions of the plane WITH DRIVER (cliffs, water)
 local utility = require("logic.utility")
 
+--[[
+    Global table:
+        lastSpeed[]: number
+            Index by player index
+            Holds the last speed for the plane the player is in
+]]
+
 local function obstacleCollision(settings, surface, player, plane)
 
     -- Destroy the plane if the player LANDS ON a cliff
@@ -25,21 +32,21 @@ local function obstacleCollision(settings, surface, player, plane)
     end
 
     if settings.global["aircraft-realism-environmental-impact"].value then
-        for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"cliff"}})) do
-            --Over 40km/h
-            if plane.speed > 0.185185 or plane.speed < -0.185185 then -- Destroy the plane upon hitting a cliff
-                plane.die()
+        if global.lastSpeed == nil then
+            global.lastSpeed = {}
+        end
 
-                return;
+        -- Destroy plane on large deceleration
+        if global.lastSpeed[player.index] then
+            local acceleration = plane.speed - global.lastSpeed[player.index]
+
+            -- Stopped (< 5 km/h) with deceleration over 40km/h
+            if math.abs(plane.speed) < 5 / 216 and math.abs(acceleration) > 40 / 216 then
+                plane.die()
+                return
             end
         end
-        for k, entity in pairs(surface.find_tiles_filtered({position = plane.position, radius = plane.get_radius()+2, name = {"water", "water-shallow", "water-mud", "water-green", "deepwater", "deepwater-green"}})) do
-            if plane.speed > 0.185185 or plane.speed < -0.185185 then -- upon hitting the shoreline
-                plane.die()
-
-                return;
-            end
-        end
+        global.lastSpeed[player.index] = plane.speed
     end
 end
 
