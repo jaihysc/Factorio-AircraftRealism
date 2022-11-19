@@ -30,13 +30,6 @@ data:extend({
         order="aad"
     },
     {
-        type = "bool-setting",
-        name = "aircraft-realism-no-aerial-shadows",
-        setting_type = "startup",
-        default_value = true,
-        order="aae"
-    },
-    {
         type = "double-setting",
         name = "aircraft-realism-fuel-usage-multiplier-grounded",
         setting_type = "startup",

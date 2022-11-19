@@ -111,12 +111,12 @@ Table getSettings()
 
 The values of all members is a true/false.
 
-| Member            | Recommended changes to apply                                                             |
-|-------------------|------------------------------------------------------------------------------------------|
-| noAerialShadow    | Remove shadows from airborne plane                                                       |
-| rAcceleration     | Increase prototype weight. Reduce prototype friction for gliding                         |
-| rBraking          | Reduce braking power                                                                     |
-| rTurnRadius       | Decrease prototype rotation_speed                                                        |
+| Member            | Recommended changes to apply                                                               |
+|-------------------|--------------------------------------------------------------------------------------------|
+| rAcceleration     | Increase prototype weight. Reduce prototype friction for gliding                           |
+| rBraking          | Reduce braking power                                                                       |
+| rTurnRadius       | Decrease prototype rotation_speed                                                          |
+| noAerialShadow    | Kept for backward compatibility, always true. Original: Remove shadows from airborne plane |
 
 ## Per plane user settings
 

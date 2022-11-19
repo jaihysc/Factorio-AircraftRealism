@@ -237,7 +237,9 @@ end
 
 local function getSettings()
     return {
-        noAerialShadow = settings.startup["aircraft-realism-no-aerial-shadows"].value,
+        -- Planes should always have no aerial shadows, otherwise animated
+        -- shadows look funny as there are 2 shadows
+        noAerialShadow = true, -- Kept true for backward compatibility
         rAcceleration = settings.startup["aircraft-realism-acceleration"].value,
         rBraking      = settings.startup["aircraft-realism-braking-speed"].value,
         rTurnRadius   = settings.startup["aircraft-realism-turn-radius"].value
