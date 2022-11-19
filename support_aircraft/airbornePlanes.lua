@@ -63,9 +63,63 @@ if mods["Aircraft"] then
             endSpeed = 60 / 216
         }
     })
-    local cargoPlane     = aircraftMaker.makeAirborne({name="cargo-plane"})
-    local jet            = aircraftMaker.makeAirborne({name="jet"})
-    local flyingFortress = aircraftMaker.makeAirborne({name="flying-fortress"})
+    local cargoPlane = aircraftMaker.makeAirborne({
+        name="cargo-plane",
+        shadow={
+            filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/cargo_plane/hr-cargo_plane_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
+            lineLength = 6,
+            directionCount = 36,
+            endSpeed = 60 / 216,
+        }
+    })
+    local jet = aircraftMaker.makeAirborne({
+        name="jet",
+        shadow={
+            filename="__Aircraft__/graphics/entity/jet/jet_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/jet/hr-jet_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
+            lineLength = 6,
+            directionCount = 36,
+            endSpeed = 180 / 216,
+        }
+    })
+    local flyingFortress = aircraftMaker.makeAirborne({
+        name="flying-fortress",
+        shadow={
+            filename="__Aircraft__/graphics/entity/flying_fortress/flying_fortress_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/flying_fortress/hr-flying_fortress_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
+            lineLength = 6,
+            directionCount = 36,
+            endSpeed = 160 / 216,
+        }
+    })
 
     makeRealistic(gunship       , 0.005, "940kW", 500, 5000)
     makeRealistic(cargoPlane    , 0.003, "1100kW", 500, 25000)
@@ -79,8 +133,44 @@ end
 
 -- Better cargo planes
 if mods["betterCargoPlanes"] then
-    local bCargoPlane  = aircraftMaker.makeAirborne({name="better-cargo-plane"})
-    local ebCargoPlane = aircraftMaker.makeAirborne({name="even-better-cargo-plane"})
+    local bCargoPlane  = aircraftMaker.makeAirborne({
+        name="better-cargo-plane",
+        shadow={
+            filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/cargo_plane/hr-cargo_plane_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
+            lineLength = 6,
+            directionCount = 36,
+            endSpeed = 60 / 216
+        }
+    })
+    local ebCargoPlane = aircraftMaker.makeAirborne({
+        name="even-better-cargo-plane",
+        shadow={
+            filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
+            width = 224,
+            height = 224,
+            shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/cargo_plane/hr-cargo_plane_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
+            lineLength = 6,
+            directionCount = 36,
+            endSpeed = 60 / 216
+        }
+    })
     makeRealistic(bCargoPlane , 0.0035, "1680kW", 1000, 34000)
     makeRealistic(ebCargoPlane, 0.0045, "2660kW", 2000, 40000)
 end
