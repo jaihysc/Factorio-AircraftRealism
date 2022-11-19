@@ -1,73 +1,55 @@
-local guiController = require("logic.guiController")
-local planeManager = require("logic.planeManager")
-local planeUtility = require("logic.planeUtility")
-local planePollution = require("logic.planePollution")
+-- If you are interested in how the mod scripts are structured, see Docs/ScriptImplementation.md
+-- Below sets up all the event handlers for each of the modules, add additional modules between
+-- the >>> BEGIN MODULES and <<< END MODULES
 
---Only functions for events are here, other functions are called from here
+-- Maps event to list of handlers
+local eventTable = {}
 
-function OnTick(e)
-    for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
+-- Loads event handlers for module at path (same path used in require)
+local function loadModule(path)
+    assert(type(path) == "string")
+    assert(eventTable)
 
-        -- if they are in a plane
-        if player and player.driving and
-        player.vehicle then  -- This fixes a crash of nil vehicle when trying to ride the rocket
-            planeManager.checkPlanes(e, player, game, defines, settings)
+    local handlers = require(path)
+    assert(handlers, "Module did not return event handlers")
+    for event, handler in pairs(handlers) do
+        assert(type(event) == "number", "Expected event from module")
+        assert(type(handler) == "function", "Expected event handler from module")
+
+        -- First handler for event
+        if eventTable[event] == nil then
+            eventTable[event] = {}
         end
+        table.insert(eventTable[event], handler)
     end
 end
 
--- If a player bails out of a speeding plane, destroy it if there is no passenger
--- I would perfer to have the plane glide away, but there is no easy way that I know of to track them and all the solutions would likely lag if there is a large amount of planes
-function OnPlayerDrivingChangedState(e)
-    local player = game.get_player(e.player_index)
 
-    if player and not player.driving then
-        if e.entity then
-            if planeUtility.isAirbornePlane(e.entity.prototype.order) then
-                local driver = e.entity.get_driver()
-                local passenger = e.entity.get_passenger()
-                -- If driver bailed, passenger become the pilot
-                if passenger and not driver then
-                    e.entity.set_driver(passenger)
-                -- If passenger and driver jumps out, plane crashes
-                elseif not driver and not passenger then
-                    e.entity.die()
-                end
-            elseif planeUtility.isGroundedPlane(e.entity.prototype.order) then
-                -- Driver of the plane MUST NOT exit until the plane has stopped in order for collision logic to work
-                local driver = e.entity.get_driver()
-                if not driver then
-                    -- ~10km/h
-                    if e.entity.speed > 0.04629 or e.entity.speed < -0.04629 then
-                        e.entity.set_driver(player)
-                    end
-                end
-            end
+-- >>> BEGIN MODULES
+loadModule("logic.planeTakeoffLanding")
+loadModule("logic.showTakeoffDist")
+loadModule("logic.guiController")
+loadModule("logic.planePollution")
+loadModule("logic.planeCollisions")
+loadModule("logic.planeRunway")
+loadModule("logic.driverExited")
+-- <<< END MODULES
+
+
+-- Register event handlers to Factorio
+for event, handlers in pairs(eventTable) do
+    assert(eventTable)
+
+    -- Events under defines.events
+    script.on_event(event, function(e)
+        assert(e, "Event handler received nil")
+        assert(e.name, "Event received missing name")
+
+        local handlers = eventTable[e.name]
+        assert(handlers, "Could not find handlers for event")
+        for k, handler in pairs(handlers) do
+            assert(type(handler) == "function", "Expected event handler for module")
+            handler(e)
         end
-
-        -- Destroy gauges upon leaving a plane
-        -- The gauges are recreated later if the player is still in plane
-        guiController.deleteGauges(player)
-    end
+    end)
 end
-
--- When a player dies and respawns, delete their gauges
-function OnPlayerDied(e)
-    local player = game.get_player(e.player_index)
-    if player then
-        guiController.deleteGauges(player)
-    end
-end
-
--- Special function for the helicopter mod
-function CheckHelicopterMod(player)
-    assert(player.vehicle)
-    if player.vehicle.name == "heli-entity-_-" then
-        planePollution.createPollution(settings, player.surface, player.vehicle)
-    end
-end
-
--- Events
-script.on_event(defines.events.on_tick, OnTick)
-script.on_event(defines.events.on_player_driving_changed_state, OnPlayerDrivingChangedState)
-script.on_event(defines.events.on_player_died, OnPlayerDied)

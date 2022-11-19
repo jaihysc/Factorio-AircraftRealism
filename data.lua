@@ -81,4 +81,43 @@ data:extend({
     height = 152,
     filename = "__AircraftRealism__/graphics/gui/fuel_indicator_emergency_fuel_warning.png"
   },
+  -- Shortcut button
+  {
+    type = "shortcut",
+    name = "aircraft-realism-show-takeoff-distance",
+    action = "lua",
+    toggleable = true,
+    disabled_icon = {
+        filename = "__AircraftRealism__/graphics/icons/show-takeoff-dist-x32-white.png",
+        flags = {
+          "gui-icon"
+        },
+        priority = "extra-high-no-scale",
+        size = 32
+    },
+    disabled_small_icon = {
+        filename = "__AircraftRealism__/graphics/icons/show-takeoff-dist-x24-white.png",
+        flags = {
+          "gui-icon"
+        },
+        priority = "extra-high-no-scale",
+        size = 24
+    },
+    icon = {
+      filename = "__AircraftRealism__/graphics/icons/show-takeoff-dist-x32.png",
+      flags = {
+        "gui-icon"
+      },
+      priority = "extra-high-no-scale",
+      size = 32
+    },
+    small_icon = {
+      filename = "__AircraftRealism__/graphics/icons/show-takeoff-dist-x24.png",
+      flags = {
+        "gui-icon"
+      },
+      priority = "extra-high-no-scale",
+      size = 24
+    }
+  }
 })

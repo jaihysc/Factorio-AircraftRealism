@@ -1,5 +1,5 @@
 -- Runway tile material checker
-local utils = require("logic.utility")
+local utility = require("logic.utility")
 
 local function validateRunwayTile(settings, surface, plane)
     local tile = surface.get_tile(plane.position)
@@ -11,8 +11,8 @@ local function validateRunwayTile(settings, surface, plane)
         -- Cap the max speed to the max taxi speed when not on a runway
         if tile.prototype.vehicle_friction_modifier > settings.global["aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction"].value then
 
-            if plane.speed > utils.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) or
-               plane.speed < -1 * utils.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) then
+            if plane.speed > utility.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) or
+               plane.speed < -1 * utility.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) then
                 if plane.speed > 0 then
                     plane.speed = plane.speed - 0.00925 -- decrease speed by 2km/h per tick
                 elseif plane.speed < 0 then
@@ -20,8 +20,8 @@ local function validateRunwayTile(settings, surface, plane)
                 end
 
                 -- Damage the plane if past the max taxi speed, margin of 20km/h so less easy to accidently damage plane
-                if plane.speed > utils.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) + 0.09259 or
-                   plane.speed < -1 * utils.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) - 0.009259  then
+                if plane.speed > utility.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) + 0.09259 or
+                   plane.speed < -1 * utility.toFactorioUnit(settings, settings.global["aircraft-realism-strict-runway-max-taxi-speed"].value) - 0.009259  then
                     plane.health = plane.health - 1
 
                     if plane.health <= 0 then
@@ -36,8 +36,19 @@ local function validateRunwayTile(settings, surface, plane)
     return true
 end
 
-local functions = {}
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            -- Reduce performance impact, don't need to be checked as often, so run off quarterSecond
+            local quarterSecond = e.tick % 15 == 0 --15 ticks, 1/4 of a second
 
-functions.validateRunwayTile = validateRunwayTile
+            if quarterSecond and utility.isGroundedPlane(player.vehicle.prototype.name) then
+                validateRunwayTile(settings, player.surface, player.vehicle)
+            end
+        end
+    end
+end
 
-return functions
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers

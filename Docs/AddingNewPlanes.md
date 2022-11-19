@@ -1,6 +1,6 @@
 # Adding new planes
 
-*Written on June 29, 2021 with version 1.3.0*
+*Written with version 1.5.0*
 
 To support taking off / landing, you must create 2 versions of your plane.
 The first version is the landed version, the second is airborne.
@@ -33,14 +33,73 @@ Can be called from data.lua, data-updates.lua, or data-final-fixes.lua.
 
 makeGrounded must be called before makeAirborne.
 
+### makeGrounded
+
 ```c++
-void      makeGrounded(Table config)
-Prototype makeAirborne(Table config)
+void makeGrounded(Table config)
 ```
+
 | Config member     | Type      | Documentation                                                                     |
 |-------------------|-----------|-----------------------------------------------------------------------------------|
-| name              | string    | makeAirborne only: Prototype name used in makeGrounded                            |
-| prototype         | prototype | makeGrounded only: Your plane prototype, already registered to global table data  |
+| prototype         | prototype | Your plane prototype, already registered to global table data                     |
+
+```lua
+-- Example
+local aircraftMaker = require("__AircraftRealism__.aircraftMaker")
+local groundedCar = data.raw["car"]["car"]
+aircraftMaker.makeGrounded({prototype=groundedCar})
+```
+
+### makeAirborne
+
+```c++
+Prototype makeAirborne(Table config)
+```
+
+| Config member           | Type             | Documentation                                                                                                   |
+|-------------------------|------------------|-----------------------------------------------------------------------------------------------------------------|
+| name                    | string           | Prototype name used in makeGrounded                                                                             |
+| shadow?                 | table            | Define to enable to plane to have animated shadows                                                              |
+| shadow.filename         | string           | Filename to shadow spritesheet of the plane                                                                     |
+| shadow.hrFilename?      | string           | Filename to HR shadow spritesheet of the plane                                                                  |
+| shadow.width            | number           | Number of pixels for each sprite direction within the spritesheet (width)                                       |
+| shadow.hrWidth?         | number           | Number of pixels for each sprite direction within the HR spritesheet (width)                                    |
+| shadow.height           | number           | Number of pixels for each sprite direction within the spritesheet (height)                                      |
+| shadow.hrHeight?        | number           | Number of pixels for each sprite direction within the HR spritesheet (height)                                   |
+| shadow.lineLength       | number           | Number of directions per row within the spritesheet                                                             |
+| shadow.directionCount   | number           | Number of directions in total on the spritesheet                                                                |
+| shadow.shift?           | {number, number} | **Default: {0, 0}** Same as Factorio [sprite.shift](https://wiki.factorio.com/Types/Sprite#shift)               |
+| shadow.hrShift?         | {number, number} | **Default: {0, 0}** Same as Factorio [sprite.shift](https://wiki.factorio.com/Types/Sprite#shift) for HR sprite |
+| shadow.scale?           | number           | **Default: 1** Same as Factorio [sprite.scale](https://wiki.factorio.com/Types/Sprite#scale)                    |
+| shadow.hrScale?         | number           | **Default: 1** Same as Factorio [sprite.scale](https://wiki.factorio.com/Types/Sprite#scale) for HR sprite      |
+| shadow.endSpeed         | number           | Speed after plane transition speed to end the shadow animation *(tiles/tick)*. Watch your units.                |
+| shadow.tileOffsetFinal? | {number, number} | **Default: {50, 20}** The shadow will move from its initial position to this at the end of the shadow animation |
+| shadow.renderLayer?     | string           | **Default: "smoke"** One of [Types/Renderlayer](https://lua-api.factorio.com/latest/Concepts.html#RenderLayer)  |
+| shadow.alphaInitial?    | number           | **Default: 0.5** Shadow tint begins with this alpha and falls to 0                                              |
+
+```lua
+-- Example
+local aircraftMaker = require("__AircraftRealism__.aircraftMaker")
+local gunship = aircraftMaker.makeAirborne({
+    name="gunship",
+    shadow={
+        filename="__Aircraft__/graphics/entity/gunship/gunship_spritesheet-shadow.png",
+        width = 224,
+        height = 224,
+        shift = util.by_pixel(54, 35),
+
+        hrFilename="__Aircraft__/graphics/entity/gunship/hr-gunship_spritesheet-shadow.png",
+        hrWidth = 448,
+        hrHeight = 448,
+        hrShift = util.by_pixel(54, 35),
+        hrScale = 0.5,
+
+        lineLength = 6,
+        directionCount = 36,
+        endSpeed = 60 / 216
+    }
+})
+```
 
 ## Global user settings
 
@@ -52,12 +111,12 @@ Table getSettings()
 
 The values of all members is a true/false.
 
-| Member            | Recommended changes to apply                                                             |
-|-------------------|------------------------------------------------------------------------------------------|
-| noAerialShadow    | Remove shadows from airborne plane                                                       |
-| rAcceleration     | Increase prototype weight. Reduce prototype friction for gliding                         |
-| rBraking          | Reduce braking power                                                                     |
-| rTurnRadius       | Decrease prototype rotation_speed                                                        |
+| Member            | Recommended changes to apply                                                               |
+|-------------------|--------------------------------------------------------------------------------------------|
+| rAcceleration     | Increase prototype weight. Reduce prototype friction for gliding                           |
+| rBraking          | Reduce braking power                                                                       |
+| rTurnRadius       | Decrease prototype rotation_speed                                                          |
+| noAerialShadow    | Kept for backward compatibility, always true. Original: Remove shadows from airborne plane |
 
 ## Per plane user settings
 
@@ -73,13 +132,6 @@ data:extend({
         setting_type = "runtime-global",
         minimum_value = 0,
         default_value = 110,
-    },
-    {
-        type = "double-setting",
-        name = "aircraft-landing-speed-<yourPlaneName>",
-        setting_type = "runtime-global",
-        minimum_value = 0,
-        default_value = 60,
     },
 
     -- ...
@@ -103,12 +155,9 @@ Your plane prototype is duplicated for the airborne version, possessing the suff
 
 [mod-setting-name]
 aircraft-takeoff-speed-<yourPlaneName>=Takeoff speed
-aircraft-landing-speed-<yourPlaneName>=Landing speed
 
 [mod-setting-description]
-aircraft-takeoff-speed-<yourPlaneName>=Speed to takeoff and be airborne, no longer colliding with anything (Should be greater than the landing speed)
-
-aircraft-landing-speed-<yourPlaneName>=Speed to land, no longer airborne and has collision with other objects (Should be less than the takeoff speed)
+aircraft-takeoff-speed-<yourPlaneName>=Speed to takeoff and be airborne, no longer colliding with anything
 ```
 
 ## Example

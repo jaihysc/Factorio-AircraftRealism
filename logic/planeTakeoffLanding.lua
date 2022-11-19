@@ -1,6 +1,5 @@
 -- Handles the takeoff and landing of the plane
-local utils = require("logic.utility")
-local planeUtils = require("logic.planeUtility")
+local utility = require("logic.utility")
 
 local function insertItems(oldInventory, newInventory)
     if oldInventory then
@@ -38,7 +37,7 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
 
     -- Select the last weapon
     if oldPlane.selected_gun_index then
-        assert(utils.getTableLength(oldPlane.prototype.guns) == utils.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
+        assert(utility.getTableLength(oldPlane.prototype.guns) == utility.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
         newPlane.selected_gun_index = oldPlane.selected_gun_index
     end
 
@@ -83,7 +82,15 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
         newPlane.health = oldPlane.health
     end
 
-    -- Physics
+    newPlane.destructible = oldPlane.destructible
+    newPlane.operable = oldPlane.operable
+    if oldPlane.relative_turret_orientation then
+        assert(newPlane.relative_turret_orientation, "Old plane has relative_turret_orientation, new plane does not. Check plane prototypes")
+        newPlane.relative_turret_orientation = oldPlane.relative_turret_orientation
+    end
+    newPlane.effectivity_modifier = oldPlane.effectivity_modifier
+    newPlane.consumption_modifier = oldPlane.consumption_modifier
+    newPlane.friction_modifier = oldPlane.friction_modifier
     newPlane.speed = oldPlane.speed
     newPlane.orientation = oldPlane.orientation
 
@@ -100,12 +107,13 @@ end
 local function planeTakeoff(player, game, defines, settings)
     assert(player.vehicle)
     -- If player is grounded and plane is greater than the specified takeoff speed
-    if planeUtils.isGroundedPlane(player.vehicle.prototype.order) and
-       player.vehicle.speed > utils.toFactorioUnit(settings, settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value) then
+    if utility.isGroundedPlane(player.vehicle.prototype.name) and
+       player.vehicle.speed > utility.getTransitionSpeed(player.vehicle.prototype.name) then
         local newPlane = player.surface.create_entity{
             name    =player.vehicle.name .. "-airborne",
             position=player.position,
-            force   =player.force
+            force   =player.force,
+            create_build_effect_smoke=false
         }
 
         transitionPlane(
@@ -115,14 +123,9 @@ local function planeTakeoff(player, game, defines, settings)
             defines,
             true
         )
-
-        --Create some smoke to indicate to the player they have taken off
-        for i = 1, 3, 1 do
-            player.surface.create_trivial_smoke{name="smoke", position=player.position, force="neutral"}
-        end
-
         --Accelerate the new plane that the player is in so they don't need to press w again
         player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
+
         return
     end
 end
@@ -132,18 +135,14 @@ local function planeLand(player, game, defines, settings)
     local groundedName = string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))
 
     -- If player is airborne and plane is less than the specified landing speed
-    if planeUtils.isAirbornePlane(player.vehicle.prototype.order) and
-       player.vehicle.speed < utils.toFactorioUnit(settings, settings.global["aircraft-landing-speed-" .. groundedName].value) then
-        -- Keep the player airborne unless they are intentionally braking to prevent accidental landings
-        if settings.get_player_settings(player)["aircraft-realism-auto-accelerate-on-landing-speed-no-brake"].value and player.riding_state.acceleration ~= defines.riding.acceleration.braking then
-            player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
-            return
-        end
+    if utility.isAirbornePlane(player.vehicle.prototype.name) and
+       player.vehicle.speed < utility.getTransitionSpeed(player.vehicle.prototype.name) then
 
         local newPlane = player.surface.create_entity{
             name    =groundedName,
             position=player.position,
-            force   =player.force
+            force   =player.force,
+            create_build_effect_smoke=false
         }
 
         -- Brake held, land the plane ==========
@@ -155,20 +154,81 @@ local function planeLand(player, game, defines, settings)
             false
         )
 
-        -- Create some smoke to indicate to the player they have landed
-        for i = 1, 5, 1 do
-            player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
-        end
-
         --Auto brake
         player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
         return
     end
 end
 
-local functions = {}
+-- Updates the shadow for the player's plane
+local function updatePlaneShadow(player, qsec)
+    -- Only draw shadow once plane is airborne
+    if player.vehicle and player.surface and player.position and utility.isAirbornePlane(player.vehicle.name) then
+        local data = utility.getData(player.vehicle.name)
 
-functions.planeTakeoff = planeTakeoff
-functions.planeLand = planeLand
+        -- Plane must support shadows
+        if data.shadow then
+            local vBegin = utility.getTransitionSpeed(player.vehicle.name)
+            local vEnd = vBegin + data.shadow.endSpeed
+            local tileOffsetFinal = data.shadow.tileOffsetFinal
+            local renderlayer = data.shadow.renderLayer
+            local alphaInitial = data.shadow.alphaInitial
+            local totalFrames = data.shadow.directionCount
 
-return functions
+            if player.vehicle.speed > vBegin and player.vehicle.speed < vEnd then
+                -- Map the orientation to a sprite
+                local spriteIdx = utility.orientationToIdx(player.vehicle.orientation, totalFrames)
+                -- Progress of animation, [0,1)
+                -- linear, and polynomial as some animations look better if slower initially
+                local progress = (player.vehicle.speed - vBegin) / (vEnd - vBegin)
+                local nomialProgress = progress*progress
+
+                -- Since the shadow trails by 1 tick, we account for it by moving the shadow forwards using the plane's velocity
+                -- Speed in tiles/tick
+                local shadowOffsetX = player.vehicle.speed * math.sin(2*math.pi*player.vehicle.orientation)
+                local shadowOffsetY = player.vehicle.speed * -math.cos(2*math.pi*player.vehicle.orientation)
+
+                rendering.draw_sprite{
+                    sprite = player.vehicle.prototype.name .. "-shadow-" .. tostring(spriteIdx),
+                    target = {
+                        -- Use the vehicle position, if the player's position is used, the shadow flickers
+                        -- briefly on takeoff
+                        player.vehicle.position.x + shadowOffsetX + tileOffsetFinal[1]*nomialProgress,
+                        player.vehicle.position.y + shadowOffsetY + tileOffsetFinal[2]*nomialProgress
+                    },
+                    x_scale = 1 - nomialProgress,
+                    y_scale = 1 - nomialProgress,
+                    tint = {0, 0, 0, alphaInitial * (1 - nomialProgress)},
+                    render_layer = renderlayer,
+                    surface = player.surface,
+                    time_to_live = 2
+                }
+            end
+        end
+    end
+end
+
+local function onTick(e)
+    for index, player in pairs(game.connected_players) do
+        if player and player.driving and player.vehicle and player.surface then
+            local quarterSecond = e.tick % 15 == 0
+
+            -- Check takeoff every tick so shadow animation is smooth
+            if utility.isGroundedPlane(player.vehicle.prototype.name) then
+                --Create some smoke effects trailing behind the plane
+                if quarterSecond then
+                    player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
+                end
+                planeTakeoff(player, game, defines, settings)
+            elseif utility.isAirbornePlane(player.vehicle.prototype.name) then
+                planeLand(player, game, defines, settings)
+            end
+
+            updatePlaneShadow(player, quarterSecond)
+        end
+    end
+end
+
+local handlers = {}
+handlers[defines.events.on_tick] = onTick
+return handlers

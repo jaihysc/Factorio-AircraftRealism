@@ -12,14 +12,14 @@ data:extend({
         type = "bool-setting",
         name = "aircraft-realism-acceleration",
         setting_type = "startup",
-        default_value = false,
+        default_value = true,
         order="aab"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-braking-speed",
         setting_type = "startup",
-        default_value = false,
+        default_value = true,
         order="aac"
     },
     {
@@ -28,13 +28,6 @@ data:extend({
         setting_type = "startup",
         default_value = false,
         order="aad"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-no-aerial-shadows",
-        setting_type = "startup",
-        default_value = true,
-        order="aae"
     },
     {
         type = "double-setting",
@@ -143,12 +136,5 @@ data:extend({
         setting_type = "runtime-per-user",
         default_value = true,
         order="abd"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-auto-accelerate-on-landing-speed-no-brake",
-        setting_type = "runtime-per-user",
-        default_value = true,
-        order="abe"
     }
 })

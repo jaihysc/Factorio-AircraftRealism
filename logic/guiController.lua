@@ -1,8 +1,5 @@
 local mod_gui = require("mod-gui")
-local utils = require("logic.utility")
-local planeUtils = require("logic.planeUtility")
-
-local functions = {}
+local utility = require("logic.utility")
 
 -- Draws the fuel and airspeed gauges withOUT needles on the hud
 local function initializeGauges(player)
@@ -80,7 +77,7 @@ local function getFuelPercentage(player, game)
 end
 
 local function getFuelGaugeLeftIndex(fuelPercentage)
-    local index = utils.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
+    local index = utility.roundNumber(fuelPercentage * 31 / 100) -- Convert 0 - 100 to 0 - 31
 
     -- When switching out of modded fuels, the stack size can be larger than normal
     if index > 31 then
@@ -98,7 +95,7 @@ local function getFuelGaugeRightIndex(player)
 
     --Remaining energy of burning fuel compared to the full energy of the burning fuel
     local remainingBurningFuel = player.vehicle.burner.remaining_burning_fuel / player.vehicle.burner.currently_burning["fuel_value"] * 100
-    local index = utils.roundNumber(remainingBurningFuel * 30 / 100)
+    local index = utility.roundNumber(remainingBurningFuel * 30 / 100)
 
     -- Guard against modded fuel values changing
     if index > 30 then
@@ -110,21 +107,11 @@ end
 
 --------------------
 -- Speed gauge
--- Converts km or mph to an index on the speed gauge
-local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
+-- Converts speed in Factorio units to index on the speed gauge based on user units
+local function toSpeedGaugeIndex(speed, settings, player)
     -- Speed of vehicle devided by 4 since we have 400 needle positions out of 1600 on the gauge
-    if inFactorioUnits then
-        speed = utils.fromFactorioUnitUser(settings, player, speed)
-
-    -- Not in factorio speed units, convert to user's measurement choice if global setting differs
-    elseif settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value ~= settings.global["aircraft-speed-unit"].value then
-        if settings.global["aircraft-speed-unit"].value == "imperial" then
-            speed = speed * 1.609  -- To metric
-        else
-            speed = speed / 1.609  -- To imperial
-        end
-    end
-    local index = math.abs(utils.roundNumber(speed / 4))
+    speed = utility.fromFactorioUnitUser(settings, player, speed)
+    local index = math.abs(utility.roundNumber(speed / 4))
 
     -- Do not exceed 399 for index since that is the largest sprite
     if index > 399 then
@@ -132,20 +119,6 @@ local function toSpeedGaugeIndex(speed, settings, player, inFactorioUnits)
     end
 
     return index
-end
-
-
--- Gets the takeoff speed if the plane is grounded, landing speed if plane is airborne -> km/h or mph speed
-local function getTakeoffLandingSpeed(player, settings)
-    assert(player.vehicle)
-    if planeUtils.isGroundedPlane(player.vehicle.prototype.order) then
-        return settings.global["aircraft-takeoff-speed-" .. player.vehicle.name].value
-
-    elseif planeUtils.isAirbornePlane(player.vehicle.prototype.order) then
-        -- Chop off the -airborne at the end to get the landing speed of the plane
-        return settings.global["aircraft-landing-speed-" .. string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))].value
-
-    end
 end
 
 -- Updates the sprite on a gauge, if it does not exist, it is created
@@ -183,13 +156,13 @@ local function updateGaugeArrows(tick, player, settings, game)
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-warning-needle",
-        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(getTakeoffLandingSpeed(player, settings), settings, player, false)
+        "aircraft-realism-airspeed-indicator-warning-" .. toSpeedGaugeIndex(utility.getTransitionSpeed(player.vehicle.prototype.name), settings, player)
     )
 
     updateGaugeOverlay(
         airspeedGauge,
         "aircraft-realism-airspeed-indicator-needle", 
-        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, player, true)
+        "aircraft-realism-airspeed-indicator-" .. toSpeedGaugeIndex(player.vehicle.speed, settings, player)
     )
 
     --------------------
@@ -219,7 +192,7 @@ local function updateGaugeArrows(tick, player, settings, game)
         )
         -- Only play sounds every 15 ticks to avoid overlay
         if tick % 15 == 0 then
-            utils.playSound(settings, player, "aircraft-realism-sound-master-warning")
+            utility.playSound(settings, player, "aircraft-realism-sound-master-warning")
         end
     else
         updateGaugeOverlay(
@@ -230,7 +203,41 @@ local function updateGaugeArrows(tick, player, settings, game)
     end
 end
 
-functions.deleteGauges = deleteGauges
-functions.updateGaugeArrows = updateGaugeArrows
+local function onPlayerDied(e)
+    -- When a player dies and respawns, delete their gauges
+    local player = game.get_player(e.player_index)
+    if player then
+        deleteGauges(player)
+    end
+end
 
-return functions
+local function onPlayerDrivingChangedState(e)
+    local player = game.get_player(e.player_index)
+
+    -- Destroy gauges upon leaving a plane
+    -- The gauges are recreated later if the player is still in plane
+    if player and not player.driving then
+        deleteGauges(player)
+    end
+end
+
+local function onTick(e)
+    for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
+        if player and player.driving and player.vehicle then
+            if utility.isPlane(player.vehicle.prototype.name) then
+                -- Creates, updates, or deletes the gauges depending on player settings
+                if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
+                    updateGaugeArrows(e.tick, player, settings, game)
+                else
+                    deleteGauges(player)
+                end
+            end
+        end
+    end
+end
+
+local handlers = {}
+handlers[defines.events.on_player_died] = onPlayerDied
+handlers[defines.events.on_player_driving_changed_state] = onPlayerDrivingChangedState
+handlers[defines.events.on_tick] = onTick
+return handlers
