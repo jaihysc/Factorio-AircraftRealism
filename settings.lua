@@ -12,14 +12,14 @@ data:extend({
         type = "bool-setting",
         name = "aircraft-realism-acceleration",
         setting_type = "startup",
-        default_value = false,
+        default_value = true,
         order="aab"
     },
     {
         type = "bool-setting",
         name = "aircraft-realism-braking-speed",
         setting_type = "startup",
-        default_value = false,
+        default_value = true,
         order="aac"
     },
     {

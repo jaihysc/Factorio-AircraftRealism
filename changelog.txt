@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.4.2
-Date: 2022-10-22
+Version: 1.5.0
+Date: 2022-11-19
   Features:
     - Add aircraft takeoff distance indicator
     - Add animated shadows
@@ -8,6 +8,8 @@ Date: 2022-10-22
     - Planes now define a single speed (transition speed for takeoff and landing)
     - Remove setting "No airborne plane shadows"
     - Remove setting "Auto reaccelerate to keep airborne" (install a cruise control mod instead)
+    - Improve accuracy of "Deadly environmental impacts" to avoid incorrectly destroying the plane
+    - Adjust default settings (realistic acceleration and braking force on by default)
   Bugfixes:
     - Fix some aircraft properties not being copied over on takeoff/landing
     - 'Fix' being kept airborne when out of fuel with "Auto reaccelerate to keep airborne"
