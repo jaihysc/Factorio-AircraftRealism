@@ -53,11 +53,3 @@ for event, handlers in pairs(eventTable) do
         end
     end)
 end
-
-
---[[
-    Global table:
-        showTakeoffDist[]: LuaEntity
-            Index by player index
-            Holds the plane the player has selected to show takeoff distance for
-]]

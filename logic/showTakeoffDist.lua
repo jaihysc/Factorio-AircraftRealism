@@ -2,6 +2,13 @@ local utility = require("logic.utility")
 
 local showTakeoffDistShortcut = "aircraft-realism-show-takeoff-distance"
 
+--[[
+    Global table:
+        showTakeoffDist[]: LuaEntity
+            Index by player index
+            Holds the plane the player has selected to show takeoff distance for
+]]
+
 -- Draws line indicating takeoff distance for player plane
 -- lineLife: Ticks to show line drawn
 local function showTakeoffDist(player, plane, lineLife)
@@ -14,11 +21,12 @@ local function showTakeoffDist(player, plane, lineLife)
     assert(plane.prototype.friction_force, "Plane prototype missing friction_force. Check plane prototypes")
     assert(plane.prototype.effectivity, "Plane prototype missing effectivity. Check plane prototypes")
 
+    -- Calculation properties
     local maxTime = 15 -- Give up calculation if takeoff time too long
+    local dt = 1/60 -- 1/60 second = 1 tick
 
     -- Use SI units to avoid confusion and conversion errors
 
-    local dt = 1/60 -- 1/60 second = 1 tick
     local m = plane.prototype.weight -- Mass (kg)
     -- For speed: tile/tick -> m/s
     local v_0 = plane.speed * 60 -- Initial speed (m/s)
@@ -99,13 +107,14 @@ local function showTakeoffDist(player, plane, lineLife)
 
         -- Factorio calculates friction loss as E * friction multiplier
         E = E*u_f + E_gain*dt
-        s = s +v*dt
+        s = s + v*dt
     end
 
     -- Show orange line to show calculation timed out
     local line_color = {0, 0.5, 0, 0.5} -- Green
     if not succeeded then
         line_color = {0.9, 0.5, 0.1, 0.5} -- Orange
+        s = 1 -- Set to a short distance so it is not confused for an actual calculation
     end
     local takeoffPos = {x=plane.position.x + r_x*s, y=plane.position.y + r_y*s}
     rendering.draw_line{
@@ -117,27 +126,11 @@ local function showTakeoffDist(player, plane, lineLife)
         players={player},
         draw_on_ground=true
     }
-
-    -- The player can add their own factor of safety
-    --[[
-    -- Add a factor of safety to prediction
-    local marginDist = 10
-    local safeTakeoffPos = {x=takeoffPos.x + r_x*marginDist, y=takeoffPos.y + r_y*marginDist}
-    rendering.draw_line{
-        surface=player.surface,
-        from=takeoffPos, to=safeTakeoffPos,
-        color={0.9, 0.5, 0.1, 0.5},
-        width=10,
-        time_to_live=lineLife,
-        players={player},
-        draw_on_ground=true
-    }
-    ]]
 end
 
 function onTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
-        if player then
+        if player and player.surface then
             -- Set takeoff distance line target to currently hovered over
             -- if on same force
             if player.selected and
@@ -150,10 +143,11 @@ function onTick(e)
                 global.showTakeoffDist[player.index] = player.selected
             end
             -- Draw takeoff distance line
-            if global.showTakeoffDist and
-               global.showTakeoffDist[player.index] then
+            -- Run every half second so we can use longer calculation times
+            if e.tick % 30 == 0 and
+               global.showTakeoffDist and global.showTakeoffDist[player.index] then
                 if global.showTakeoffDist[player.index].valid then
-                    showTakeoffDist(player, global.showTakeoffDist[player.index], 2)
+                    showTakeoffDist(player, global.showTakeoffDist[player.index], 31)
                 else
                     -- Plane gone (destroyed, took off, etc)
                     global.showTakeoffDist[player.index] = nil
