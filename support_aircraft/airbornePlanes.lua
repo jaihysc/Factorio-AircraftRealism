@@ -51,6 +51,13 @@ if mods["Aircraft"] then
             width = 224,
             height = 224,
             shift = util.by_pixel(54, 35),
+
+            hrFilename="__Aircraft__/graphics/entity/gunship/hr-gunship_spritesheet-shadow.png",
+            hrWidth = 448,
+            hrHeight = 448,
+            hrShift = util.by_pixel(54, 35),
+            hrScale = 0.5,
+
             lineLength = 6,
             directionCount = 36,
             endSpeed = 60 / 216

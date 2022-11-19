@@ -143,6 +143,36 @@ local function makeAirborne(config)
         if config.shadow.alphaInitial == nil then
             config.shadow.alphaInitial = 0.5
         end
+
+        -- HR properties are required if hr filename provided
+        if config.shadow.hrFilename ~= nil then
+            if config.shadow.hrWidth == nil then
+                error("Missing shadow table member: hrWidth")
+            end
+            if config.shadow.hrHeight == nil then
+                error("Missing shadow table member: hrHeight")
+            end
+            if config.shadow.hrShift == nil then
+                config.shadow.hrShift = {0, 0}
+            end
+            if config.shadow.hrScale == nil then
+                config.shadow.hrScale = 1
+            end
+        else
+            -- HR filename must be provided if any of the hr properties are defined
+            if config.shadow.hrWidth ~= nil then
+                error("Missing shadow table member: hrFilename")
+            end
+            if config.shadow.hrHeight ~= nil then
+                error("Missing shadow table member: hrFilename")
+            end
+            if config.shadow.hrShift ~= nil then
+                error("Missing shadow table member: hrFilename")
+            end
+            if config.shadow.hrScale ~= nil then
+                error("Missing shadow table member: hrFilename")
+            end
+        end
     end
 
     setupRuntimeInfo(config.name, config.name .. utility.AIRBORNE_PLANE_SUFFIX, true, function(data)
@@ -173,10 +203,12 @@ local function makeAirborne(config)
         for i=0,config.shadow.directionCount-1,1  do
             local xPos = i % config.shadow.lineLength
             local yPos = math.floor(i / config.shadow.lineLength)
-            data:extend{{
+
+            local sprite = {
                 type = "sprite",
                 name = config.name .. "-airborne-shadow-" .. tostring(i),
                 filename = config.shadow.filename,
+
                 width = config.shadow.width,
                 height = config.shadow.height,
                 x = xPos * config.shadow.width,
@@ -184,7 +216,20 @@ local function makeAirborne(config)
                 shift = config.shadow.shift,
                 scale = config.shadow.scale,
                 -- draw_as_shadow puts the shadow on the wrong layer - below the entities
-            }}
+            }
+            if config.shadow.hrFilename then
+                sprite.hr_version = {
+                    filename = config.shadow.hrFilename,
+
+                    width = config.shadow.hrWidth,
+                    height = config.shadow.hrHeight,
+                    x = xPos * config.shadow.hrWidth,
+                    y = yPos * config.shadow.hrHeight,
+                    shift = config.shadow.hrShift,
+                    scale = config.shadow.hrScale,
+                }
+            end
+            data:extend{sprite}
         end
     end
     return plane

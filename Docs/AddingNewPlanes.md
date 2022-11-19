@@ -61,12 +61,17 @@ Prototype makeAirborne(Table config)
 | name                    | string           | Prototype name used in makeGrounded                                                                             |
 | shadow?                 | table            | Define to enable to plane to have animated shadows                                                              |
 | shadow.filename         | string           | Filename to shadow spritesheet of the plane                                                                     |
+| shadow.hrFilename?      | string           | Filename to HR shadow spritesheet of the plane                                                                  |
 | shadow.width            | number           | Number of pixels for each sprite direction within the spritesheet (width)                                       |
+| shadow.hrWidth?         | number           | Number of pixels for each sprite direction within the HR spritesheet (width)                                    |
 | shadow.height           | number           | Number of pixels for each sprite direction within the spritesheet (height)                                      |
+| shadow.hrHeight?        | number           | Number of pixels for each sprite direction within the HR spritesheet (height)                                   |
 | shadow.lineLength       | number           | Number of directions per row within the spritesheet                                                             |
 | shadow.directionCount   | number           | Number of directions in total on the spritesheet                                                                |
 | shadow.shift?           | {number, number} | **Default: {0, 0}** Same as Factorio [sprite.shift](https://wiki.factorio.com/Types/Sprite#shift)               |
+| shadow.hrShift?         | {number, number} | **Default: {0, 0}** Same as Factorio [sprite.shift](https://wiki.factorio.com/Types/Sprite#shift) for HR sprite |
 | shadow.scale?           | number           | **Default: 1** Same as Factorio [sprite.scale](https://wiki.factorio.com/Types/Sprite#scale)                    |
+| shadow.hrScale?         | number           | **Default: 1** Same as Factorio [sprite.scale](https://wiki.factorio.com/Types/Sprite#scale) for HR sprite      |
 | shadow.endSpeed         | number           | Speed after plane transition speed to end the shadow animation *(tiles/tick)*. Watch your units.                |
 | shadow.tileOffsetFinal? | {number, number} | **Default: {50, 20}** The shadow will move from its initial position to this at the end of the shadow animation |
 | shadow.renderLayer?     | string           | **Default: "smoke"** One of [Types/Renderlayer](https://lua-api.factorio.com/latest/Concepts.html#RenderLayer)  |
@@ -82,9 +87,16 @@ local gunship = aircraftMaker.makeAirborne({
         width = 224,
         height = 224,
         shift = util.by_pixel(54, 35),
+
+        hrFilename="__Aircraft__/graphics/entity/gunship/hr-gunship_spritesheet-shadow.png",
+        hrWidth = 448,
+        hrHeight = 448,
+        hrShift = util.by_pixel(54, 35),
+        hrScale = 0.5,
+
         lineLength = 6,
         directionCount = 36,
-        endSpeed = 40 / 216
+        endSpeed = 60 / 216
     }
 })
 ```
