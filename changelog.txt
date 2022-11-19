@@ -7,8 +7,10 @@ Date: 2022-10-22
   Changes:
     - Planes now define a single speed (transition speed for takeoff and landing)
     - Remove setting "No airborne plane shadows"
+    - Remove setting "Auto reaccelerate to keep airborne" (install a cruise control mod instead)
   Bugfixes:
     - Fix some aircraft properties not being copied over on takeoff/landing
+    - 'Fix' being kept airborne when out of fuel with "Auto reaccelerate to keep airborne"
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.1
 Date: 2022-06-29

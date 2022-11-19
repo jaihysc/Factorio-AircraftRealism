@@ -34,14 +34,6 @@ _Enable/disable gauge + warning chime, warning threshold, units can be modified 
 
 ## Optional mechanics
 
-### Auto reaccelerate to keep airborne
-
-To reduce accidental landings, unless the brake is held the plane will automatically reaccelerate to keep itself airborne.
-
-Throttle lever coming in the future, allowing a set speed to be maintained.
-
-_Enable/disable in the ingame mod menu_
-
 ### Strict runway requirement [Default: Disabled]
 
 Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane.
@@ -77,12 +69,6 @@ _Enable/disable in the ingame mod menu_
 ### Increase debris damage [Default: Disabled]
 
 Rocks, tree stumps and other objects will damage the plane more on takeoff and landing.
-
-_Enable/disable in the ingame mod menu_
-
-### No airborne plane shadows
-
-Planes will lose their shadows upon taking off.
 
 _Enable/disable in the ingame mod menu_
 

@@ -136,12 +136,5 @@ data:extend({
         setting_type = "runtime-per-user",
         default_value = true,
         order="abd"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-auto-accelerate-on-landing-speed-no-brake",
-        setting_type = "runtime-per-user",
-        default_value = true,
-        order="abe"
     }
 })
