@@ -7,7 +7,7 @@ Planes possess collisions and now needs to reach set speeds to takeoff. To custo
 This mod includes no planes by itself, you must install them separately. A non-exhaustive list of aircraft mods is listed
 - [Aircraft](https://mods.factorio.com/mods/SuicidalKid/Aircraft)
 - [King Jo's B-17](https://mods.factorio.com/mod/kj_b17)
-- [King Jo's Northrop B-2 Spirit](https://mods.factorio.com/mod/kj_b2)
+- [KM A-10 ThunderBolt](https://mods.factorio.com/mod/km_a10)
 
 ## Mechanics
 
@@ -15,70 +15,43 @@ Planes are grounded by default need to reach their set takeoff speed to takeoff,
 
 Should the pilot bail while the plane is airborne, if there is a passenger available, they will become the pilot instead. Otherwise the plane will be destroyed. On the ground, the pilot cannot exit unless the plane is stopped.
 
-_Takeoff/landing speed, units can be modified in the ingame mod menu_
+_Takeoff/landing speed, units can be modified in the in-game mod menu_
 
-### Gauges
+## User Interface
 
-Fuel gauge
+For an estimation of the takeoff distance of your plane, click the shortcut "Estimate takeoff distance" to the right of your toolbar, beside "Undo" and "Toggle Alt-mode" and hover your cursor over your plane. If the takeoff distance could not be determined, an orange line is drawn to indicate error.
 
-* Left fuel bar: Remaining fuel in the aircraft tank
-* Right fuel bar: Remaining energy in currently burning fuel item
-* Red light: Turns on when remaining fuel in tank is below set threshold, sounds warning chime
+Gauges appear at the top left of the screen, they convey the following information
 
-Speed gauge
+| Fuel gauge | Description |
+| - | - |
+| Left fuel bar | Remaining fuel in the aircraft tank |
+| Right fuel bar | Remaining energy in currently burning fuel item |
+| Red light | Turns on when remaining fuel in tank is below set threshold, sounds warning chime |
 
-* White needle: Plane speed
-* Red needle: Plane takeoff or landing speed
+| Speed gauge | Description |
+| - | - |
+| White needle | Plane speed in your chosen unit (km/h or mph) |
+| Red needle | Plane takeoff or landing speed in your chosen unit (km/h or mph) |
 
-_Enable/disable gauge + warning chime, warning threshold, units can be modified in the ingame mod menu_
+_Enable/disable gauge + warning chime, warning threshold, units can be modified in the in-game mod menu_
 
 ## Optional mechanics
 
-### Strict runway requirement [Default: Disabled]
-
-Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane.
-
-_Enable/disable, Max vehicle friction modifier for tiles, max speed when not on runway can be modified in the ingame mod menu_
-
-### Environmental damage [Default: Disabled]
-
-Hitting cliffs and running into water on takeoff and landing will destroy the plane. Otherwise the plane just stops.
-
-_Enable/disable in the ingame mod menu_
-
-### Pollution [Default: Disabled]
-
-Planes emit pollution depending on their fuel type and speed.
-
-_Enable/disable, pollution amount can be modified in the ingame mod menu_
-
-### Realistic turn radius
-
-Widens the turn radius of planes; planes can no longer spin on the spot.
-
-_Enable/disable in the ingame mod menu_
-
-### Realistic acceleration + braking force [Default: Disabled]
-
-Slower acceleration and braking, requiring a greater distance to takeoff and land.
-
-_Enable/disable in the ingame mod menu_
-
-### Increase debris damage [Default: Disabled]
-
-Rocks, tree stumps and other objects will damage the plane more on takeoff and landing.
-
-_Enable/disable in the ingame mod menu_
-
-### Fuel usage multiplier
-
-Modify how much fuel grounded and airborne planes use.
-
-_Fuel usage can be modified in the ingame mod menu_
+| Name | Description |
+| - | - |
+| Realistic turn radius | Widens the turn radius of planes; planes can no longer spin on the spot. <br> _Enable/disable in the in-game mod menu_ |
+| Realistic acceleration + braking force | Slower acceleration and braking, requiring a greater distance to takeoff and land. <br> _Enable/disable in the in-game mod menu_ |
+| Increase ground collision damage\* | Rocks, tree stumps and other objects will damage the plane more on takeoff and landing. <br> _Enable/disable in the in-game mod menu_ |
+| Strict runway requirement\* | Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane. <br> _Enable/disable, Max vehicle friction modifier for tiles, max speed when not on runway can be modified in the in-game mod menu_ |
+| Deadly environmental impacts\* | Hitting cliffs and running into water on takeoff and landing will destroy the plane. Otherwise the plane just stops. <br> _Enable/disable in the in-game mod menu_ |
+| Pollution\* | Planes emit pollution depending on their fuel type and speed. <br> _Enable/disable, pollution amount can be modified in the in-game mod menu_ |
+| Fuel usage multiplier | Modify how much fuel grounded and airborne planes use. <br> _Fuel usage can be modified in the in-game mod menu_ |
+| \* Disabled by default. |  |
 
 ## Mod Internals
 
-For implementations of features and possible issues, see [here](Docs/ScriptImplementation.md) for an up to date document.
+For implementations of features and possible issues, see [here](Docs/ScriptImplementation.md) for an up-to-date document.
 
 It is possible to add your own planes using this mod, see [here](Docs/AddingNewPlanes.md).
 
@@ -86,7 +59,10 @@ It is possible to add your own planes using this mod, see [here](Docs/AddingNewP
 
 Thank you to everyone on the forums for reporting issues and offering suggestions.
 
-- SuicidalKid - Part of the plane icon seen in the thumbnail
-- TheKingJo - German locale
+| Name | Description |
+| - | - |
+| Thomasnotused | Aircraft (original inspiration for this mod) and part of the plane icon seen in the thumbnail |
+| Snouz | Optimized sprites |
+| TheKingJo | German locale |
 
 Finally, thank you for using this mod!
