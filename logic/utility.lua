@@ -3,6 +3,7 @@
 local utility = {}
 
 -- Constants
+utility.SETTING_AIRBORNE_DAMAGE_IMMUNITY = "aircraft-realism-airborne-damage-immunity"
 utility.PLANE_DATA_HOLDER_PROTOTYPE = "flying-text"
 utility.PLANE_DATA_HOLDER_NAME = "aircraft-realism-plane-properties"
 utility.AIRBORNE_PLANE_SUFFIX = "-airborne" -- Suffix added to airborne planes

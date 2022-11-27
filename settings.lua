@@ -1,3 +1,4 @@
+local utility = require("logic.utility")
 require("support_aircraft.planeSettings")
 
 data:extend({
@@ -91,6 +92,13 @@ data:extend({
         order="acg"
     },
     {
+        type = "bool-setting",
+        name = utility.SETTING_AIRBORNE_DAMAGE_IMMUNITY,
+        setting_type = "runtime-global",
+        default_value = false,
+        order="ach"
+    },
+    {
         type = "string-setting",
         name = "aircraft-speed-unit",
         setting_type = "runtime-global",
@@ -100,7 +108,7 @@ data:extend({
             "imperial"
         },
         allow_blank = false,
-        order="ach"
+        order="aci"
     }, -- Per user settings
     {
         type = "bool-setting",

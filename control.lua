@@ -33,6 +33,7 @@ loadModule("logic.planePollution")
 loadModule("logic.planeCollisions")
 loadModule("logic.planeRunway")
 loadModule("logic.driverExited")
+loadModule("logic.damageImmunity")
 -- <<< END MODULES
 
 

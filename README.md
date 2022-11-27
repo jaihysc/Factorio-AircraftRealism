@@ -46,6 +46,7 @@ _Enable/disable gauge + warning chime, warning threshold, units can be modified 
 | Strict runway requirement\* | Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane. <br> _Enable/disable, Max vehicle friction modifier for tiles, max speed when not on runway can be modified in the in-game mod menu_ |
 | Deadly environmental impacts\* | Hitting cliffs and running into water on takeoff and landing will destroy the plane. Otherwise the plane just stops. <br> _Enable/disable in the in-game mod menu_ |
 | Pollution\* | Planes emit pollution depending on their fuel type and speed. <br> _Enable/disable, pollution amount can be modified in the in-game mod menu_ |
+| Airborne damage immunity\* | Airborne planes take no damage, if you are tired of biters destroying your planes (or you wish to use [nuclear weapons](https://mods.factorio.com/mod/True-Nukes) without blowing yourself up) <br> _Enable/disable in the in-game mod menu_ |
 | Fuel usage multiplier | Modify how much fuel grounded and airborne planes use. <br> _Fuel usage can be modified in the in-game mod menu_ |
 | \* Disabled by default. |  |
 
