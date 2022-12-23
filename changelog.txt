@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.2
+Date: 2022-12-22
+  Bugfixes:
+    - Fix plane getting destroyed when you enter a new plane after crashing a plane with "Deadly environmental impacts"
+---------------------------------------------------------------------------------------------------
 Version: 1.5.1
 Date: 2022-11-26
   Features:

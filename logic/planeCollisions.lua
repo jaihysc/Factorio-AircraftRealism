@@ -39,11 +39,13 @@ local function obstacleCollision(settings, surface, player, plane)
         -- Destroy plane on large deceleration
         if global.lastSpeed[player.index] then
             local acceleration = plane.speed - global.lastSpeed[player.index]
-
-            -- Stopped (< 5 km/h) with deceleration over 40km/h
-            if math.abs(plane.speed) < 5 / 216 and math.abs(acceleration) > 40 / 216 then
-                plane.die()
-                return
+            -- Trigger on deceleration only, not acceleration
+            if (global.lastSpeed[player.index] > 0 and acceleration < 0) or (global.lastSpeed[player.index] < 0 and acceleration > 0) then
+                -- Stopped (< 5 km/h) with deceleration over 40km/h
+                if math.abs(plane.speed) < 5 / 216 and math.abs(acceleration) > 40 / 216 then
+                    plane.die()
+                    return
+                end
             end
         end
         global.lastSpeed[player.index] = plane.speed
@@ -57,6 +59,11 @@ local function onTick(e)
             if utility.isGroundedPlane(player.vehicle.prototype.name) then
                 -- Test for obstacle collision (water, cliff)
                 obstacleCollision(settings, player.surface, player, player.vehicle)
+            end
+        else
+            -- Clear last speed (Fixes bug with planes getting destroyed when you enter)
+            if global.lastSpeed and global.lastSpeed[player.index] then
+                global.lastSpeed[player.index] = nil
             end
         end
     end
