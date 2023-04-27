@@ -88,12 +88,17 @@ local function initPlaneData()
     }
 end
 
+local planeDataCache = nil -- Cache plane data here during runtime
 -- Fetches table holding information about all the planes
 -- dataStage: true if called from dataStage, false/nil if from runtime
 local function getPlaneData(dataStage)
     -- We do some trickery to save data until the data stage
     -- Serialize table (data) and store it in a prototype's property order
     -- The prototype propety can store a max of 200 characters, thus we split it across several prototypes
+
+    if planeDataCache ~= nil then
+        return planeDataCache
+    end
 
     -- Recreate the serialized data by iterating all the prototypes
     local serializedData = ""
@@ -124,6 +129,10 @@ local function getPlaneData(dataStage)
     end
     assert(planeData)
 
+    -- Cache the data during runtime
+    if not dataStage then
+        planeDataCache = planeData;
+    end
     return planeData
 end
 
