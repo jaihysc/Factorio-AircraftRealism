@@ -223,14 +223,15 @@ end
 
 local function onTick(e)
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
-        if player and player.driving and player.vehicle then
-            if utility.isPlane(player.vehicle.prototype.name) then
-                -- Creates, updates, or deletes the gauges depending on player settings
-                if settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
-                    updateGaugeArrows(e.tick, player, settings, game)
-                else
-                    deleteGauges(player)
-                end
+        if player then
+            -- Creates, updates, or deletes the gauges depending on player settings
+            if player.driving and
+               player.vehicle and
+               utility.isPlane(player.vehicle.prototype.name) and
+               settings.get_player_settings(player)["aircraft-realism-user-enable-gauges"].value then
+                updateGaugeArrows(e.tick, player, settings, game)
+            else
+                deleteGauges(player)
             end
         end
     end
