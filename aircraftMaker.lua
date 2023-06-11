@@ -98,10 +98,15 @@ local function makeGrounded(config)
     if config.prototype == nil then
         error("Missing table member: prototype")
     end
+    if config.isSeaplane == nil then
+        config.isSeaplane = false
+    end
 
     local plane = config.prototype
 
-    setupRuntimeInfo(plane.name, plane.name .. utility.AIRBORNE_PLANE_SUFFIX, false)
+    setupRuntimeInfo(plane.name, plane.name .. utility.AIRBORNE_PLANE_SUFFIX, false, function(data)
+        data.isSeaplane = config.isSeaplane
+    end)
     setupHealth(plane, false)
     setupHandling(plane)
     setupFuelConsumption(plane, false)
@@ -165,16 +170,16 @@ local function makeAirborne(config)
         else
             -- HR filename must be provided if any of the hr properties are defined
             if config.shadow.hrWidth ~= nil then
-                error("Missing shadow table member: hrFilename")
+                error("Missing shadow table member: hrWidth")
             end
             if config.shadow.hrHeight ~= nil then
-                error("Missing shadow table member: hrFilename")
+                error("Missing shadow table member: hrHeight")
             end
             if config.shadow.hrShift ~= nil then
-                error("Missing shadow table member: hrFilename")
+                error("Missing shadow table member: hrShift")
             end
             if config.shadow.hrScale ~= nil then
-                error("Missing shadow table member: hrFilename")
+                error("Missing shadow table member: hrScale")
             end
         end
     end

@@ -41,13 +41,17 @@ void makeGrounded(Table config)
 
 | Config member     | Type      | Documentation                                                                     |
 |-------------------|-----------|-----------------------------------------------------------------------------------|
+| isSeaplane        | bool      | **Default: false** If true, plane can land on water tiles. If false, plane destroyed upon landing on water |
 | prototype         | prototype | Your plane prototype, already registered to global table data                     |
 
 ```lua
 -- Example
 local aircraftMaker = require("__AircraftRealism__.aircraftMaker")
-local groundedCar = data.raw["car"]["car"]
-aircraftMaker.makeGrounded({prototype=groundedCar})
+local groundedGunship = data.raw["car"]["gunship"]
+aircraftMaker.makeGrounded({
+    isSeaplane = false,
+    prototype = groundedGunship
+})
 ```
 
 ### makeAirborne
@@ -117,6 +121,21 @@ The values of all members is a true/false.
 | rBraking          | Reduce braking power                                                                       |
 | rTurnRadius       | Decrease prototype rotation_speed                                                          |
 | noAerialShadow    | Kept for backward compatibility, always true. Original: Remove shadows from airborne plane |
+
+```lua
+-- Example
+local aircraftMaker = require("__AircraftRealism__.aircraftMaker")
+local settings = aircraftMaker.getSettings()
+if settings.rAcceleration then
+    -- ...
+end
+if settings.rBraking then
+    -- ...
+end
+if settings.rTurnRadius then
+    -- ...
+end
+```
 
 ## Per plane user settings
 

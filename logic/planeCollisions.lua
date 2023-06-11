@@ -23,11 +23,13 @@ local function obstacleCollision(settings, surface, player, plane)
 	if tile == nil or not tile.valid then
 		return;
 	end
-    if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud"or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
-        if plane.speed == 0 then  --Player + passenger dies too since they will just be stuck anyways
-            utility.killDriverAndPassenger(plane, player)
+    if not utility.getData(plane.name).isSeaplane then
+        if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud"or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
+            if plane.speed == 0 then  --Player + passenger dies too since they will just be stuck anyways
+                utility.killDriverAndPassenger(plane, player)
 
-            return;
+                return;
+            end
         end
     end
 
