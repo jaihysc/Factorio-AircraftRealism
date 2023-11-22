@@ -97,7 +97,7 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     -- Destroy the old plane first before setting the passenger and driver to the new plane or else the game doesn't like it
     local driver = oldPlane.get_driver()
     local passenger = oldPlane.get_passenger()
-    oldPlane.destroy()
+    oldPlane.destroy{ raise_destroy = true }
 
     -- Drivers / passengers
     newPlane.set_driver(driver)
@@ -113,7 +113,8 @@ local function planeTakeoff(player, game, defines, settings)
             name    =player.vehicle.name .. "-airborne",
             position=player.position,
             force   =player.force,
-            create_build_effect_smoke=false
+            create_build_effect_smoke=false,
+            raise_built = true
         }
 
         transitionPlane(
@@ -142,7 +143,8 @@ local function planeLand(player, game, defines, settings)
             name    =groundedName,
             position=player.position,
             force   =player.force,
-            create_build_effect_smoke=false
+            create_build_effect_smoke=false,
+            raise_built = true
         }
 
         -- Brake held, land the plane ==========
