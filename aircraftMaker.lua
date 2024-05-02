@@ -119,26 +119,11 @@ local function makeAirborne(config)
     end
 
     if config.shadow then
-        if config.shadow.filename == nil then
-            error("Missing shadow table member: filename")
-        end
-        if config.shadow.width == nil then
-            error("Missing shadow table member: width")
-        end
-        if config.shadow.height == nil then
-            error("Missing shadow table member: height")
-        end
         if config.shadow.lineLength == nil then
             error("Missing table member: lineLength")
         end
         if config.shadow.directionCount == nil then
             error("Missing table member: directionCount")
-        end
-        if config.shadow.shift == nil then
-            config.shadow.shift = {0, 0}
-        end
-        if config.shadow.scale == nil then
-            config.shadow.scale = 1
         end
         if config.shadow.endSpeed == nil then
             error("Missing table member: endSpeed")
@@ -153,33 +138,49 @@ local function makeAirborne(config)
             config.shadow.alphaInitial = 0.5
         end
 
-        -- HR properties are required if hr filename provided
-        if config.shadow.hrFilename ~= nil then
-            if config.shadow.hrWidth == nil then
-                error("Missing shadow table member: hrWidth")
+        -- Shadow sprite information required if not manual mode
+        if config.shadow.filename ~= nil then
+            if config.shadow.width == nil then
+                error("Missing shadow table member: width")
             end
-            if config.shadow.hrHeight == nil then
-                error("Missing shadow table member: hrHeight")
+            if config.shadow.height == nil then
+                error("Missing shadow table member: height")
             end
-            if config.shadow.hrShift == nil then
-                config.shadow.hrShift = {0, 0}
+            if config.shadow.shift == nil then
+                config.shadow.shift = {0, 0}
             end
-            if config.shadow.hrScale == nil then
-                config.shadow.hrScale = 1
+            if config.shadow.scale == nil then
+                config.shadow.scale = 1
             end
-        else
-            -- HR filename must be provided if any of the hr properties are defined
-            if config.shadow.hrWidth ~= nil then
-                error("Missing shadow table member: hrWidth")
-            end
-            if config.shadow.hrHeight ~= nil then
-                error("Missing shadow table member: hrHeight")
-            end
-            if config.shadow.hrShift ~= nil then
-                error("Missing shadow table member: hrShift")
-            end
-            if config.shadow.hrScale ~= nil then
-                error("Missing shadow table member: hrScale")
+
+            -- HR properties are required if hr filename provided
+            if config.shadow.hrFilename ~= nil then
+                if config.shadow.hrWidth == nil then
+                    error("Missing shadow table member: hrWidth")
+                end
+                if config.shadow.hrHeight == nil then
+                    error("Missing shadow table member: hrHeight")
+                end
+                if config.shadow.hrShift == nil then
+                    config.shadow.hrShift = {0, 0}
+                end
+                if config.shadow.hrScale == nil then
+                    config.shadow.hrScale = 1
+                end
+            else
+                -- Should not provide HR properties otherwise
+                if config.shadow.hrWidth ~= nil then
+                    error("Cannot use shadow table member as HR filename not provided: hrWidth")
+                end
+                if config.shadow.hrHeight ~= nil then
+                    error("Cannot use shadow table member as HR filename not provided: hrHeight")
+                end
+                if config.shadow.hrShift ~= nil then
+                    error("Cannot use shadow table member as HR filename not provided: hrShift")
+                end
+                if config.shadow.hrScale ~= nil then
+                    error("Cannot use shadow table member as HR filename not provided: hrScale")
+                end
             end
         end
     end
@@ -207,7 +208,7 @@ local function makeAirborne(config)
 
 
     -- Shadow creation
-    if config.shadow then
+    if config.shadow and config.shadow.filename ~= nil then
         -- Load each rotation as its own sprite, so it can be rendered
         for i=0,config.shadow.directionCount-1,1  do
             local xPos = i % config.shadow.lineLength
