@@ -191,7 +191,8 @@ local function updateGaugeArrows(tick, player, settings, game)
             "aircraft-realism-fuel-indicator-emergency-fuel-warning"
         )
         -- Only play sounds every 15 ticks to avoid overlay
-        if tick % 15 == 0 then
+        -- Only when when faster than 10km/h to avoids warning when entering newly built plane
+        if tick % 15 == 0 and player.vehicle.speed > 10 / 216 then
             utility.playSound(settings, player, "aircraft-realism-sound-master-warning")
         end
     else
