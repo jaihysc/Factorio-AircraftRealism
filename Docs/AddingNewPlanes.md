@@ -163,13 +163,16 @@ data:extend({
         type = "double-setting",
         name = "aircraft-takeoff-speed-<yourPlaneName>",
         setting_type = "runtime-global",
-        minimum_value = 0,
+        minimum_value = 10,
+        maximum_value = <reasonable limit>
         default_value = 110,
     },
 
     -- ...
 })
 ```
+
+If you defined `maxSpeed` for your plane, the maximum value must be less than the `maxSpeed`.
 
 ## Localization
 

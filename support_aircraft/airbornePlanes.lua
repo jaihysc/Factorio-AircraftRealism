@@ -46,6 +46,7 @@ end
 if mods["Aircraft"] then
     local gunship = aircraftMaker.makeAirborne({
         name="gunship",
+        maxSpeed = 300 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/gunship/gunship_spritesheet-shadow.png",
             width = 224,
@@ -65,6 +66,7 @@ if mods["Aircraft"] then
     })
     local cargoPlane = aircraftMaker.makeAirborne({
         name="cargo-plane",
+        maxSpeed = 180 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
             width = 224,
@@ -84,6 +86,7 @@ if mods["Aircraft"] then
     })
     local jet = aircraftMaker.makeAirborne({
         name="jet",
+        maxSpeed = 600 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/jet/jet_spritesheet-shadow.png",
             width = 224,
@@ -103,6 +106,7 @@ if mods["Aircraft"] then
     })
     local flyingFortress = aircraftMaker.makeAirborne({
         name="flying-fortress",
+        maxSpeed = 590 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/flying_fortress/flying_fortress_spritesheet-shadow.png",
             width = 224,
@@ -135,6 +139,7 @@ end
 if mods["betterCargoPlanes"] then
     local bCargoPlane  = aircraftMaker.makeAirborne({
         name="better-cargo-plane",
+        maxSpeed = 220 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
             width = 224,
@@ -154,6 +159,7 @@ if mods["betterCargoPlanes"] then
     })
     local ebCargoPlane = aircraftMaker.makeAirborne({
         name="even-better-cargo-plane",
+        maxSpeed = 290 / 216,
         shadow={
             filename="__Aircraft__/graphics/entity/cargo_plane/cargo_plane_spritesheet-shadow.png",
             width = 224,
