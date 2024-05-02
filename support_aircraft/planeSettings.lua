@@ -20,7 +20,7 @@ if mods["Aircraft"] then
             name = "aircraft-takeoff-speed-jet",
             setting_type = "runtime-global",
             minimum_value = 0,
-            default_value = 280,
+            default_value = 230,
             order="atc"
         },
         {
