@@ -119,9 +119,6 @@ local function makeAirborne(config)
     end
 
     if config.shadow then
-        if config.shadow.lineLength == nil then
-            error("Missing table member: lineLength")
-        end
         if config.shadow.directionCount == nil then
             error("Missing table member: directionCount")
         end
@@ -140,6 +137,10 @@ local function makeAirborne(config)
 
         -- Shadow sprite information required if not manual mode
         if config.shadow.filename ~= nil then
+            if config.shadow.lineLength == nil then
+                error("Missing table member: lineLength")
+            end
+
             if config.shadow.width == nil then
                 error("Missing shadow table member: width")
             end
