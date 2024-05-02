@@ -208,6 +208,12 @@ local function getTransitionSpeed(name)
     return toFactorioUnit(settings, speed)
 end
 
+-- Fetches maximum speed for plane, nil if not defined
+local function getMaxSpeed(name)
+    assert(name)
+    return getData(name).maxSpeed
+end
+
 local function killDriverAndPassenger(plane, player)
     local driver = plane.get_driver()
 
@@ -240,6 +246,7 @@ utility.isGroundedPlane = isGroundedPlane
 utility.isAirbornePlane = isAirbornePlane
 utility.isPlane = isPlane
 utility.getTransitionSpeed = getTransitionSpeed
+utility.getMaxSpeed = getMaxSpeed
 utility.killDriverAndPassenger = killDriverAndPassenger
 
 return utility

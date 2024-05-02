@@ -186,6 +186,7 @@ local function makeAirborne(config)
     end
 
     setupRuntimeInfo(config.name, config.name .. utility.AIRBORNE_PLANE_SUFFIX, true, function(data)
+        data.maxSpeed = config.maxSpeed
         if config.shadow then
             assert(data.shadow == nil, "Plane already has shadow data, did you call makeAirborne twice?")
             data.shadow = {}

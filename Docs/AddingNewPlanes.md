@@ -63,10 +63,11 @@ Prototype makeAirborne(Table config)
 | Config member           | Type             | Documentation                                                                                                   |
 |-------------------------|------------------|-----------------------------------------------------------------------------------------------------------------|
 | name                    | string           | Prototype name used in makeGrounded                                                                             |
+| maxSpeed?               | number           | Maximum speed of the airborne plane, cannot accelerate past this *(tiles/tick)*                                 |
 | shadow?                 | table            | Define to enable to plane to have animated shadows                                                              |
 | shadow.lineLength       | number           | Number of directions per row within the spritesheet                                                             |
 | shadow.directionCount   | number           | Number of directions in total on the spritesheet                                                                |
-| shadow.endSpeed         | number           | Speed after plane transition speed to end the shadow animation *(tiles/tick)*. Watch your units.                |
+| shadow.endSpeed         | number           | Speed after plane transition speed to end the shadow animation *(tiles/tick)*                                   |
 | shadow.tileOffsetFinal? | {number, number} | **Default: {50, 20}** The shadow will move from its initial position to this at the end of the shadow animation |
 | shadow.renderLayer?     | string           | **Default: "smoke"** One of [Types/Renderlayer](https://lua-api.factorio.com/latest/Concepts.html#RenderLayer)  |
 | shadow.alphaInitial?    | number           | **Default: 0.5** Shadow tint begins with this alpha and falls to 0                                              |
