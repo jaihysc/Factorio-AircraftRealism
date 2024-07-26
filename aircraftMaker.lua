@@ -53,9 +53,18 @@ local function setupHealth(plane, airborne)
     end
 end
 
-local function setupHandling(plane)
+local function setupHandling(plane, airborne)
     if settings.startup["aircraft-realism-turn-radius"].value then
         plane.tank_driving = false
+    end
+
+    if airborne then
+        -- Override default for "car" type avoids damage/stickers from moving over acid puddles.
+        plane.trigger_target_mask = { "common" }
+    else
+        -- Ensure vulnerability to acid pools while on the ground.
+        -- This is the default for "car" type, but could be overridden in other mods.
+        plane.trigger_target_mask = { "common", "ground-unit" }
     end
 end
 
@@ -108,7 +117,7 @@ local function makeGrounded(config)
         data.isSeaplane = config.isSeaplane
     end)
     setupHealth(plane, false)
-    setupHandling(plane)
+    setupHandling(plane, false)
     setupFuelConsumption(plane, false)
 end
 
@@ -204,7 +213,7 @@ local function makeAirborne(config)
 
     plane.collision_mask = {}
     setupHealth(plane, true)
-    setupHandling(plane)
+    setupHandling(plane, true)
     setupFuelConsumption(plane, true)
     data:extend{plane}
 
