@@ -93,6 +93,7 @@ local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
     newPlane.friction_modifier = oldPlane.friction_modifier
     newPlane.speed = oldPlane.speed
     newPlane.orientation = oldPlane.orientation
+    newPlane.riding_state = oldPlane.riding_state
 
     -- Destroy the old plane first before setting the passenger and driver to the new plane or else the game doesn't like it
     local driver = oldPlane.get_driver()
@@ -124,8 +125,6 @@ local function planeTakeoff(player, game, defines, settings)
             defines,
             true
         )
-        --Accelerate the new plane that the player is in so they don't need to press w again
-        player.riding_state = {acceleration=defines.riding.acceleration.accelerating, direction=defines.riding.direction.straight}
 
         return
     end
@@ -156,8 +155,6 @@ local function planeLand(player, game, defines, settings)
             false
         )
 
-        --Auto brake
-        player.riding_state = {acceleration=defines.riding.acceleration.braking, direction=defines.riding.direction.straight}
         return
     end
 end
