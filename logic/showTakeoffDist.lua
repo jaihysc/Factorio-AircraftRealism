@@ -1,7 +1,5 @@
 local utility = require("logic.utility")
 
-local showTakeoffDistShortcut = "aircraft-realism-show-takeoff-distance"
-
 --[[
     Global table:
         showTakeoffDist[]: LuaEntity
@@ -45,7 +43,7 @@ local function showTakeoffDist(player, plane, lineLife)
     if plane.burner then
         if plane.burner.currently_burning then
             -- Use burning fuel for acceleration multiplier
-            u_c = u_c * plane.burner.currently_burning.fuel_acceleration_multiplier
+            u_c = u_c * plane.burner.currently_burning.name.fuel_acceleration_multiplier
         elseif plane.burner.inventory then
             -- Use first fuel in fuel slot for acceleration multiplier
             for i = 1, #plane.burner.inventory, 1 do
@@ -136,21 +134,20 @@ function onTick(e)
             if player.selected and
                player.selected.force == player.force and
                utility.isGroundedPlane(player.selected.prototype.name) and
-               player.is_shortcut_toggled(showTakeoffDistShortcut) then
-                if not global.showTakeoffDist then
-                    global.showTakeoffDist = {}
+               player.is_shortcut_toggled(utility.UI_SHOW_TAKEOFF_DIST) then
+                if not storage.showTakeoffDist then
+                    storage.showTakeoffDist = {}
                 end
-                global.showTakeoffDist[player.index] = player.selected
+                storage.showTakeoffDist[player.index] = player.selected
             end
             -- Draw takeoff distance line
-            -- Run every half second so we can use longer calculation times
-            if e.tick % 30 == 0 and
-               global.showTakeoffDist and global.showTakeoffDist[player.index] then
-                if global.showTakeoffDist[player.index].valid then
-                    showTakeoffDist(player, global.showTakeoffDist[player.index], 31)
+            if e.tick % 5 == 0 and
+               storage.showTakeoffDist and storage.showTakeoffDist[player.index] then
+                if storage.showTakeoffDist[player.index].valid then
+                    showTakeoffDist(player, storage.showTakeoffDist[player.index], 5)
                 else
                     -- Plane gone (destroyed, took off, etc)
-                    global.showTakeoffDist[player.index] = nil
+                    storage.showTakeoffDist[player.index] = nil
                 end
             end
         end
@@ -158,17 +155,17 @@ function onTick(e)
 end
 
 function onLuaShortcut(e)
-    if e.prototype_name == showTakeoffDistShortcut then
+    if e.prototype_name == utility.UI_SHOW_TAKEOFF_DIST then
         local player = game.get_player(e.player_index)
         if player then
-            local newState = not player.is_shortcut_toggled(showTakeoffDistShortcut)
-            player.set_shortcut_toggled(showTakeoffDistShortcut, newState)
+            local newState = not player.is_shortcut_toggled(utility.UI_SHOW_TAKEOFF_DIST)
+            player.set_shortcut_toggled(utility.UI_SHOW_TAKEOFF_DIST, newState)
 
             -- Stop showing takeoff distance
             if newState == false and
-               global.showTakeoffDist and
-               global.showTakeoffDist[player.index] then
-                global.showTakeoffDist[player.index] = nil
+                storage.showTakeoffDist and
+                storage.showTakeoffDist[player.index] then
+                storage.showTakeoffDist[player.index] = nil
             end
         end
     end

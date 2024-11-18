@@ -1,206 +1,273 @@
 -- Handles the takeoff and landing of the plane
 local utility = require("logic.utility")
 
-local function insertItems(oldInventory, newInventory)
+-- Copies inventory from oldInventory to newInventory
+local function copyInventory(oldInventory, newInventory)
     if oldInventory then
         assert(newInventory, "Old plane has inventory, new plane does not. Check plane prototypes")
+        assert(#newInventory == #oldInventory, "Old plane and new plane inventories are different sizes. Check plane prototypes")
         -- With this method, inventory items stay in the same place
         for i = 1, #oldInventory, 1 do
-            if i <= #newInventory then
-                newInventory[i].set_stack(oldInventory[i])
-            end
+            newInventory[i].set_stack(oldInventory[i])
         end
     end
 end
 
--- Plane takeoff landing transition
--- Seemlessly shifts from one plane to another without the player noticing
-local function transitionPlane(oldPlane, newPlane, game, defines, takingOff)
+-- Copy burner from oldBurner to newBurner
+local function copyBurner(oldBurner, newBurner)
+    if oldBurner then
+        assert(newBurner, "Old plane has burner, new plane does not. Check plane prototypes")
+        copyInventory(oldBurner.inventory, newBurner.inventory)
+        copyInventory(oldBurner.burnt_result_inventory, newBurner.burnt_result_inventory)
+
+        newBurner.heat = oldBurner.heat
+        newBurner.currently_burning = oldBurner.currently_burning
+        -- currently_burning must be set first
+        newBurner.remaining_burning_fuel = oldBurner.remaining_burning_fuel
+    end
+end
+
+-- Copies UI opened for player
+local function copyOpened(oldPlane, newPlane, occupant)
+    assert(oldPlane)
+    assert(newPlane)
+    if occupant and occupant.opened then
+        -- It appears .opened is bugged in Factorio 2.0.15, only works for the plane GUI, not equipment guid
+        if occupant.opened == oldPlane then
+            occupant.opened = newPlane
+        elseif occupant.opened == oldPlane.grid then
+            occupant.opened = newPlane.grid
+        end
+    end
+end
+
+-- Plane takeoff / landing transition
+-- Shifts from one plane to another without the player noticing
+local function transitionPlane(oldPlane, newPlane)
+    assert(oldPlane)
+    assert(newPlane)
     newPlane.copy_settings(oldPlane)
 
-    -- Set Fuel bar
-    if oldPlane.burner then
-        assert(newPlane.burner, "Old plane has burner, new plane does not. Check plane prototypes")
-        newPlane.burner.currently_burning = oldPlane.burner.currently_burning
-        newPlane.burner.remaining_burning_fuel = oldPlane.burner.remaining_burning_fuel
-    end
+    -- LuaEntity
 
-    -- The inventories cannot differ, or else items disappear
-    -- Set fuel inventory
-    insertItems(oldPlane.get_fuel_inventory(), newPlane.get_fuel_inventory())
-
-    -- Set item inventory
-    insertItems(oldPlane.get_inventory(defines.inventory.car_trunk), newPlane.get_inventory(defines.inventory.car_trunk))
-
-    -- Set weapon item inventory
-    insertItems(oldPlane.get_inventory(defines.inventory.car_ammo), newPlane.get_inventory(defines.inventory.car_ammo))
-
-    -- Select the last weapon
-    if oldPlane.selected_gun_index then
-        assert(utility.getTableLength(oldPlane.prototype.guns) == utility.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
-        newPlane.selected_gun_index = oldPlane.selected_gun_index
-    end
-
-    -- Transfer over equipment grid
-    if oldPlane.grid then
-        assert(newPlane.grid, "Old plane has grid, new plane does not. Check plane prototypes")
-        for index,item in pairs(oldPlane.grid.equipment) do
-            local addedEquipment = newPlane.grid.put{name=item.name, position=item.position}
-            assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
-
-            -- Transfer over charge and shield capacity
-
-            -- We MUST check for non zero, otherwise attempting to set for item which
-            -- does not have energy or shield is an error
-            if item.energy ~= 0 then addedEquipment.energy = item.energy end
-            if item.shield ~= 0 then addedEquipment.shield = item.shield end
-
-            if item.burner then
-                assert(addedEquipment.burner, "Old plane equipment has burner, new plane equipment does not. Check plane prototypes")
-                -- Transfer burner contents
-                insertItems(item.burner.inventory, addedEquipment.burner.inventory)
-
-                addedEquipment.burner.currently_burning = item.burner.currently_burning
-                addedEquipment.burner.heat = item.burner.heat
-                addedEquipment.burner.remaining_burning_fuel = item.burner.remaining_burning_fuel
-            end
-        end
-    end
-
-    -- Health (Grounded planes have 2x less health with realistic health option checked)
-    -- Test if planes have the different max healths, to perform health scaling
-    if game.entity_prototypes[newPlane.name].max_health ~= game.entity_prototypes[oldPlane.name].max_health then
-        if takingOff then
-            -- Airborne
-            newPlane.health = oldPlane.health * 2
-        else
-            -- Grounded
-            newPlane.health = oldPlane.health / 2
-
-        end
-    else
-        newPlane.health = oldPlane.health
-    end
-
+    newPlane.active = oldPlane.active
     newPlane.destructible = oldPlane.destructible
+    newPlane.minable = oldPlane.minable
+    newPlane.rotatable = oldPlane.rotatable
     newPlane.operable = oldPlane.operable
+
+    -- Scale health in case max health between planes are different
+    if oldPlane.health then
+        assert(newPlane.health, "Old plane has health, new plane does not. Check plane prototypes")
+        newPlane.health = oldPlane.health * newPlane.max_health / oldPlane.max_health
+    end
+
+    newPlane.mirroring = oldPlane.mirroring
+    newPlane.orientation = oldPlane.orientation
+
     if oldPlane.relative_turret_orientation then
         assert(newPlane.relative_turret_orientation, "Old plane has relative_turret_orientation, new plane does not. Check plane prototypes")
         newPlane.relative_turret_orientation = oldPlane.relative_turret_orientation
     end
+
     newPlane.effectivity_modifier = oldPlane.effectivity_modifier
     newPlane.consumption_modifier = oldPlane.consumption_modifier
     newPlane.friction_modifier = oldPlane.friction_modifier
-    newPlane.speed = oldPlane.speed
-    newPlane.orientation = oldPlane.orientation
+
+    if oldPlane.driver_is_gunner then
+        assert(newPlane.driver_is_gunner, "Old plane has driver_is_gunner, new plane does not. Check plane prototypes")
+        newPlane.driver_is_gunner = oldPlane.driver_is_gunner
+    end
+
+    if oldPlane.speed then
+        assert(newPlane.speed, "Old plane has speed, new plane does not. Check plane prototypes")
+        newPlane.speed = oldPlane.speed
+    end
+
+    -- Select the last weapon
+    if oldPlane.selected_gun_index then
+        assert(newPlane.selected_gun_index, "Old plane has selected_gun_index, new plane does not. Check plane prototypes")
+        assert(utility.getTableLength(oldPlane.prototype.guns) == utility.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
+        newPlane.selected_gun_index = oldPlane.selected_gun_index
+    end
+
+    newPlane.energy = oldPlane.energy
+
+    if oldPlane.temperature then
+        assert(newPlane.temperature, "Old plane has temperature, new plane does not. Check plane prototypes")
+        newPlane.temperature = oldPlane.temperature
+    end
+
+    if oldPlane.backer_name then
+        assert(newPlane.backer_name, "Old plane has backer_name, new plane does not. Check plane prototypes")
+        newPlane.backer_name = oldPlane.backer_name
+    end
+
+    if oldPlane.color then
+        assert(newPlane.color, "Old plane has color, new plane does not. Check plane prototypes")
+        newPlane.color = oldPlane.color
+    end
+
+    newPlane.last_user = oldPlane.last_user
+
+    -- Transfer over equipment grid
+    if oldPlane.grid then
+        assert(newPlane.grid, "Old plane has grid, new plane does not. Check plane prototypes")
+        assert(oldPlane.grid.width == newPlane.grid.width, "Old plane equipment grid width differs from new plane. Check plane prototypes")
+        assert(oldPlane.grid.height == newPlane.grid.height, "Old plane equipment grid height differs from new plane. Check plane prototypes")
+
+        newPlane.grid.inhibit_movement_bonus = oldPlane.grid.inhibit_movement_bonus
+
+        for index,item in pairs(oldPlane.grid.equipment) do
+            local addedEquipment = newPlane.grid.put{
+                name     = item.name,
+                quality  = item.quality,
+                position = item.position
+            }
+            assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
+
+            -- We must check for non zero, otherwise attempting to set for item which
+            -- does not have energy or shield is an error
+            if item.energy ~= 0 then addedEquipment.energy = item.energy end
+            if item.shield ~= 0 then addedEquipment.shield = item.shield end
+
+            copyBurner(item.burner, addedEquipment.burner)
+        end
+    end
+
+    if oldPlane.graphics_variation then
+        assert(newPlane.graphics_variation, "Old plane has graphics_variation, new plane does not. Check plane prototypes")
+        newPlane.graphics_variation = oldPlane.graphics_variation
+    end
+
+    copyBurner(oldPlane.burner, newPlane.burner)
+
+    if oldPlane.prototype.allow_run_time_change_of_is_military_target then
+        assert(newPlane.prototype.allow_run_time_change_of_is_military_target, "Old plane has allow_run_time_change_of_is_military_target, new plane does not. Check plane prototypes")
+        newPlane.is_military_target = oldPlane.is_military_target
+    end
+
+    -- Copy name_tag if old plane has one, cannot be set to nil
+    if oldPlane.name_tag then
+        newPlane.name_tag = oldPlane.name_tag
+    end
+
+    if oldPlane.custom_status then
+        newPlane.custom_status = oldPlane.custom_status
+    end
+
+    newPlane.enable_logistics_while_moving = oldPlane.enable_logistics_while_moving
+
+    -- LuaControl
+
+    -- Copy all the inventories, defines.inventory.*
+    for key, value in pairs(defines.inventory) do
+        copyInventory(oldPlane.get_inventory(value), newPlane.get_inventory(value))
+    end
+
     newPlane.riding_state = oldPlane.riding_state
 
-    -- Destroy the old plane first before setting the passenger and driver to the new plane or else the game doesn't like it
+    -- Drivers / passengers
+
     local driver = oldPlane.get_driver()
     local passenger = oldPlane.get_passenger()
+
+    -- Keep the UI open for driver/passenger
+    copyOpened(oldPlane, newPlane, driver)
+    copyOpened(oldPlane, newPlane, passenger)
+
+    -- Destroy the old plane first before setting the passenger and driver to the new plane or else the game doesn't like it
     oldPlane.destroy{ raise_destroy = true }
 
-    -- Drivers / passengers
     newPlane.set_driver(driver)
     newPlane.set_passenger(passenger)
 end
 
-local function planeTakeoff(player, game, defines, settings)
-    assert(player.vehicle)
-    -- If player is grounded and plane is greater than the specified takeoff speed
-    if utility.isGroundedPlane(player.vehicle.prototype.name) and
-       player.vehicle.speed > utility.getTransitionSpeed(player.vehicle.prototype.name) then
-        local newPlane = player.surface.create_entity{
-            name    =player.vehicle.name .. "-airborne",
-            position=player.position,
-            force   =player.force,
-            create_build_effect_smoke=false,
-            raise_built = true
-        }
+-- Converts provided grounded plane into airborne version
+local function planeTakeoff(plane)
+    assert(plane)
+    -- Direction, player is set in transitionPlane
+    local newPlane = plane.surface.create_entity{
+        name                      = plane.name .. utility.AIRBORNE_SUFFIX,
+        position                  = plane.position,
+        quality                   = plane.quality,
+        force                     = plane.force,
+        create_build_effect_smoke = false,
+        raise_built               = true
+    }
+    transitionPlane(plane, newPlane)
+end
 
-        transitionPlane(
-            player.vehicle,
-            newPlane,
-            game,
-            defines,
-            true
-        )
+-- Converts provided airborne plane into grounded version
+local function planeLand(plane)
+    assert(plane)
+    local groundedName = string.sub(plane.name, 0, string.len(plane.name) - string.len(utility.AIRBORNE_SUFFIX))
+    -- Direction, player is set in transitionPlane
+    local newPlane = plane.surface.create_entity{
+        name                      = groundedName,
+        position                  = plane.position,
+        quality                   = plane.quality,
+        force                     = plane.force,
+        create_build_effect_smoke = false,
+        raise_built               = true
+    }
+    transitionPlane(plane, newPlane)
+end
 
-        return
+-- Checks if plane should takeoff/land
+local function checkPlaneTransition(plane)
+    assert(plane)
+    local transitionSpeed = utility.getTransitionSpeed(plane.prototype.name)
+    if utility.isGroundedPlane(plane.prototype.name) and plane.speed > transitionSpeed then
+        planeTakeoff(plane)
+    elseif utility.isAirbornePlane(plane.prototype.name) and plane.speed < transitionSpeed then
+        planeLand(plane)
     end
 end
 
-local function planeLand(player, game, defines, settings)
-    assert(player.vehicle)
-    local groundedName = string.sub(player.vehicle.name, 0, string.len(player.vehicle.name) - string.len("-airborne"))
-
-    -- If player is airborne and plane is less than the specified landing speed
-    if utility.isAirbornePlane(player.vehicle.prototype.name) and
-       player.vehicle.speed < utility.getTransitionSpeed(player.vehicle.prototype.name) then
-
-        local newPlane = player.surface.create_entity{
-            name    =groundedName,
-            position=player.position,
-            force   =player.force,
-            create_build_effect_smoke=false,
-            raise_built = true
-        }
-
-        -- Brake held, land the plane ==========
-        transitionPlane(
-            player.vehicle,
-            newPlane,
-            game,
-            defines,
-            false
-        )
-
-        return
-    end
-end
-
--- Updates the shadow for the player's plane
-local function updatePlaneShadow(player, qsec)
+-- Updates the shadow for the provided plane
+local function updatePlaneShadow(plane)
+    assert(plane)
     -- Only draw shadow once plane is airborne
-    if player.vehicle and player.surface and player.position and utility.isAirbornePlane(player.vehicle.name) then
-        local data = utility.getData(player.vehicle.name)
+    if utility.isAirbornePlane(plane.name) then
+        local data = utility.getData(plane.name)
 
         -- Plane must support shadows
         if data.shadow then
-            local vBegin = utility.getTransitionSpeed(player.vehicle.name)
+            local vBegin = utility.getTransitionSpeed(plane.name)
             local vEnd = vBegin + data.shadow.endSpeed
             local tileOffsetFinal = data.shadow.tileOffsetFinal
             local renderlayer = data.shadow.renderLayer
             local alphaInitial = data.shadow.alphaInitial
             local totalFrames = data.shadow.directionCount
 
-            if player.vehicle.speed > vBegin and player.vehicle.speed < vEnd then
+            if plane.speed > vBegin and plane.speed < vEnd then
                 -- Map the orientation to a sprite
-                local spriteIdx = utility.orientationToIdx(player.vehicle.orientation, totalFrames)
+                local spriteIdx = utility.orientationToIdx(plane.orientation, totalFrames)
                 -- Progress of animation, [0,1)
                 -- linear, and polynomial as some animations look better if slower initially
-                local progress = (player.vehicle.speed - vBegin) / (vEnd - vBegin)
-                local nomialProgress = progress*progress
+                local progress = (plane.speed - vBegin) / (vEnd - vBegin)
+                local nomialProgress = progress * progress
 
                 -- Since the shadow trails by 1 tick, we account for it by moving the shadow forwards using the plane's velocity
                 -- Speed in tiles/tick
-                local shadowOffsetX = player.vehicle.speed * math.sin(2*math.pi*player.vehicle.orientation)
-                local shadowOffsetY = player.vehicle.speed * -math.cos(2*math.pi*player.vehicle.orientation)
+                local shadowOffsetX = plane.speed * math.sin(2 * math.pi * plane.orientation)
+                local shadowOffsetY = plane.speed * -math.cos(2 * math.pi * plane.orientation)
 
                 rendering.draw_sprite{
-                    sprite = player.vehicle.prototype.name .. "-shadow-" .. tostring(spriteIdx),
+                    sprite = plane.prototype.name .. utility.SHADOW_SUFFIX .. tostring(spriteIdx),
                     target = {
                         -- Use the vehicle position, if the player's position is used, the shadow flickers
                         -- briefly on takeoff
-                        player.vehicle.position.x + shadowOffsetX + tileOffsetFinal[1]*nomialProgress,
-                        player.vehicle.position.y + shadowOffsetY + tileOffsetFinal[2]*nomialProgress
+                        plane.position.x + shadowOffsetX + tileOffsetFinal[1] * nomialProgress,
+                        plane.position.y + shadowOffsetY + tileOffsetFinal[2] * nomialProgress
                     },
                     x_scale = 1 - nomialProgress,
                     y_scale = 1 - nomialProgress,
                     tint = {0, 0, 0, alphaInitial * (1 - nomialProgress)},
                     render_layer = renderlayer,
-                    surface = player.surface,
-                    time_to_live = 2
+                    surface = plane.surface,
+                    time_to_live = 1
                 }
             end
         end
@@ -210,20 +277,9 @@ end
 local function onTick(e)
     for index, player in pairs(game.connected_players) do
         if player and player.driving and player.vehicle and player.surface then
-            local quarterSecond = e.tick % 15 == 0
-
             -- Check takeoff every tick so shadow animation is smooth
-            if utility.isGroundedPlane(player.vehicle.prototype.name) then
-                --Create some smoke effects trailing behind the plane
-                if quarterSecond then
-                    player.surface.create_trivial_smoke{name="train-smoke", position=player.position, force="neutral"}
-                end
-                planeTakeoff(player, game, defines, settings)
-            elseif utility.isAirbornePlane(player.vehicle.prototype.name) then
-                planeLand(player, game, defines, settings)
-            end
-
-            updatePlaneShadow(player, quarterSecond)
+            checkPlaneTransition(player.vehicle)
+            updatePlaneShadow(player.vehicle)
         end
     end
 end

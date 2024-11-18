@@ -1,10 +1,10 @@
 {
     "name": "AircraftRealism",
-    "version": "1.5.8",
+    "version": "2.0.0",
     "title": "Aircraft Realism",
     "author": "haih_ys",
-    "homepage": "https://forums.factorio.com/viewtopic.php?f=190&t=73964",
-    "factorio_version": "1.1",
-    "dependencies": ["base >= 1.1", "? Aircraft >= 1.8.0", "? betterCargoPlanes >= 1.0.8", "? Helicopters >= 0.3.14", "(?) aai-programmable-vehicles"],
-    "description": "Adds a variety of mechanics to make vehicles behave like planes"
+    "homepage": "https://github.com/jaihysc/Factorio-AircraftRealism",
+    "factorio_version": "2.0",
+    "dependencies": ["base >= 2.0"],
+    "description": "Framework for mods to create planes. Adds a variety of mechanics to make vehicles behave as planes"
 }

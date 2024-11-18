@@ -21,8 +21,7 @@ function onPlayerDrivingChangedState(e)
                 -- Driver of the plane MUST NOT exit until the plane has stopped in order for collision logic to work
                 local driver = e.entity.get_driver()
                 if not driver then
-                    -- ~10km/h
-                    if e.entity.speed > 0.04629 or e.entity.speed < -0.04629 then
+                    if math.abs(e.entity.speed) > (10 * utility.KPH2MPT) then
                         e.entity.set_driver(player)
                     end
                 end

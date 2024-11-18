@@ -2,44 +2,81 @@
 
 local utility = {}
 
--- Constants
-utility.SETTING_AIRBORNE_DAMAGE_IMMUNITY = "aircraft-realism-airborne-damage-immunity"
-utility.PLANE_DATA_HOLDER_PROTOTYPE = "flying-text"
-utility.PLANE_DATA_HOLDER_NAME = "aircraft-realism-plane-properties"
-utility.AIRBORNE_PLANE_SUFFIX = "-airborne" -- Suffix added to airborne planes
--- Number of segments to split the serialized data into when saving,
--- as Factorio prototype properties have fixed lengths
-utility.PLANE_DATA_SEGMENT_LEN = 200
+local PDH_PROTOTYPE = "fish" -- Plane Data Holder
+local PDH_NAME_PREFIX = "aircraft-realism-plane-properties-"
+local PDH_SEGMENT_LEN = 200
 
-local function toFactorioUnit(settings, kmH)
-    if settings.global["aircraft-speed-unit"].value == "imperial" then
-        kmH = kmH * 1.609
+utility.AIRBORNE_SUFFIX                = "-airborne" -- Suffix added to airborne planes
+utility.SHADOW_SUFFIX                  = "-shadow-"  -- Suffix added to airborne planes for shadows
+utility.TRANSIT_SPEED_PREFIX           = "aircraft-takeoff-speed-"
+
+utility.KPH2MPT                        = 1000 / (60 * 60 * 60) -- km/h * KPH2MPT = m/tick
+
+-- Settings (S), User Settings (SU)
+utility.S_AIRBORNE_DAMAGE_IMMUNITY     = "aircraft-realism-airborne-damage-immunity"
+utility.S_ENV_IMPACT                   = "aircraft-realism-environmental-impact"
+utility.S_SPEED_UNIT                   = "aircraft-speed-unit"
+
+utility.S_EMIT_POLLUTION               = "aircraft-emit-pollution"
+utility.S_POLLUTION_AMOUNT             = "aircraft-pollution-amount"
+
+utility.S_RUNWAY_MAX_FRICTION          = "aircraft-realism-strict-runway-checking-maximum-tile-vehicle-friction"
+utility.S_RUNWAY_REQUIREMENT           = "aircraft-realism-strict-runway-checking"
+utility.S_RUNWAY_TAXI_SPEED            = "aircraft-realism-strict-runway-max-taxi-speed"
+
+utility.SU_ENABLE_GAUGES               = "aircraft-realism-user-enable-gauges"
+utility.SU_LOW_FUEL_WARN               = "aircraft-realism-sounds-enabled"
+utility.SU_LOW_FUEL_WARN_THRESHOLD     = "aircraft-realism-user-low-fuel-warning-percentage"
+utility.SU_SPEED_UNIT                  = "aircraft-realism-user-speed-unit"
+
+utility.UI_GAUGE_FRAME                 = "aircraft-realism-gauge-frame"
+utility.UI_FUEL_FRAME                  = "aircraft-realism-fuel-indicator"
+utility.UI_FUEL_FRAME_SPRITE           = "aircraft-realism-fuel-indicator-base"
+utility.UI_SPEED_FRAME                 = "aircraft-realism-airspeed-indicator"
+utility.UI_SPEED_FRAME_SPRITE          = "aircraft-realism-airspeed-indicator-base"
+
+utility.UI_FUELW                       = "aircraft-realism-fuel-indicator-emergency-fuel-warning"
+utility.UI_FUELW_SPRITE                = "aircraft-realism-fuel-indicator-emergency-fuel-warning"
+utility.UI_FUEL_L_NEEDLE               = "aircraft-realism-fuel-indicator-left-bar"
+utility.UI_FUEL_L_NEEDLE_SPRITE_PREFIX = "aircraft-realism-fuel-indicator-left-"
+utility.UI_FUEL_L_NEEDLE_COUNT         = 32
+utility.UI_FUEL_R_NEEDLE               = "aircraft-realism-fuel-indicator-right-bar"
+utility.UI_FUEL_R_NEEDLE_SPRITE_PREFIX = "aircraft-realism-fuel-indicator-right-"
+utility.UI_FUEL_R_NEEDLE_COUNT         = 31
+
+utility.UI_SPEED_NEEDLE                = "aircraft-realism-airspeed-indicator-needle"
+utility.UI_SPEEDW_NEEDLE               = "aircraft-realism-airspeed-indicator-warning-needle"
+utility.UI_SPEED_NEEDLE_SPRITE_PREFIX  = "aircraft-realism-airspeed-indicator-"
+utility.UI_SPEEDW_NEEDLE_SPRITE_PREFIX = "aircraft-realism-airspeed-indicator-warning-"
+utility.UI_SPEED_NEEDLE_COUNT          = 400
+
+utility.UI_WARNING_SOUND               = "aircraft-realism-sound-master-warning"
+
+utility.UI_SHOW_TAKEOFF_DIST           = "aircraft-realism-show-takeoff-distance"
+
+-- Converts speed from settings to m/tick
+local function toFactorioUnit(speed)
+    assert(speed)
+    -- MPH -> km/h
+    if settings.global[utility.S_SPEED_UNIT].value == "mile/h" then
+        speed = speed * 1.609
     end
-
-    -- Convert the lua speed into km/h with * 60 * 3.6
-    return kmH / 216
+    -- km/h -> m/tick
+    return speed * utility.KPH2MPT
 end
 
--- Converts factorio's speed to km/h or mph per runtime global
-local function fromFactorioUnit(settings, unit)
-    unit = unit * 216
+-- Converts m/tick to km/h or mph per the user's settings
+local function fromFactorioUnitUser(player, mpt)
+    assert(player)
+    assert(mpt)
+    -- m/tick -> km/h
+    local speed = mpt / utility.KPH2MPT
 
-    if settings.global["aircraft-speed-unit"].value == "imperial" then
-        unit = unit / 1.609
+    -- km/h -> MPH
+    if settings.get_player_settings(player)[utility.SU_SPEED_UNIT].value == "mile/h" then
+        speed = speed / 1.609
     end
-
-    return unit
-end
-
--- Converts factorio's speed to km/h or mph per the user's settings
-local function fromFactorioUnitUser(settings, player, unit)
-    unit = unit * 216
-
-    if settings.get_player_settings(player)["aircraft-realism-user-speed-unit"].value == "imperial" then
-        unit = unit / 1.609
-    end
-
-    return unit
+    return speed
 end
 
 local function getTableLength(table)
@@ -48,15 +85,6 @@ local function getTableLength(table)
         count = count + 1
     end
     return count
-end
-
-local function roundNumber(number)
-    if (number - (number % 0.1)) - (number - (number % 1)) < 0.5 then
-        number = number - (number % 1)
-    else
-        number = (number - (number % 1)) + 1
-    end
-    return number
 end
 
 -- Maps RealOrientation to a number between [0, upper), obeying orthogonal projection
@@ -72,11 +100,7 @@ local function orientationToIdx(orientation, upper)
 	return math.floor((deprojectedOrientation * upper) + 0.5) % upper
 end
 
-local function playSound(settings, player, soundName)
-    if settings.get_player_settings(player)["aircraft-realism-sounds-enabled"].value then
-        player.play_sound({path=soundName})
-    end
-end
+-- Plane data handling
 
 -- Returns initialized table holding information about all the planes (to be stored somewhere)
 -- See Docs/ScriptImplementation for description of the table
@@ -106,9 +130,9 @@ local function getPlaneData(dataStage)
     while true do
         local planeDataHolder = nil
         if dataStage then
-            planeDataHolder = data.raw[utility.PLANE_DATA_HOLDER_PROTOTYPE][utility.PLANE_DATA_HOLDER_NAME .. tostring(prototypeIdx)]
+            planeDataHolder = data.raw[PDH_PROTOTYPE][PDH_NAME_PREFIX .. tostring(prototypeIdx)]
         else
-            planeDataHolder = game.entity_prototypes[utility.PLANE_DATA_HOLDER_NAME .. tostring(prototypeIdx)]
+            planeDataHolder = prototypes.entity[PDH_NAME_PREFIX .. tostring(prototypeIdx)]
         end
 
         if planeDataHolder == nil then
@@ -142,22 +166,20 @@ local function savePlaneData(planeData)
     local serializedData = serpent.dump(planeData)
     -- Store the data into the prototypes, split it because of string limits per prototype
     prototypeIdx = 0
-    for i=1, string.len(serializedData), utility.PLANE_DATA_SEGMENT_LEN  do
-        local planeDataHolder = data.raw[utility.PLANE_DATA_HOLDER_PROTOTYPE][utility.PLANE_DATA_HOLDER_NAME .. tostring(prototypeIdx)]
+    for i=1, string.len(serializedData), PDH_SEGMENT_LEN  do
+        local planeDataHolder = data.raw[PDH_PROTOTYPE][PDH_NAME_PREFIX .. tostring(prototypeIdx)]
         if planeDataHolder == nil then
             -- Create if non existent
             data:extend{{
-                name=utility.PLANE_DATA_HOLDER_NAME .. tostring(prototypeIdx),
-                type=utility.PLANE_DATA_HOLDER_PROTOTYPE,
+                name=PDH_NAME_PREFIX .. tostring(prototypeIdx),
+                type=PDH_PROTOTYPE,
                 order="",
-                speed=1,
-                time_to_live=1
             }}
-            planeDataHolder = data.raw[utility.PLANE_DATA_HOLDER_PROTOTYPE][utility.PLANE_DATA_HOLDER_NAME .. tostring(prototypeIdx)]
+            planeDataHolder = data.raw[PDH_PROTOTYPE][PDH_NAME_PREFIX .. tostring(prototypeIdx)]
             assert(planeDataHolder)
         end
         -- Store a fixed length segment of the string
-        planeDataHolder.order = string.sub(serializedData, i, i - 1 + utility.PLANE_DATA_SEGMENT_LEN)
+        planeDataHolder.order = string.sub(serializedData, i, i - 1 + PDH_SEGMENT_LEN)
         prototypeIdx = prototypeIdx + 1
     end
 end
@@ -200,12 +222,12 @@ local function getTransitionSpeed(name)
     assert(name)
     local speed = 0
     if isGroundedPlane(name) then
-        speed = settings.global["aircraft-takeoff-speed-" .. name].value
+        speed = settings.global[utility.TRANSIT_SPEED_PREFIX .. name].value
     elseif isAirbornePlane(name) then
         -- Chop off the -airborne at the end
-        speed = settings.global["aircraft-takeoff-speed-" .. string.sub(name, 0, string.len(name) - string.len(utility.AIRBORNE_PLANE_SUFFIX))].value
+        speed = settings.global[utility.TRANSIT_SPEED_PREFIX .. string.sub(name, 0, string.len(name) - string.len(utility.AIRBORNE_SUFFIX))].value
     end
-    return toFactorioUnit(settings, speed)
+    return toFactorioUnit(speed)
 end
 
 -- Fetches maximum speed for plane, nil if not defined
@@ -214,30 +236,10 @@ local function getMaxSpeed(name)
     return getData(name).maxSpeed
 end
 
-local function killDriverAndPassenger(plane, player)
-    local driver = plane.get_driver()
-
-    -- get_driver() and get_passenger() returns LuaPlayer OR LuaEntity
-    -- die() only exists for LuaEntity
-    if driver and not driver.is_player() then
-        driver.die(player.force, plane)
-    end
-
-    local passenger = plane.get_passenger()
-    if passenger and not passenger.is_player() then
-        passenger.die(player.force, plane)
-    end
-
-    plane.die()
-end
-
 utility.toFactorioUnit = toFactorioUnit
-utility.fromFactorioUnit = fromFactorioUnit
 utility.fromFactorioUnitUser = fromFactorioUnitUser
 utility.getTableLength = getTableLength
-utility.roundNumber = roundNumber
 utility.orientationToIdx = orientationToIdx
-utility.playSound = playSound
 utility.initPlaneData = initPlaneData
 utility.getPlaneData = getPlaneData
 utility.savePlaneData = savePlaneData
@@ -247,6 +249,5 @@ utility.isAirbornePlane = isAirbornePlane
 utility.isPlane = isPlane
 utility.getTransitionSpeed = getTransitionSpeed
 utility.getMaxSpeed = getMaxSpeed
-utility.killDriverAndPassenger = killDriverAndPassenger
 
 return utility
