@@ -1,5 +1,41 @@
--- Handles the takeoff and landing of the plane
+-- All the logic for a plane
 local utility = require("logic.utility")
+
+--[[
+    Global table:
+        lastSpeed[]: number
+            Index by player index
+            Holds the last speed for the plane the player is in
+]]
+
+local function killDriverAndPassenger(plane)
+    assert(plane)
+    -- get_driver() and get_passenger() returns LuaPlayer OR LuaEntity
+    -- die() only exists for LuaEntity
+    local driver = plane.get_driver()
+    if driver and not driver.is_player() then
+        driver.die(driver.force, plane)
+    end
+
+    local passenger = plane.get_passenger()
+    if passenger and not passenger.is_player() then
+        passenger.die(passenger.force, plane)
+    end
+
+    plane.die()
+end
+
+-- Whether tile below grounded/airborne plane is on a runway
+local function onRunway(plane)
+    assert(plane)
+    local tile = plane.surface.get_tile(plane.position)
+    if not tile or not tile.valid then
+        return false
+    end
+    return tile.prototype.vehicle_friction_modifier < settings.global[utility.S_RUNWAY_MAX_FRICTION].value
+end
+
+-- Inventory manipulation for plane transitions
 
 -- Copies inventory from oldInventory to newInventory
 local function copyInventory(oldInventory, newInventory)
@@ -183,50 +219,119 @@ local function transitionPlane(oldPlane, newPlane)
     newPlane.set_passenger(passenger)
 end
 
--- Converts provided grounded plane into airborne version
-local function planeTakeoff(plane)
+-- Updates / checks that occur on game ticks
+
+-- Checks plane collision with environment
+-- Grounded plane only
+local function checkCollision(plane)
     assert(plane)
-    -- Direction, player is set in transitionPlane
-    local newPlane = plane.surface.create_entity{
-        name                      = plane.name .. utility.AIRBORNE_SUFFIX,
-        position                  = plane.position,
-        quality                   = plane.quality,
-        force                     = plane.force,
-        create_build_effect_smoke = false,
-        raise_built               = true
-    }
-    transitionPlane(plane, newPlane)
+    local surface = plane.surface
+
+    -- Destroy the plane if the player LANDS ON a cliff
+    for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
+        if plane.speed == 0 then
+            killDriverAndPassenger(plane, player)
+            return
+        end
+    end
+
+    -- Destroy the plane upon landing in water
+    local tile = surface.get_tile(plane.position)
+	if tile and tile.valid and not utility.getData(plane.name).isSeaplane then
+        if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud" or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
+            if plane.speed == 0 then  -- Player + passenger dies too since they will just be stuck anyways
+                killDriverAndPassenger(plane, player)
+                return
+            end
+        end
+    end
+
+    -- Destroy plane on large deceleration
+    -- TODO figure this out
+    if settings.global[utility.S_ENV_IMPACT].value then
+        -- if storage.lastSpeed == nil then
+        --     storage.lastSpeed = {}
+        -- end
+
+        -- if storage.lastSpeed[player.index] then
+        --     local acceleration = plane.speed - storage.lastSpeed[player.index]
+        --     -- Trigger on deceleration only, not acceleration
+        --     if (storage.lastSpeed[player.index] > 0 and acceleration < 0) or (storage.lastSpeed[player.index] < 0 and acceleration > 0) then
+        --         -- Stopped (< 5 km/h) with deceleration over 40km/h
+        --         if math.abs(plane.speed) < (5 * utility.KPH2MPT) and math.abs(acceleration) > (40 * utility.KPH2MPT) then
+        --             storage.lastSpeed[player.index] = nil
+        --             plane.die()
+        --             return
+        --         end
+        --     end
+        -- end
+        -- storage.lastSpeed[player.index] = plane.speed
+    else
+        storage.lastSpeed = nil
+    end
 end
 
--- Converts provided airborne plane into grounded version
-local function planeLand(plane)
+-- Checks plane going too fast
+-- Grounded or airborne plane
+local function checkMaxSpeed(plane)
     assert(plane)
-    local groundedName = string.sub(plane.name, 0, string.len(plane.name) - string.len(utility.AIRBORNE_SUFFIX))
-    -- Direction, player is set in transitionPlane
-    local newPlane = plane.surface.create_entity{
-        name                      = groundedName,
-        position                  = plane.position,
-        quality                   = plane.quality,
-        force                     = plane.force,
-        create_build_effect_smoke = false,
-        raise_built               = true
-    }
-    transitionPlane(plane, newPlane)
+    assert(plane.name)
+
+    local maxSpeed = utility.getMaxSpeed(plane.name)
+    if plane.speed and maxSpeed then
+        -- Clamp the plane speed to max speed
+        if plane.speed > maxSpeed then
+            plane.speed = maxSpeed
+        end
+        if plane.speed < -maxSpeed then
+            plane.speed = -maxSpeed
+        end
+    end
 end
 
--- Checks if plane should takeoff/land
-local function checkPlaneTransition(plane)
+-- Creates pollution for plane
+-- Grounded or airborne plane
+local function checkPollution(plane)
     assert(plane)
-    local transitionSpeed = utility.getTransitionSpeed(plane.prototype.name)
-    if utility.isGroundedPlane(plane.prototype.name) and plane.speed > transitionSpeed then
-        planeTakeoff(plane)
-    elseif utility.isAirbornePlane(plane.prototype.name) and plane.speed < transitionSpeed then
-        planeLand(plane)
+    if settings.global[utility.S_EMIT_POLLUTION].value then
+        if plane.burner and plane.burner.currently_burning then
+            -- More pollution is emitted at higher speeds, also depending on the fuel
+            local emissions = settings.global[utility.S_POLLUTION_AMOUNT].value
+            emissions = emissions * plane.burner.currently_burning.name.fuel_emissions_multiplier
+            plane.surface.pollute(plane.position, emissions * math.abs(plane.speed))
+        end
+    end
+end
+
+-- Checks runway requirement
+-- Grounded plane only
+local function checkRunway(plane)
+    assert(plane)
+
+    if not onRunway(plane) and settings.global[utility.S_RUNWAY_REQUIREMENT].value then
+        local maxTaxiSpeed = utility.toFactorioUnit(settings.global[utility.S_RUNWAY_TAXI_SPEED].value)
+
+        local overspeed = math.abs(plane.speed) - maxTaxiSpeed
+        if overspeed > 0 then
+            -- Decrease speed proportional (k1) to differnce
+            local k1 = 0.1
+            if plane.speed > 0 then
+                plane.speed = plane.speed - (k1 * overspeed)
+            elseif plane.speed < 0 then
+                plane.speed = plane.speed + (k1 * overspeed)
+            end
+
+            -- Damage proportional (k2) to difference
+            local k2 = 0.25
+            local damage = k2 * overspeed / utility.KPH2MPT
+            plane.damage(damage, plane.force, "impact")
+        end
     end
 end
 
 -- Updates the shadow for the provided plane
-local function updatePlaneShadow(plane)
+-- Airborne plane only
+local function checkShadow(plane)
     assert(plane)
     -- Only draw shadow once plane is airborne
     if utility.isAirbornePlane(plane.name) then
@@ -274,16 +379,114 @@ local function updatePlaneShadow(plane)
     end
 end
 
+-- Checks if plane should land
+-- Airborne plane only
+local function checkTransitionLand(plane)
+    assert(plane)
+    local transitionSpeed = utility.getTransitionSpeed(plane.prototype.name)
+    if plane.speed < transitionSpeed then
+        local groundedName = string.sub(plane.name, 0, string.len(plane.name) - string.len(utility.AIRBORNE_SUFFIX)) -- TODO don't get grounded name like this
+        -- Direction, player is set in transitionPlane
+        local newPlane = plane.surface.create_entity{
+            name                      = groundedName,
+            position                  = plane.position,
+            quality                   = plane.quality,
+            force                     = plane.force,
+            create_build_effect_smoke = false,
+            raise_built               = true
+        }
+        transitionPlane(plane, newPlane)
+    end
+end
+
+-- Checks if plane should takeoff
+-- Grounded plane only
+local function checkTransitionTakeoff(plane)
+    assert(plane)
+    local transitionSpeed = utility.getTransitionSpeed(plane.prototype.name)
+    if plane.speed > transitionSpeed then
+        -- Direction, player is set in transitionPlane
+        local newPlane = plane.surface.create_entity{
+            name                      = plane.name .. utility.AIRBORNE_SUFFIX,
+            position                  = plane.position,
+            quality                   = plane.quality,
+            force                     = plane.force,
+            create_build_effect_smoke = false,
+            raise_built               = true
+        }
+        transitionPlane(plane, newPlane)
+    end
+end
+
+-- Events
+
+-- Makes the plane immune against certain sources of damage, e.g., biters
+local function onEntityDamaged(e)
+    if settings.global[utility.S_AIRBORNE_DAMAGE_IMMUNITY].value then
+        if e and e.entity and e.final_damage_amount and e.final_health and e.cause then
+            local plane = e.entity
+            if utility.isAirbornePlane(plane.prototype.name) then
+                plane.health = e.final_health + e.final_damage_amount
+            end
+        end
+    end
+end
+
+-- If a player bails out of a speeding plane, destroy it if there is no passenger
+function onPlayerDrivingChangedState(e)
+    local player = game.get_player(e.player_index)
+
+    if player and not player.driving then
+        if e.entity then
+            if utility.isAirbornePlane(e.entity.prototype.name) then
+                local driver = e.entity.get_driver()
+                local passenger = e.entity.get_passenger()
+                -- If driver bailed, passenger become the pilot
+                if passenger and not driver then
+                    e.entity.set_driver(passenger)
+                -- If passenger and driver jumps out, plane crashes
+                elseif not driver and not passenger then
+                    e.entity.die()
+                end
+            elseif utility.isGroundedPlane(e.entity.prototype.name) then
+                -- Driver of the plane MUST NOT exit until the plane has stopped in order for collision logic to work
+                local driver = e.entity.get_driver()
+                if not driver then
+                    if math.abs(e.entity.speed) > (10 * utility.KPH2MPT) then
+                        e.entity.set_driver(player)
+                    end
+                end
+            end
+        end
+    end
+end
+
 local function onTick(e)
     for index, player in pairs(game.connected_players) do
-        if player and player.driving and player.vehicle and player.surface then
-            -- Check takeoff every tick so shadow animation is smooth
-            checkPlaneTransition(player.vehicle)
-            updatePlaneShadow(player.vehicle)
+        if player and player.driving and player.vehicle then
+            local plane = player.vehicle
+            local grounded = utility.isGroundedPlane(plane.prototype.name)
+            local airborne = utility.isAirbornePlane(plane.prototype.name)
+
+            -- Check for .valid as plane may be destroyed
+            if grounded then
+                if plane.valid then checkCollision(plane) end
+                if plane.valid then checkMaxSpeed(plane) end
+                if plane.valid then checkPollution(plane) end
+                if plane.valid then checkRunway(plane) end
+                if plane.valid then checkTransitionTakeoff(plane) end
+            elseif airborne then
+                if plane.valid then checkMaxSpeed(plane) end
+                if plane.valid then checkPollution(plane) end
+                if plane.valid then checkShadow(plane) end
+                if plane.valid then checkTransitionLand(plane) end
+            end
         end
     end
 end
 
 local handlers = {}
+handlers[defines.events.on_entity_damaged] = onEntityDamaged
+handlers[defines.events.on_player_driving_changed_state] = onPlayerDrivingChangedState
 handlers[defines.events.on_tick] = onTick
 return handlers

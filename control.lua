@@ -26,15 +26,9 @@ end
 
 
 -- >>> BEGIN MODULES
-loadModule("logic.planeTakeoffLanding")
 loadModule("logic.showTakeoffDist")
 loadModule("logic.guiController")
-loadModule("logic.planePollution")
-loadModule("logic.planeCollisions")
-loadModule("logic.planeMaxSpeed")
-loadModule("logic.planeRunway")
-loadModule("logic.driverExited")
-loadModule("logic.damageImmunity")
+loadModule("logic.planeController")
 -- <<< END MODULES
 
 
