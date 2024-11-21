@@ -27,7 +27,7 @@ end
 
 -- >>> BEGIN MODULES
 loadModule("logic.showTakeoffDist")
-loadModule("logic.guiController")
+loadModule("logic.gaugeController")
 loadModule("logic.planeController")
 -- <<< END MODULES
 
