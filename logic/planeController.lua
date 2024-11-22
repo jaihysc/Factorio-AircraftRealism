@@ -228,23 +228,23 @@ local function checkCollision(plane)
     local surface = plane.surface
 
     -- Destroy the plane if the player LANDS ON a cliff
-    for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
-        if plane.speed == 0 then
-            killDriverAndPassenger(plane, player)
-            return
-        end
-    end
+    -- for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
+    --     if plane.speed == 0 then
+    --         killDriverAndPassenger(plane, player)
+    --         return
+    --     end
+    -- end
 
     -- Destroy the plane upon landing in water
-    local tile = surface.get_tile(plane.position)
-	if tile and tile.valid and not utility.getPlaneConfig(plane.name).isSeaplane then
-        if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud" or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
-            if plane.speed == 0 then  -- Player + passenger dies too since they will just be stuck anyways
-                killDriverAndPassenger(plane, player)
-                return
-            end
-        end
-    end
+    -- local tile = surface.get_tile(plane.position)
+	-- if tile and tile.valid and not utility.getPlaneConfig(plane.name).isSeaplane then
+    --     if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud" or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
+    --         if plane.speed == 0 then  -- Player + passenger dies too since they will just be stuck anyways
+    --             killDriverAndPassenger(plane, player)
+    --             return
+    --         end
+    --     end
+    -- end
 
     -- Destroy plane on large deceleration
     -- TODO figure this out
@@ -461,7 +461,13 @@ function onPlayerDrivingChangedState(e)
     end
 end
 
+local printedMessage = false
 local function onTick(e)
+    if not printedMessage then
+        game.print("You are running an early Aircraft Realism release for Factorio 2.0. The Aircraft mod is not supported!")
+        printedMessage = true
+    end
+
     for index, player in pairs(game.connected_players) do
         if player and player.driving and player.vehicle then
             local plane = player.vehicle

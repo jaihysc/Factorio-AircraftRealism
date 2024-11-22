@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 2024-22-16
+  Features:
+    - Update for Factorio 2.0
+  Changes:
+    - Allow use of concrete runways when runway requirement is set
+    - Low fuel warning will sound even when gauges are disabled
+    - Make takeoff distance estimation line smoother
+    - Plane UI remains open between takeoff / landing
+    - Remove support for aircraft, betterCargoPlanes, helicopters
+    - Update API for adding planes
+    - Update thumbnail
+---------------------------------------------------------------------------------------------------
 Version: 1.5.8
 Date: 2024-07-26
   Changes:

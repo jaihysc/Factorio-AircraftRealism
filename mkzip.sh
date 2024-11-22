@@ -16,11 +16,9 @@ zip -r9 -                                    \
 	"${foldername}/locale/"              \
 	"${foldername}/logic/"               \
 	"${foldername}/sound/"               \
-	"${foldername}/support_aircraft/"    \
-	"${foldername}/aircraftMaker.lua"    \
+	"${foldername}/api.lua"              \
 	"${foldername}/control.lua"          \
 	"${foldername}/data.lua"             \
-	"${foldername}/data-final-fixes.lua" \
 	"${foldername}/settings.lua"         \
 	"${foldername}/changelog.txt"        \
 	"${foldername}/info.json"            \

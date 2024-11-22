@@ -1,5 +1,4 @@
 local utility = require("logic.utility")
-require("support_aircraft.planeSettings")
 
 data:extend({
     { -- RUNTIME SETTINGS

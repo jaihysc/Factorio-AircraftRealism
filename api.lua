@@ -2,6 +2,9 @@ local utility = require("logic.utility")
 
 local function registerPlane(config)
     -- Default values for inputs
+    if not config.max_speed then
+        config.max_speed = 1000000 -- No max speed
+    end
     if not config.shadow_sprite then
         config.shadow_sprite = {}
     end
