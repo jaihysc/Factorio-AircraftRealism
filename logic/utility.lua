@@ -6,10 +6,6 @@ local PDH_PROTOTYPE = "fish" -- Plane Data Holder
 local PDH_NAME_PREFIX = "aircraft-realism-plane-properties-"
 local PDH_SEGMENT_LEN = 200
 
-utility.AIRBORNE_SUFFIX                = "-airborne" -- Suffix added to airborne planes
-utility.SHADOW_SUFFIX                  = "-shadow-"  -- Suffix added to airborne planes for shadows
-utility.TRANSIT_SPEED_PREFIX           = "aircraft-takeoff-speed-"
-
 utility.KPH2MPT                        = 1000 / (60 * 60 * 60) -- km/h * KPH2MPT = m/tick
 
 -- Settings (S), User Settings (SU)
@@ -102,24 +98,45 @@ end
 
 -- Plane data handling
 
--- Returns initialized table holding information about all the planes (to be stored somewhere)
--- See Docs/ScriptImplementation for description of the table
-local function initPlaneData()
-    return {
-        grounded={},
-        airborne={},
-        data={}
+--[[
+    We do some trickery to save data between the data and control stages
+    Serialize the data and store it in a prototype's property "order"
+    The prototype propety can store a max of 200 characters, thus we split it across several prototypes and recombine the string
+
+    The plane data table
+    {
+        grounded = {
+            "grounded-plane-name1"=1, -- Number is index into table "data"
+            "grounded-plane-name2"=2,
+            -- ...
+        },
+        airborne = {
+            "airborne-plane-name1"=2,
+            "airborne-plane-name2"=1,
+            -- ...
+        },
+        data = {
+            -- Lookup plane in grounded or airborne table for index into data table
+            {
+                -- Data for plane 1 (plane config)...
+                transitionSpeedSetting: string
+                groundedName:           string
+                airborneName:           string
+                maxSpeed:               number
+            },
+            {
+                -- Data for plane 2 (plane config)...
+            },
+            -- ...
+        }
     }
-end
+    In the example above, grounded-plane-name1 and airborne-plane-name2 are linked together, with their data stored at index 1
+]]
 
 local planeDataCache = nil -- Cache plane data here during runtime
--- Fetches table holding information about all the planes
--- dataStage: true if called from dataStage, false/nil if from runtime
-local function getPlaneData(dataStage)
-    -- We do some trickery to save data until the data stage
-    -- Serialize table (data) and store it in a prototype's property order
-    -- The prototype propety can store a max of 200 characters, thus we split it across several prototypes
 
+-- Fetches table holding information about all the planes
+local function getPlaneData()
     if planeDataCache ~= nil then
         return planeDataCache
     end
@@ -129,9 +146,11 @@ local function getPlaneData(dataStage)
     local prototypeIdx = 0
     while true do
         local planeDataHolder = nil
-        if dataStage then
+        if data then
+            -- Data stage
             planeDataHolder = data.raw[PDH_PROTOTYPE][PDH_NAME_PREFIX .. tostring(prototypeIdx)]
         else
+            -- Control stage
             planeDataHolder = prototypes.entity[PDH_NAME_PREFIX .. tostring(prototypeIdx)]
         end
 
@@ -145,7 +164,11 @@ local function getPlaneData(dataStage)
     -- Deserialize
     if prototypeIdx == 0 then
         -- No data stored yet
-        planeData = utility.initPlaneData()
+        planeData = {
+            grounded = {},
+            airborne = {},
+            data     = {}
+        }
     else
         local status, data = serpent.load(serializedData)
         assert(status)
@@ -154,7 +177,7 @@ local function getPlaneData(dataStage)
     assert(planeData)
 
     -- Cache the data during runtime
-    if not dataStage then
+    if not data then
         planeDataCache = planeData;
     end
     return planeData
@@ -185,7 +208,7 @@ local function savePlaneData(planeData)
 end
 
 -- Fetches table holding data for given plane
-local function getData(name)
+local function getPlaneConfig(name)
     assert(name)
     local planeData = getPlaneData()
 
@@ -200,6 +223,8 @@ local function getData(name)
 
     assert(false, "Failed to find data for plane")
 end
+
+-- Plane config functions for convenience
 
 -- Information is stored in the prototype order on whether or not it is a plane
 local function isGroundedPlane(name)
@@ -220,20 +245,7 @@ end
 -- Fetches plane takeoff/landing speed straight from settings in factorio units
 local function getTransitionSpeed(name)
     assert(name)
-    local speed = 0
-    if isGroundedPlane(name) then
-        speed = settings.global[utility.TRANSIT_SPEED_PREFIX .. name].value
-    elseif isAirbornePlane(name) then
-        -- Chop off the -airborne at the end
-        speed = settings.global[utility.TRANSIT_SPEED_PREFIX .. string.sub(name, 0, string.len(name) - string.len(utility.AIRBORNE_SUFFIX))].value
-    end
-    return toFactorioUnit(speed)
-end
-
--- Fetches maximum speed for plane, nil if not defined
-local function getMaxSpeed(name)
-    assert(name)
-    return getData(name).maxSpeed
+    return toFactorioUnit(settings.global[getPlaneConfig(name).transitionSpeedSetting].value)
 end
 
 utility.toFactorioUnit = toFactorioUnit
@@ -243,11 +255,10 @@ utility.orientationToIdx = orientationToIdx
 utility.initPlaneData = initPlaneData
 utility.getPlaneData = getPlaneData
 utility.savePlaneData = savePlaneData
-utility.getData = getData
+utility.getPlaneConfig = getPlaneConfig
 utility.isGroundedPlane = isGroundedPlane
 utility.isAirbornePlane = isAirbornePlane
 utility.isPlane = isPlane
 utility.getTransitionSpeed = getTransitionSpeed
-utility.getMaxSpeed = getMaxSpeed
 
 return utility

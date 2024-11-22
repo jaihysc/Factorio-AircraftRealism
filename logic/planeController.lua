@@ -237,7 +237,7 @@ local function checkCollision(plane)
 
     -- Destroy the plane upon landing in water
     local tile = surface.get_tile(plane.position)
-	if tile and tile.valid and not utility.getData(plane.name).isSeaplane then
+	if tile and tile.valid and not utility.getPlaneConfig(plane.name).isSeaplane then
         if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud" or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
             if plane.speed == 0 then  -- Player + passenger dies too since they will just be stuck anyways
                 killDriverAndPassenger(plane, player)
@@ -277,7 +277,7 @@ local function checkMaxSpeed(plane)
     assert(plane)
     assert(plane.name)
 
-    local maxSpeed = utility.getMaxSpeed(plane.name)
+    local maxSpeed = utility.getPlaneConfig(plane.name).maxSpeed
     if plane.speed and maxSpeed then
         -- Clamp the plane speed to max speed
         if plane.speed > maxSpeed then
@@ -333,49 +333,49 @@ end
 -- Airborne plane only
 local function checkShadow(plane)
     assert(plane)
-    -- Only draw shadow once plane is airborne
-    if utility.isAirbornePlane(plane.name) then
-        local data = utility.getData(plane.name)
+    local data = utility.getPlaneConfig(plane.name)
 
-        -- Plane must support shadows
-        if data.shadow then
-            local vBegin = utility.getTransitionSpeed(plane.name)
-            local vEnd = vBegin + data.shadow.endSpeed
-            local tileOffsetFinal = data.shadow.tileOffsetFinal
-            local renderlayer = data.shadow.renderLayer
-            local alphaInitial = data.shadow.alphaInitial
-            local totalFrames = data.shadow.directionCount
+    -- Plane must support shadows
+    local shadows = data.shadowSprite
+    if #data.shadowSprite == 0 then
+        return
+    end
 
-            if plane.speed > vBegin and plane.speed < vEnd then
-                -- Map the orientation to a sprite
-                local spriteIdx = utility.orientationToIdx(plane.orientation, totalFrames)
-                -- Progress of animation, [0,1)
-                -- linear, and polynomial as some animations look better if slower initially
-                local progress = (plane.speed - vBegin) / (vEnd - vBegin)
-                local nomialProgress = progress * progress
+    local vBegin = utility.getTransitionSpeed(plane.name)
+    local vEnd = vBegin + data.shadowEndSpeed
+    local tileOffsetFinal = data.shadowOffset
+    local renderlayer = data.shadowLayer
+    local alphaInitial = data.shadowAlpha
+    local totalFrames = #data.shadowSprite
 
-                -- Since the shadow trails by 1 tick, we account for it by moving the shadow forwards using the plane's velocity
-                -- Speed in tiles/tick
-                local shadowOffsetX = plane.speed * math.sin(2 * math.pi * plane.orientation)
-                local shadowOffsetY = plane.speed * -math.cos(2 * math.pi * plane.orientation)
+    if plane.speed > vBegin and plane.speed < vEnd then
+        -- Map the orientation to a sprite
+        local spriteIdx = utility.orientationToIdx(plane.orientation, totalFrames)
+        -- Progress of animation, [0,1)
+        -- linear, and polynomial as some animations look better if slower initially
+        local progress = (plane.speed - vBegin) / (vEnd - vBegin)
+        local nomialProgress = progress * progress
 
-                rendering.draw_sprite{
-                    sprite = plane.prototype.name .. utility.SHADOW_SUFFIX .. tostring(spriteIdx),
-                    target = {
-                        -- Use the vehicle position, if the player's position is used, the shadow flickers
-                        -- briefly on takeoff
-                        plane.position.x + shadowOffsetX + tileOffsetFinal[1] * nomialProgress,
-                        plane.position.y + shadowOffsetY + tileOffsetFinal[2] * nomialProgress
-                    },
-                    x_scale = 1 - nomialProgress,
-                    y_scale = 1 - nomialProgress,
-                    tint = {0, 0, 0, alphaInitial * (1 - nomialProgress)},
-                    render_layer = renderlayer,
-                    surface = plane.surface,
-                    time_to_live = 1
-                }
-            end
-        end
+        -- Since the shadow trails by 1 tick, we account for it by moving the shadow forwards using the plane's velocity
+        -- Speed in tiles/tick
+        local shadowOffsetX = plane.speed * math.sin(2 * math.pi * plane.orientation)
+        local shadowOffsetY = plane.speed * -math.cos(2 * math.pi * plane.orientation)
+
+        rendering.draw_sprite{
+            sprite = shadows[spriteIdx + 1],
+            target = {
+                -- Use the vehicle position, if the player's position is used, the shadow flickers
+                -- briefly on takeoff
+                plane.position.x + shadowOffsetX + tileOffsetFinal[1] * nomialProgress,
+                plane.position.y + shadowOffsetY + tileOffsetFinal[2] * nomialProgress
+            },
+            x_scale = 1 - nomialProgress,
+            y_scale = 1 - nomialProgress,
+            tint = {0, 0, 0, alphaInitial * (1 - nomialProgress)},
+            render_layer = renderlayer,
+            surface = plane.surface,
+            time_to_live = 1
+        }
     end
 end
 
@@ -385,7 +385,7 @@ local function checkTransitionLand(plane)
     assert(plane)
     local transitionSpeed = utility.getTransitionSpeed(plane.prototype.name)
     if plane.speed < transitionSpeed then
-        local groundedName = string.sub(plane.name, 0, string.len(plane.name) - string.len(utility.AIRBORNE_SUFFIX)) -- TODO don't get grounded name like this
+        local groundedName = utility.getPlaneConfig(plane.prototype.name).groundedName
         -- Direction, player is set in transitionPlane
         local newPlane = plane.surface.create_entity{
             name                      = groundedName,
@@ -407,7 +407,7 @@ local function checkTransitionTakeoff(plane)
     if plane.speed > transitionSpeed then
         -- Direction, player is set in transitionPlane
         local newPlane = plane.surface.create_entity{
-            name                      = plane.name .. utility.AIRBORNE_SUFFIX,
+            name                      = utility.getPlaneConfig(plane.prototype.name).airborneName,
             position                  = plane.position,
             quality                   = plane.quality,
             force                     = plane.force,

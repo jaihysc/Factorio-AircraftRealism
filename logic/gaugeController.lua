@@ -183,7 +183,7 @@ local function updateGaugeArrows(player, plane)
     updateGaugeOverlay(
         fuelGauge,
         utility.UI_FUEL_R_NEEDLE,
-        utility.UI_FUEL_L_NEEDLE_SPRITE_PREFIX .. getFuelGaugeRightIndex(plane)
+        utility.UI_FUEL_R_NEEDLE_SPRITE_PREFIX .. getFuelGaugeRightIndex(plane)
     )
 
     -- Show fuel warning light when fuel is below set percentage

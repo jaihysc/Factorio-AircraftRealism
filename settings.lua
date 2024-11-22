@@ -2,50 +2,6 @@ local utility = require("logic.utility")
 require("support_aircraft.planeSettings")
 
 data:extend({
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-turn-radius",
-        setting_type = "startup",
-        default_value = true,
-        order="aaa"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-acceleration",
-        setting_type = "startup",
-        default_value = true,
-        order="aab"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-braking-speed",
-        setting_type = "startup",
-        default_value = true,
-        order="aac"
-    },
-    {
-        type = "bool-setting",
-        name = "aircraft-realism-takeoff-health",
-        setting_type = "startup",
-        default_value = false,
-        order="aad"
-    },
-    {
-        type = "double-setting",
-        name = "aircraft-realism-fuel-usage-multiplier-grounded",
-        setting_type = "startup",
-        minimum_value = 0,
-        default_value = 2,
-        order="aba"
-    },
-    {
-        type = "double-setting",
-        name = "aircraft-realism-fuel-usage-multiplier-airborne",
-        setting_type = "startup",
-        minimum_value = 0,
-        default_value = 2.25,
-        order="abb"
-    },
     { -- RUNTIME SETTINGS
         type = "bool-setting",
         name = utility.S_RUNWAY_REQUIREMENT,
