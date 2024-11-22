@@ -42,11 +42,12 @@ local function registerPlane(config)
     end
 
     for key, val in pairs(config.shadow_sprite) do
+        assert(key > 0, "Invalid config option \"shadowSprite\" lua arrays indices start at 1")
         assert(type(val) == "string", "Invalid config option \"shadowSprite\" element type expected \"string\"")
     end
     assert(#config.shadow_offset == 2, "Invalid config option \"shadowOffset\" expected length 2 array")
-    assert(type(config.shadow_offset[1]) == "number", "Invalid config option \"shadowOffset\" element type expected \"number\"")
-    assert(type(config.shadow_offset[2]) == "number", "Invalid config option \"shadowOffset\" element type expected \"number\"")
+    assert(type(config.shadow_offset[1]) == "number", "Invalid config option \"shadowOffset\" element 1 type expected \"number\"")
+    assert(type(config.shadow_offset[2]) == "number", "Invalid config option \"shadowOffset\" element 2 type expected \"number\"")
 
     -- Add the plane config entry into plane data
     local groundedName = config.grounded_name
