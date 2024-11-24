@@ -4,25 +4,17 @@ local utility = require("logic.utility")
 --[[
     Global table:
         lastSpeed[]: number
-            Index by player index
-            Holds the last speed for the plane the player is in
+            Index by plane unit_number
+            Holds the speed for the plane at previous tick
 ]]
 
-local function killDriverAndPassenger(plane)
-    assert(plane)
-    -- get_driver() and get_passenger() returns LuaPlayer OR LuaEntity
-    -- die() only exists for LuaEntity
-    local driver = plane.get_driver()
+-- Kills driver / passenger of a plane
+-- driver can be LuaEntity or LuaPlayer
+local function killOccupant(driver)
     if driver and not driver.is_player() then
+        -- die() only exists for LuaEntity
         driver.die(driver.force, plane)
     end
-
-    local passenger = plane.get_passenger()
-    if passenger and not passenger.is_player() then
-        passenger.die(passenger.force, plane)
-    end
-
-    plane.die()
 end
 
 -- Whether tile below grounded/airborne plane is on a runway
@@ -203,6 +195,13 @@ local function transitionPlane(oldPlane, newPlane)
 
     newPlane.riding_state = oldPlane.riding_state
 
+    -- Mod data
+
+    if storage.lastSpeed then
+        storage.lastSpeed[newPlane.unit_number] = newPlane.speed
+        storage.lastSpeed[oldPlane.unit_number] = nil
+    end
+
     -- Drivers / passengers
 
     local driver = oldPlane.get_driver()
@@ -222,50 +221,62 @@ end
 -- Updates / checks that occur on game ticks
 
 -- Checks plane collision with environment
--- Grounded plane only
+-- Grounded and airborne plane, so lastSpeed is correctly calculated
 local function checkCollision(plane)
     assert(plane)
     local surface = plane.surface
 
-    -- Destroy the plane if the player LANDS ON a cliff
-    -- for k, entity in pairs(surface.find_entities_filtered({position = plane.position, radius = plane.get_radius()-0.4, name = {"cliff"}})) do
-    --     if plane.speed == 0 then
-    --         killDriverAndPassenger(plane, player)
-    --         return
-    --     end
-    -- end
+    -- Destroy the plane upon landing on any tiles it collides with, since the players will be stuck
+    local tile = surface.get_tile(plane.position)
+	if tile and tile.valid then
+        if plane.speed == 0 then
+            for layer, _ in pairs(plane.prototype.collision_mask.layers) do
+                if tile.collides_with(layer) then
+                    local driver = plane.get_driver()
+                    local passenger = plane.get_passenger()
 
-    -- Destroy the plane upon landing in water
-    -- local tile = surface.get_tile(plane.position)
-	-- if tile and tile.valid and not utility.getPlaneConfig(plane.name).isSeaplane then
-    --     if tile.name == "water" or tile.name == "water-shallow" or tile.name == "water-mud" or tile.name == "water-green" or tile.name == "deepwater" or tile.name == "deepwater-green" then
-    --         if plane.speed == 0 then  -- Player + passenger dies too since they will just be stuck anyways
-    --             killDriverAndPassenger(plane, player)
-    --             return
-    --         end
-    --     end
-    -- end
+                    plane.die(plane.force)
+                    killOccupant(driver)
+                    killOccupant(passenger)
+                    return
+                end
+            end
+        end
+    end
 
     -- Destroy plane on large deceleration
-    -- TODO figure this out
     if settings.global[utility.S_ENV_IMPACT].value then
-        -- if storage.lastSpeed == nil then
-        --     storage.lastSpeed = {}
-        -- end
+        if storage.lastSpeed == nil then
+            storage.lastSpeed = {}
+        end
 
-        -- if storage.lastSpeed[player.index] then
-        --     local acceleration = plane.speed - storage.lastSpeed[player.index]
-        --     -- Trigger on deceleration only, not acceleration
-        --     if (storage.lastSpeed[player.index] > 0 and acceleration < 0) or (storage.lastSpeed[player.index] < 0 and acceleration > 0) then
-        --         -- Stopped (< 5 km/h) with deceleration over 40km/h
-        --         if math.abs(plane.speed) < (5 * utility.KPH2MPT) and math.abs(acceleration) > (40 * utility.KPH2MPT) then
-        --             storage.lastSpeed[player.index] = nil
-        --             plane.die()
-        --             return
-        --         end
-        --     end
-        -- end
-        -- storage.lastSpeed[player.index] = plane.speed
+        local lastSpeed = storage.lastSpeed[plane.unit_number]
+        if lastSpeed then
+            local acceleration = plane.speed - lastSpeed
+            storage.lastSpeed[plane.unit_number] = plane.speed
+
+            -- Trigger on deceleration only, not acceleration
+            if (lastSpeed > 0 and acceleration < 0) or (lastSpeed < 0 and acceleration > 0) then
+                -- Stopped (< 5 km/h) with deceleration over 40km/h
+                if math.abs(plane.speed) < (5 * utility.KPH2MPT) and math.abs(acceleration) > (40 * utility.KPH2MPT) then
+                    storage.lastSpeed[plane] = nil
+
+                    local driver = plane.get_driver()
+                    local passenger = plane.get_passenger()
+
+                    -- Damage proportional (k) to difference
+                    local k = 3000
+                    local damage = k * math.abs(acceleration)
+                    plane.damage(damage, plane.force, "impact")
+                    if not plane.valid then
+                        killOccupant(driver)
+                        killOccupant(passenger)
+                    end
+                end
+            end
+        else
+            storage.lastSpeed[plane.unit_number] = plane.speed
+        end
     else
         storage.lastSpeed = nil
     end
@@ -482,6 +493,7 @@ local function onTick(e)
                 if plane.valid then checkRunway(plane) end
                 if plane.valid then checkTransitionTakeoff(plane) end
             elseif airborne then
+                if plane.valid then checkCollision(plane) end
                 if plane.valid then checkMaxSpeed(plane) end
                 if plane.valid then checkPollution(plane) end
                 if plane.valid then checkShadow(plane) end
