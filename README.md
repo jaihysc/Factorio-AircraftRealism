@@ -13,7 +13,7 @@ This mod includes no planes by itself, you must install them separately. A non-e
 
 Planes are grounded by default need to reach their set takeoff speed to takeoff, after which they will become airborne and lose their collisions. To land, slow down below their set landing speed, after which it becomes grounded and gains its collisions.
 
-Should the pilot bail while the plane is airborne, if there is a passenger available, they will become the pilot instead. Otherwise the plane will be destroyed. On the ground, the pilot cannot exit unless the plane is stopped.
+Should the pilot bail while the plane is airborne, if there is a passenger available, they will become the pilot instead.
 
 _Takeoff/landing speed, units can be modified in the in-game mod menu_
 
@@ -36,18 +36,14 @@ Gauges appear at the top left of the screen, they convey the following informati
 
 _Enable/disable gauge + warning chime, warning threshold, units can be modified in the in-game mod menu_
 
-## Optional mechanics
+## Optional Mechanics
 
 | Name | Description |
 | - | - |
-| Realistic turn radius | Widens the turn radius of planes; planes can no longer spin on the spot. <br> _Enable/disable in the in-game mod menu_ |
-| Realistic acceleration + braking force | Slower acceleration and braking, requiring a greater distance to takeoff and land. <br> _Enable/disable in the in-game mod menu_ |
-| Increase ground collision damage\* | Rocks, tree stumps and other objects will damage the plane more on takeoff and landing. <br> _Enable/disable in the in-game mod menu_ |
-| Strict runway requirement\* | Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane. <br> _Enable/disable, Max vehicle friction modifier for tiles, max speed when not on runway can be modified in the in-game mod menu_ |
+| Runway requirement\* | Runway tiles are tiles with a vehicle friction modifier less than what is set in the settings. When not on a runway tile, the max speed of the plane is limited to what is set in the settings - exceeding the max speed when not on a runway will damage the plane. <br> _Enable/disable, Max vehicle friction modifier for tiles, max speed when not on runway can be modified in the in-game mod menu_ |
 | Deadly environmental impacts\* | Hitting cliffs and running into water on takeoff and landing will destroy the plane. Otherwise the plane just stops. <br> _Enable/disable in the in-game mod menu_ |
 | Pollution\* | Planes emit pollution depending on their fuel type and speed. <br> _Enable/disable, pollution amount can be modified in the in-game mod menu_ |
 | Airborne damage immunity\* | Airborne planes take no damage, if you are tired of biters destroying your planes (or you wish to use [nuclear weapons](https://mods.factorio.com/mod/True-Nukes) without blowing yourself up) <br> _Enable/disable in the in-game mod menu_ |
-| Fuel usage multiplier | Modify how much fuel grounded and airborne planes use. <br> _Fuel usage can be modified in the in-game mod menu_ |
 | \* Disabled by default. |  |
 
 ## Mod Internals

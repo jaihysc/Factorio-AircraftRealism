@@ -6,14 +6,39 @@ local utility = require("logic.utility")
         lastSpeed[]: number
             Index by plane unit_number
             Holds the speed for the plane at previous tick
+        updateList: array[LuaEntity]
+            Grounded/airborne planes which are checked for updates even if no player in them
+            Used to keep updating planes when player exits plane
 ]]
+
+local DAMAGE_FORCE = "neutral"
+
+-- Adds a plane with no players into the update list
+local function updateListInsert(plane)
+    assert(plane)
+    if not storage.updateList then
+        storage.updateList = {}
+    end
+    -- Insert in free spot in updateList
+    local inserted = false
+    for i=1, #storage.updateList do
+        if not storage.updateList[i] then
+            storage.updateList[i] = plane
+            inserted = true
+            break
+        end
+    end
+    if not inserted then
+        storage.updateList[#storage.updateList + 1] = plane
+    end
+end
 
 -- Kills driver / passenger of a plane
 -- driver can be LuaEntity or LuaPlayer
 local function killOccupant(driver)
     if driver and not driver.is_player() then
         -- die() only exists for LuaEntity
-        driver.die(driver.force, plane)
+        driver.die(DAMAGE_FORCE, plane)
     end
 end
 
@@ -211,6 +236,11 @@ local function transitionPlane(oldPlane, newPlane)
     copyOpened(oldPlane, newPlane, driver)
     copyOpened(oldPlane, newPlane, passenger)
 
+    -- Need to also process updates for grounded plane
+    if not driver and not passenger then
+        updateListInsert(newPlane)
+    end
+
     -- Destroy the old plane first before setting the passenger and driver to the new plane or else the game doesn't like it
     oldPlane.destroy{ raise_destroy = true }
 
@@ -235,7 +265,7 @@ local function checkCollision(plane)
                     local driver = plane.get_driver()
                     local passenger = plane.get_passenger()
 
-                    plane.die(plane.force)
+                    plane.die(DAMAGE_FORCE)
                     killOccupant(driver)
                     killOccupant(passenger)
                     return
@@ -267,7 +297,7 @@ local function checkCollision(plane)
                     -- Damage proportional (k) to difference
                     local k = 3000
                     local damage = k * math.abs(acceleration)
-                    plane.damage(damage, plane.force, "impact")
+                    plane.damage(damage, DAMAGE_FORCE, "impact")
                     if not plane.valid then
                         killOccupant(driver)
                         killOccupant(passenger)
@@ -335,7 +365,7 @@ local function checkRunway(plane)
             -- Damage proportional (k2) to difference
             local k2 = 0.25
             local damage = k2 * overspeed / utility.KPH2MPT
-            plane.damage(damage, plane.force, "impact")
+            plane.damage(damage, DAMAGE_FORCE, "impact")
         end
     end
 end
@@ -429,6 +459,28 @@ local function checkTransitionTakeoff(plane)
     end
 end
 
+-- Top level function, on_tick updates for grounded plane
+local function updateGroundedPlane(plane)
+    -- Check for .valid as plane may be destroyed
+    assert(plane)
+    checkMaxSpeed(plane)
+    checkPollution(plane)
+    checkCollision(plane)
+    if plane.valid then checkRunway(plane) end
+    if plane.valid then checkTransitionTakeoff(plane) end
+end
+
+-- Top level function, on_tick updates for airborne plane
+local function updateAirbornePlane(plane)
+    -- Check for .valid as plane may be destroyed
+    assert(plane)
+    checkMaxSpeed(plane)
+    checkPollution(plane)
+    checkCollision(plane)
+    if plane.valid then checkShadow(plane) end
+    if plane.valid then checkTransitionLand(plane) end
+end
+
 -- Events
 
 -- Makes the plane immune against certain sources of damage, e.g., biters
@@ -447,58 +499,68 @@ end
 function onPlayerDrivingChangedState(e)
     local player = game.get_player(e.player_index)
 
-    if player and not player.driving then
-        if e.entity then
-            if utility.isAirbornePlane(e.entity.prototype.name) then
-                local driver = e.entity.get_driver()
-                local passenger = e.entity.get_passenger()
-                -- If driver bailed, passenger become the pilot
-                if passenger and not driver then
-                    e.entity.set_driver(passenger)
-                -- If passenger and driver jumps out, plane crashes
-                elseif not driver and not passenger then
-                    e.entity.die()
-                end
-            elseif utility.isGroundedPlane(e.entity.prototype.name) then
-                -- Driver of the plane MUST NOT exit until the plane has stopped in order for collision logic to work
-                local driver = e.entity.get_driver()
-                if not driver then
-                    if math.abs(e.entity.speed) > (10 * utility.KPH2MPT) then
-                        e.entity.set_driver(player)
-                    end
-                end
+    -- Player got out of plane
+    if player and not player.driving and e.entity then
+        if utility.isAirbornePlane(e.entity.prototype.name) then
+            local plane = e.entity
+            local driver = plane.get_driver()
+            local passenger = plane.get_passenger()
+            -- If driver bailed, passenger become the pilot
+            if passenger and not driver then
+                plane.set_driver(passenger)
+            -- If passenger and driver jumps out, keep updating plane until it stops
+            elseif not driver and not passenger then
+                updateListInsert(plane)
+            end
+        elseif utility.isGroundedPlane(e.entity.prototype.name) then
+            local plane = e.entity
+            local driver = plane.get_driver()
+            local passenger = plane.get_passenger()
+            -- No passenger and driver, keep updating plane until it stops
+            if not driver and not passenger then
+                updateListInsert(plane)
             end
         end
     end
 end
 
-local printedMessage = false
 local function onTick(e)
-    if not printedMessage then
-        game.print("You are running an early Aircraft Realism release for Factorio 2.0. The Aircraft mod is not supported!")
-        printedMessage = true
-    end
-
+    -- Planes with players in them
     for index, player in pairs(game.connected_players) do
         if player and player.driving and player.vehicle then
             local plane = player.vehicle
             local grounded = utility.isGroundedPlane(plane.prototype.name)
             local airborne = utility.isAirbornePlane(plane.prototype.name)
-
-            -- Check for .valid as plane may be destroyed
             if grounded then
-                if plane.valid then checkCollision(plane) end
-                if plane.valid then checkMaxSpeed(plane) end
-                if plane.valid then checkPollution(plane) end
-                if plane.valid then checkRunway(plane) end
-                if plane.valid then checkTransitionTakeoff(plane) end
+                updateGroundedPlane(plane)
             elseif airborne then
-                if plane.valid then checkCollision(plane) end
-                if plane.valid then checkMaxSpeed(plane) end
-                if plane.valid then checkPollution(plane) end
-                if plane.valid then checkShadow(plane) end
-                if plane.valid then checkTransitionLand(plane) end
+                updateAirbornePlane(plane)
             end
+        end
+    end
+
+    -- Planes in update list
+    if not storage.updateList then
+        storage.updateList = {}
+    end
+    for i=1, #storage.updateList do
+        local plane = storage.updateList[i]
+        -- Only update planes still moving, with no driver/passenger
+        if plane and plane.valid and not plane.get_driver() and not plane.get_passenger() then
+            -- If plane stopped, update once to check collisions
+            if plane.speed == 0 then
+                storage.updateList[i] = nil
+            end
+
+            local grounded = utility.isGroundedPlane(plane.prototype.name)
+            local airborne = utility.isAirbornePlane(plane.prototype.name)
+            if grounded then
+                updateGroundedPlane(plane)
+            elseif airborne then
+                updateAirbornePlane(plane)
+            end
+        else
+            storage.updateList[i] = nil
         end
     end
 end
