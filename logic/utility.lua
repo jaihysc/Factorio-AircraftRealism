@@ -123,6 +123,11 @@ end
                 groundedName:           string
                 airborneName:           string
                 maxSpeed:               number
+                shadowSprite            table {string}
+                shadowEndSpeed          number
+                shadowOffset            table {number, number}
+                shadowLayer             string
+                shadowAlpha             number
             },
             {
                 -- Data for plane 2 (plane config)...
@@ -245,7 +250,10 @@ end
 -- Fetches plane takeoff/landing speed straight from settings in factorio units
 local function getTransitionSpeed(name)
     assert(name)
-    return toFactorioUnit(settings.global[getPlaneConfig(name).transitionSpeedSetting].value)
+    local speedSettingName = getPlaneConfig(name).transitionSpeedSetting
+    local speedSetting = settings.global[speedSettingName]
+    assert(speedSetting, "Could not find transition speed for \"" .. speedSettingName .. "\", check the setting name is spelled correctly and setting type is runtime-global")
+    return toFactorioUnit(speedSetting.value)
 end
 
 utility.toFactorioUnit = toFactorioUnit
