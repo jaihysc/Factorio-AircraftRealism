@@ -19,7 +19,9 @@ _Takeoff/landing speed, units can be modified in the in-game mod menu_
 
 ## User Interface
 
-For an estimation of the takeoff distance of your plane, click the shortcut "Estimate takeoff distance" to the right of your toolbar, beside "Undo" and "Toggle Alt-mode" and hover your cursor over your plane. If the takeoff distance could not be determined, an orange line is drawn to indicate error.
+Estimate the takeoff distance of your plane by clicking the shortcut "Estimate takeoff distance" to the right of your toolbar and hover your cursor over your plane. If the takeoff distance could not be determined, an orange line is drawn to indicate error. If a non-runway tile is encountered, a red circle is drawn around that tile.
+
+[Takeoff distance estimation](https://i.imgur.com/5wyIPr0.mp4)
 
 Gauges appear at the top left of the screen, they convey the following information
 

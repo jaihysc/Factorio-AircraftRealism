@@ -2,17 +2,28 @@ local utility = require("logic.utility")
 
 --[[
     Global table:
-        showTakeoffDist[]: LuaEntity
+        showTakeoffDist[]: table
+            {
+                plane: LuaEntity
+                timeout: bool
+                    Calculation timeout
+                onRunway: bool
+                    Takeoff path is on runway
+                distance: number
+                    Takeoff distance
+                dirX: number
+                    Plane direction unit vector
+                dirY: number
+            }
+
             Index by player index
-            Holds the plane the player has selected to show takeoff distance for
+            Holds the Takeoff distance estimation (TDE) data for the player
 ]]
 
--- Draws line indicating takeoff distance for player plane
--- lineLife: Ticks to show line drawn
-local function showTakeoffDist(player, plane, lineLife)
-    assert(player)
-    assert(plane)
-    assert(type(lineLife) == "number")
+-- Calculates takeoff distance, stored in provided table (element of showTakeoffDist)
+local function calcTakeoffDist(result)
+    assert(result)
+    local plane = result.plane
 
     assert(plane.prototype.weight, "Plane prototype missing weight. Check plane prototypes")
     assert(plane.prototype.consumption, "Plane prototype missing consumption. Check plane prototypes")
@@ -20,7 +31,7 @@ local function showTakeoffDist(player, plane, lineLife)
     assert(plane.prototype.effectivity, "Plane prototype missing effectivity. Check plane prototypes")
 
     -- Calculation properties
-    local maxTime = 15 -- Give up calculation if takeoff time too long
+    local maxTime = 10 -- Give up calculation if takeoff time too long
     local dt = 1/60 -- 1/60 second = 1 tick
 
     -- Use SI units to avoid confusion and conversion errors
@@ -83,11 +94,17 @@ local function showTakeoffDist(player, plane, lineLife)
     local r_x = math.sin(planeRad)
     local r_y = -math.cos(planeRad) -- Positive y is downwards
 
-    local succeeded = false
+    local maxTileFriction = settings.global[utility.S_RUNWAY_MAX_FRICTION].value
+    if not settings.global[utility.S_RUNWAY_REQUIREMENT].value then
+        maxTileFriction = 1000000
+    end
+
+    local timeout = true
+    local onRunway = true
     while t < maxTime do
         v = math.sqrt(2*E/m) -- speed
         if v >= v_tk then
-            succeeded = true
+            timeout = false
             break
         end
 
@@ -96,10 +113,27 @@ local function showTakeoffDist(player, plane, lineLife)
         -- TODO friction calculation for tiles not that accurate
         -- Friction loss is a function of tile currently over
         local u_ft = 1
-        local tile = player.surface.get_tile({x=plane.position.x + r_x*s, y=plane.position.y + r_y*s})
+        local tile = plane.surface.get_tile({x=plane.position.x + r_x*s, y=plane.position.y + r_y*s})
         -- Tile may not exist (out of map)
         if tile.valid then
             u_ft = tile.prototype.vehicle_friction_modifier -- Terrain friction
+
+            -- Check plane is on runway (if runway requirement set)
+            if tile.prototype.vehicle_friction_modifier >= maxTileFriction then
+                onRunway = false
+                break
+            end
+
+            -- Check plane does not collide with the tile (water, etc)
+            for layer, _ in pairs(plane.prototype.collision_mask.layers) do
+                if tile.collides_with(layer) then
+                    onRunway = false
+                    break
+                end
+            end
+            if not onRunway then
+                break
+            end
         end
         u_f = 1 - u_fc*(1 + u_ft)
 
@@ -108,43 +142,141 @@ local function showTakeoffDist(player, plane, lineLife)
         s = s + v*dt
     end
 
-    -- Show orange line to show calculation timed out
-    local line_color = {0, 0.5, 0, 0.5} -- Green
-    if not succeeded then
-        line_color = {0.9, 0.5, 0.1, 0.5} -- Orange
-        s = 1 -- Set to a short distance so it is not confused for an actual calculation
-    end
-    local takeoffPos = {x=plane.position.x + r_x*s, y=plane.position.y + r_y*s}
-    rendering.draw_line{
-        surface=player.surface,
-        from=plane.position, to=takeoffPos,
-        color=line_color,
-        width=10,
-        time_to_live=lineLife,
-        players={player},
-        draw_on_ground=true
+    result.plane = plane
+    result.timeout = timeout
+    result.onRunway = onRunway
+    result.distance = s
+    result.dirX = r_x
+    result.dirY = r_y
+end
+
+-- Draws UI indicating takeoff distance for player
+local function showTakeoffDist(player, result)
+    assert(player)
+    assert(result)
+    local plane = result.plane
+
+    -- Outline for selected plane
+    local diffX = (plane.bounding_box.left_top.x - plane.bounding_box.right_bottom.x)
+    local diffY = (plane.bounding_box.left_top.y - plane.bounding_box.right_bottom.y)
+    local outlineRadius = math.sqrt(diffX * diffX + diffY * diffY) -- Use length of bounding box for radius
+    rendering.draw_circle{
+        color        = {1, 1, 1, 1},
+        radius       = outlineRadius,
+        width        = 4,
+        target       = plane.position,
+        surface      = plane.surface,
+        time_to_live = 1,
+        players      = {player},
     }
+
+    -- Line for takeoff distance
+    -- Show orange line to show calculation timed out
+    local lineColor = {0, 0.5, 0, 0.5} -- Green
+    if result.timeout or not result.onRunway then
+        lineColor = {0.9, 0.5, 0.1, 0.5} -- Orange
+    end
+    local takeoffPos = {x=plane.position.x + result.dirX * result.distance, y=plane.position.y + result.dirY * result.distance}
+    rendering.draw_line{
+        surface        = plane.surface,
+        from           = plane.position, to=takeoffPos,
+        color          = lineColor,
+        width          = 10,
+        time_to_live   = 1,
+        players        = {player},
+        draw_on_ground = true
+    }
+
+    -- Info text
+    -- Along the line for takeoff position, nearest to the player
+    -- v (u . v), project u along v, scale v
+    local infoVecMag = ((player.position.x - plane.position.x) * result.dirX + (player.position.y - plane.position.y) * result.dirY)
+    if infoVecMag < 0 then
+        infoVecMag = 0
+    elseif infoVecMag > result.distance then
+        infoVecMag = result.distance
+    end
+    local infoVecX = infoVecMag * result.dirX
+    local infoVecY = infoVecMag * result.dirY
+    if not result.onRunway then
+        rendering.draw_circle{
+            color        = {1, 0, 0, 1},
+            radius       = 1,
+            width        = 8,
+            target       = takeoffPos,
+            surface      = plane.surface,
+            time_to_live = 1,
+            players      = {player}
+        }
+        rendering.draw_text{
+            text         = {"decorative-name.aircraft-realism-tde-runway-too-short"},
+            surface      = plane.surface,
+            target       = {x=plane.position.x + infoVecX, y=plane.position.y + infoVecY},
+            color        = {1, 1, 1, 1},
+            scale        = 3,
+            time_to_live = 1,
+            players      = {player}
+        }
+    else
+        local distancePrefix = ""
+        if result.timeout then
+            distancePrefix = "> "
+        end
+        rendering.draw_text{
+            text         = {"decorative-name.aircraft-realism-tde-distance", distancePrefix .. math.floor(result.distance + 0.5)},
+            surface      = plane.surface,
+            target       = {x=plane.position.x + infoVecX, y=plane.position.y + infoVecY},
+            color        = {1, 1, 1, 1},
+            scale        = 3,
+            time_to_live = 1,
+            players      = {player}
+        }
+        if result.timeout then
+            rendering.draw_text{
+                text         = {"decorative-name.aircraft-realism-tde-timeout"},
+                surface      = plane.surface,
+                target       = {x=plane.position.x + infoVecX, y=plane.position.y + infoVecY + 1.5},
+                color        = {1, 1, 1, 1},
+                scale        = 3,
+                time_to_live = 1,
+                players      = {player}
+            }
+        end
+    end
 end
 
 function onTick(e)
+    if not storage.showTakeoffDist then
+        storage.showTakeoffDist = {}
+    end
+
     for index,player in pairs(game.connected_players) do  -- loop through all online players on the server
         if player and player.surface then
-            -- Set takeoff distance line target to currently hovered over
-            -- if on same force
-            if player.selected and
-               player.selected.force == player.force and
-               utility.isGroundedPlane(player.selected.prototype.name) and
-               player.is_shortcut_toggled(utility.UI_SHOW_TAKEOFF_DIST) then
-                if not storage.showTakeoffDist then
-                    storage.showTakeoffDist = {}
+            -- Set takeoff distance target to currently hovered over if on same force
+            -- Only check every 5 ticks to avoid flickering since results are not calculated in this tick
+            if e.tick % 5 == 0 then
+                if player.selected and
+                player.selected.force == player.force and
+                utility.isGroundedPlane(player.selected.prototype.name) and
+                player.is_shortcut_toggled(utility.UI_SHOW_TAKEOFF_DIST) then
+                    -- Do not override table if selected plane has not changed
+                    local prevResult = storage.showTakeoffDist[player.index]
+                    if not prevResult or not prevResult.plane.valid or prevResult.plane ~= player.selected then
+                        storage.showTakeoffDist[player.index] = {plane=player.selected}
+                    end
                 end
-                storage.showTakeoffDist[player.index] = player.selected
             end
-            -- Draw takeoff distance line
-            if e.tick % 5 == 0 and
-               storage.showTakeoffDist and storage.showTakeoffDist[player.index] then
-                if storage.showTakeoffDist[player.index].valid then
-                    showTakeoffDist(player, storage.showTakeoffDist[player.index], 5)
+
+            local result = storage.showTakeoffDist[player.index]
+            if result then
+                -- Check type of result, to work on old saves still using LuaEntity in showTakeoffDist array
+                if type(result) == "table" and result.plane.valid then
+                    if e.tick % 5 == 0 then
+                        calcTakeoffDist(result)
+                    end
+
+                    -- Show UI for takeoff distance every tick so it is smooth
+                    showTakeoffDist(player, result)
                 else
                     -- Plane gone (destroyed, took off, etc)
                     storage.showTakeoffDist[player.index] = nil
