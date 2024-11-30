@@ -4,10 +4,10 @@ Planes possess collisions and now needs to reach set speeds to takeoff. To custo
 
 ## Installation
 
-This mod includes no planes by itself, you must install them separately. A non-exhaustive list of aircraft mods is listed
-- [Aircraft](https://mods.factorio.com/mods/SuicidalKid/Aircraft)
+This mod includes no planes by itself, you must install them separately
+- [Aircraft](https://mods.factorio.com/mod/Aircraft-space-age)
 - [King Jo's B-17](https://mods.factorio.com/mod/kj_b17)
-- [KM A-10 ThunderBolt](https://mods.factorio.com/mod/km_a10)
+- [AC Aircraft - PBY](https://mods.factorio.com/mod/AC-Aircraft)
 
 ## Mechanics
 

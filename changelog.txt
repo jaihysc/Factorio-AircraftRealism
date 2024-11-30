@@ -1,6 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.1
+Date: 2024-11-30
+  Changes:
+    - Driver exiting airborne plane no longer destroys plane
+    - Plane can be exited while moving
+    - New UI for takeoff distance estimation
+---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: 2024-22-16
+Date: 2024-11-22
   Features:
     - Update for Factorio 2.0
   Changes:

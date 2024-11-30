@@ -1,8 +1,8 @@
 # Adding new planes
 
-*Written with version 2.0.0*
-
 The API has changed in 2.0.0, the API only informs AircraftRealism of 2 vehicles behaving as the grounded/airborne versions of a plane. AircraftRealism no longer modifies the planes you provide.
+
+[Full API documentation](./Api.md)
 
 ## Quickstart
 
@@ -45,5 +45,3 @@ data:extend({
     }
 })
 ```
-
-[Full API documentation](./Api.md)

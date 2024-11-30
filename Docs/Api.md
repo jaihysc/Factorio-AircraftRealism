@@ -1,5 +1,7 @@
 # Function register_plane (api.lua)
 
+*Written with version 2.0.0*
+
 Informs the AircraftRealism mod that two vehicles are the grounded and airborne versions of a plane.
 
 ## Syntax
