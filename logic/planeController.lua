@@ -105,7 +105,8 @@ local function transitionPlane(oldPlane, newPlane)
 
     newPlane.active = oldPlane.active
     newPlane.destructible = oldPlane.destructible
-    newPlane.minable = oldPlane.minable
+    -- newPlane.minable = oldPlane.minable
+    newPlane.minable = true -- Workaround for bug in Factorio 2.0.23, minable always reads back as false
     newPlane.rotatable = oldPlane.rotatable
     newPlane.operable = oldPlane.operable
 
