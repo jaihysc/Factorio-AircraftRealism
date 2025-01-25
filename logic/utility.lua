@@ -202,6 +202,7 @@ local function savePlaneData(planeData)
                 name=PDH_NAME_PREFIX .. tostring(prototypeIdx),
                 type=PDH_PROTOTYPE,
                 order="",
+                hidden=true
             }}
             planeDataHolder = data.raw[PDH_PROTOTYPE][PDH_NAME_PREFIX .. tostring(prototypeIdx)]
             assert(planeDataHolder)

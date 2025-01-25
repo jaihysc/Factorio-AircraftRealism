@@ -85,11 +85,10 @@ local function copyOpened(oldPlane, newPlane, occupant)
     assert(oldPlane)
     assert(newPlane)
     if occupant and occupant.opened then
-        -- It appears .opened is bugged in Factorio 2.0.15, only works for the plane GUI, not equipment guid
-        if occupant.opened == oldPlane then
-            occupant.opened = newPlane
-        elseif occupant.opened == oldPlane.grid then
+        if occupant.opened_gui_type == defines.gui_type.opened_entity_grid then
             occupant.opened = newPlane.grid
+        else
+            occupant.opened = newPlane
         end
     end
 end
@@ -173,11 +172,23 @@ local function transitionPlane(oldPlane, newPlane)
         newPlane.grid.inhibit_movement_bonus = oldPlane.grid.inhibit_movement_bonus
 
         for index,item in pairs(oldPlane.grid.equipment) do
-            local addedEquipment = newPlane.grid.put{
-                name     = item.name,
-                quality  = item.quality,
-                position = item.position
-            }
+            local isGhost = item.name == "equipment-ghost"
+            local addedEquipment = nil
+            if isGhost then
+                addedEquipment = newPlane.grid.put{
+                    name     = item.ghost_name,
+                    quality  = item.quality,
+                    position = item.position,
+                    ghost    = true
+                }
+            else
+                addedEquipment = newPlane.grid.put{
+                    name     = item.name,
+                    quality  = item.quality,
+                    position = item.position,
+                    ghost    = false
+                }
+            end
             assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
 
             -- We must check for non zero, otherwise attempting to set for item which
