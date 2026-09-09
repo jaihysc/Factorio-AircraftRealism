@@ -102,10 +102,14 @@ local function transitionPlane(oldPlane, newPlane)
 
     -- LuaEntity
 
-    newPlane.active = oldPlane.active
+    -- 2.1 removed the write to LuaEntity::active; disabled_by_script replaces it, with the
+    -- opposite sense. Writable on 2.0 too, so this behaves the same on both.
+    newPlane.disabled_by_script = not oldPlane.active
     newPlane.destructible = oldPlane.destructible
     -- newPlane.minable = oldPlane.minable
-    newPlane.minable = true -- Workaround for bug in Factorio 2.0.23, minable always reads back as false
+    -- 2.1 made LuaEntity::minable read only; minable_flag is the setter. Writable on 2.0
+    -- and read only on 2.1, so this raised on every takeoff and landing.
+    newPlane.minable_flag = true -- Workaround for bug in Factorio 2.0.23, minable always reads back as false
     newPlane.rotatable = oldPlane.rotatable
     newPlane.operable = oldPlane.operable
 
