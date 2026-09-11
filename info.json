@@ -1,10 +1,10 @@
 {
     "name": "AircraftRealism",
-    "version": "2.0.3",
+    "version": "2.1.0",
     "title": "Aircraft Realism",
     "author": "haih_ys",
     "homepage": "https://github.com/jaihysc/Factorio-AircraftRealism",
-    "factorio_version": "2.0",
-    "dependencies": ["base >= 2.0"],
+    "factorio_version": "2.1",
+    "dependencies": ["base >= 2.1"],
     "description": "Framework for mods to create planes. Adds a variety of mechanics to make vehicles behave as planes"
 }

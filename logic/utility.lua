@@ -10,6 +10,7 @@ utility.KPH2MPT                        = 1000 / (60 * 60 * 60) -- km/h * KPH2MPT
 
 -- Settings (S), User Settings (SU)
 utility.S_AIRBORNE_DAMAGE_IMMUNITY     = "aircraft-realism-airborne-damage-immunity"
+utility.S_BYPASS_PLANE_VALIDATION      = "aircraft-realism-bypass-plane-validation"
 utility.S_ENV_IMPACT                   = "aircraft-realism-environmental-impact"
 utility.S_SPEED_UNIT                   = "aircraft-speed-unit"
 

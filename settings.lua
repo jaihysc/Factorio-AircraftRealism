@@ -65,6 +65,13 @@ data:extend({
         },
         allow_blank = false,
         order="ach"
+    },
+    {
+        type = "bool-setting",
+        name = utility.S_BYPASS_PLANE_VALIDATION,
+        setting_type = "runtime-global",
+        default_value = false,
+        order="aci"
     }, -- Per user settings
     {
         type = "bool-setting",

@@ -52,15 +52,22 @@ local function onRunway(plane)
     return tile.prototype.vehicle_friction_modifier < settings.global[utility.S_RUNWAY_MAX_FRICTION].value
 end
 
+-- Soft assert for checking old/new planes during transition plane
+local function checkPlane(condition, failMsg)
+    if not settings.global[utility.S_BYPASS_PLANE_VALIDATION].value then
+        assert(condition, "During takeoff/landing, AircraftRealism detected a misconfigured plane.\n\n" .. failMsg .. "\n\nThis is likely caused by incompatible mods which modified the plane prototypes. AircraftRealism creates two planes: a grounded and airborne plane. The prototype of these two planes must match. Another mod modified only the grounded or airborne plane but not both. This should be reported to the author of the mod, not AircraftRealism.\nAs a workaround, you can try enabling the setting \"Disable plane validation\".")
+    end
+end
+
 -- Inventory manipulation for plane transitions
 
 -- Copies inventory from oldInventory to newInventory
 local function copyInventory(oldInventory, newInventory)
     if oldInventory then
-        assert(newInventory, "Old plane has inventory, new plane does not. Check plane prototypes")
-        assert(#newInventory == #oldInventory, "Old plane and new plane inventories are different sizes. Check plane prototypes")
+        checkPlane(newInventory, "Old plane has inventory, new plane does not")
+        checkPlane(#newInventory == #oldInventory, "Old plane and new plane inventories are different sizes")
         -- With this method, inventory items stay in the same place
-        for i = 1, #oldInventory, 1 do
+        for i = 1, math.min(#newInventory, #oldInventory), 1 do
             newInventory[i].set_stack(oldInventory[i])
         end
     end
@@ -69,7 +76,7 @@ end
 -- Copy burner from oldBurner to newBurner
 local function copyBurner(oldBurner, newBurner)
     if oldBurner then
-        assert(newBurner, "Old plane has burner, new plane does not. Check plane prototypes")
+        checkPlane(newBurner, "Old plane has burner, new plane does not")
         copyInventory(oldBurner.inventory, newBurner.inventory)
         copyInventory(oldBurner.burnt_result_inventory, newBurner.burnt_result_inventory)
 
@@ -102,16 +109,15 @@ local function transitionPlane(oldPlane, newPlane)
 
     -- LuaEntity
 
-    newPlane.active = oldPlane.active
+    newPlane.disabled_by_script = not oldPlane.active
     newPlane.destructible = oldPlane.destructible
-    -- newPlane.minable = oldPlane.minable
-    newPlane.minable = true -- Workaround for bug in Factorio 2.0.23, minable always reads back as false
+    newPlane.minable_flag = oldPlane.minable_flag
     newPlane.rotatable = oldPlane.rotatable
     newPlane.operable = oldPlane.operable
 
     -- Scale health in case max health between planes are different
     if oldPlane.health then
-        assert(newPlane.health, "Old plane has health, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.health, "Old plane has health, new plane does not")
         newPlane.health = oldPlane.health * newPlane.max_health / oldPlane.max_health
     end
 
@@ -119,7 +125,7 @@ local function transitionPlane(oldPlane, newPlane)
     newPlane.orientation = oldPlane.orientation
 
     if oldPlane.relative_turret_orientation then
-        assert(newPlane.relative_turret_orientation, "Old plane has relative_turret_orientation, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.relative_turret_orientation, "Old plane has relative_turret_orientation, new plane does not")
         newPlane.relative_turret_orientation = oldPlane.relative_turret_orientation
     end
 
@@ -128,36 +134,41 @@ local function transitionPlane(oldPlane, newPlane)
     newPlane.friction_modifier = oldPlane.friction_modifier
 
     if oldPlane.driver_is_gunner then
-        assert(newPlane.driver_is_gunner, "Old plane has driver_is_gunner, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.driver_is_gunner, "Old plane has driver_is_gunner, new plane does not")
         newPlane.driver_is_gunner = oldPlane.driver_is_gunner
     end
 
     if oldPlane.speed then
-        assert(newPlane.speed, "Old plane has speed, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.speed, "Old plane has speed, new plane does not")
         newPlane.speed = oldPlane.speed
     end
 
     -- Select the last weapon
     if oldPlane.selected_gun_index then
-        assert(newPlane.selected_gun_index, "Old plane has selected_gun_index, new plane does not. Check plane prototypes")
-        assert(utility.getTableLength(oldPlane.prototype.guns) == utility.getTableLength(newPlane.prototype.guns), "Old plane does not have same number of guns as new plane. Check plane prototypes")
-        newPlane.selected_gun_index = oldPlane.selected_gun_index
+        checkPlane(newPlane.selected_gun_index, "Old plane has selected_gun_index, new plane does not")
+
+        local oldNumGuns = utility.getTableLength(oldPlane.prototype.guns)
+        local newNumGuns = utility.getTableLength(newPlane.prototype.guns)
+        checkPlane(oldNumGuns == newNumGuns, "Old plane does not have same number of guns as new plane")
+        if newNumGuns > 0 then
+            newPlane.selected_gun_index = math.min(oldPlane.selected_gun_index, newNumGuns)
+        end
     end
 
     newPlane.energy = oldPlane.energy
 
     if oldPlane.temperature then
-        assert(newPlane.temperature, "Old plane has temperature, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.temperature, "Old plane has temperature, new plane does not")
         newPlane.temperature = oldPlane.temperature
     end
 
     if oldPlane.backer_name then
-        assert(newPlane.backer_name, "Old plane has backer_name, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.backer_name, "Old plane has backer_name, new plane does not")
         newPlane.backer_name = oldPlane.backer_name
     end
 
     if oldPlane.color then
-        assert(newPlane.color, "Old plane has color, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.color, "Old plane has color, new plane does not")
         newPlane.color = oldPlane.color
     end
 
@@ -165,9 +176,9 @@ local function transitionPlane(oldPlane, newPlane)
 
     -- Transfer over equipment grid
     if oldPlane.grid then
-        assert(newPlane.grid, "Old plane has grid, new plane does not. Check plane prototypes")
-        assert(oldPlane.grid.width == newPlane.grid.width, "Old plane equipment grid width differs from new plane. Check plane prototypes")
-        assert(oldPlane.grid.height == newPlane.grid.height, "Old plane equipment grid height differs from new plane. Check plane prototypes")
+        checkPlane(newPlane.grid, "Old plane has grid, new plane does not")
+        checkPlane(oldPlane.grid.width == newPlane.grid.width, "Old plane equipment grid width differs from new plane")
+        checkPlane(oldPlane.grid.height == newPlane.grid.height, "Old plane equipment grid height differs from new plane")
 
         newPlane.grid.inhibit_movement_bonus = oldPlane.grid.inhibit_movement_bonus
 
@@ -189,7 +200,7 @@ local function transitionPlane(oldPlane, newPlane)
                     ghost    = false
                 }
             end
-            assert(addedEquipment, "Could not insert old plane equipment into new plane. Check plane prototypes")
+            checkPlane(addedEquipment, "Could not insert old plane equipment into new plane")
 
             -- We must check for non zero, otherwise attempting to set for item which
             -- does not have energy or shield is an error
@@ -201,14 +212,14 @@ local function transitionPlane(oldPlane, newPlane)
     end
 
     if oldPlane.graphics_variation then
-        assert(newPlane.graphics_variation, "Old plane has graphics_variation, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.graphics_variation, "Old plane has graphics_variation, new plane does not")
         newPlane.graphics_variation = oldPlane.graphics_variation
     end
 
     copyBurner(oldPlane.burner, newPlane.burner)
 
     if oldPlane.prototype.allow_run_time_change_of_is_military_target then
-        assert(newPlane.prototype.allow_run_time_change_of_is_military_target, "Old plane has allow_run_time_change_of_is_military_target, new plane does not. Check plane prototypes")
+        checkPlane(newPlane.prototype.allow_run_time_change_of_is_military_target, "Old plane has allow_run_time_change_of_is_military_target, new plane does not")
         newPlane.is_military_target = oldPlane.is_military_target
     end
 
